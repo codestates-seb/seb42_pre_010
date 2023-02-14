@@ -19,6 +19,6 @@ Todo 관리를 위한 웹 애플리케이션입니다.
 프로젝트 팀 정보, 기획, 아키텍쳐에 대한 자세한 안내입니다.
 
 -Notion Team Introduction
-https://www.notion.so/codestates/7b565b3aa04c4b58afe3d95a3e8cb611
+-https://www.notion.so/codestates/7b565b3aa04c4b58afe3d95a3e8cb611
 
 
