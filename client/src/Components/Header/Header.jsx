@@ -124,6 +124,20 @@ export const PubHeaderContentWrap = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  li {
+    padding: 15px;
+    :hover {
+      background-color: hsl(210, 8%, 90%);
+      color: #191919;
+    }
+  }
+  svg {
+    font-size: 20px;
+    color: hsl(210, 8%, 35%);
+    :hover {
+      color: #191919;
+    }
+  }
 `;
 
 // 마이페이지
