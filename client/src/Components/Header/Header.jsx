@@ -22,16 +22,32 @@ export const HeaderBlock = styled.div`
 
 // About, Products, For Teams || Products
 export const HeaderNav = (logged) => {
+  // console.log(logged.logged);
+
+  return <>{logged.logged ? <PubHeaderNav /> : <LoggedHeaderNav />}</>;
+};
+
+// About, Products, For Teams
+export const PubHeaderNav = () => {
   return (
     <>
-      <div>
-        {logged ? <h1>About, Products, For Teams</h1> : <h1>Products</h1>}
-      </div>
+      <h3>About</h3>
+      <h3>Products</h3>
+      <h3>For Teams</h3>
     </>
   );
 };
 
-// 검색 input 창
+// Products
+export const LoggedHeaderNav = () => {
+  return (
+    <>
+      <h3>Products</h3>
+    </>
+  );
+};
+
+// 검색 Input 창
 export const SearchBlock = () => {
   return (
     <>
@@ -47,9 +63,24 @@ export const SearchBlock = () => {
 export const HeaderContent = (logged) => {
   //console.log(logged.logged);
 
+  return <>{logged.logged ? <LoggedHeaderContent /> : <PubHeaderContent />}</>;
+};
+
+// 로그인, 회원 가입
+export const PubHeaderContent = () => {
   return (
     <>
-      {logged.logged ? <h1>About, Products, For Teams</h1> : <h1>Products</h1>}
+      <h3>Login</h3>
+      <h3>Signup</h3>
+    </>
+  );
+};
+
+// 마이페이지
+export const LoggedHeaderContent = () => {
+  return (
+    <>
+      <h3>Mypage</h3>
     </>
   );
 };
