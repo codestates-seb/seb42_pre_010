@@ -137,7 +137,7 @@ export const SearchBlock = () => {
 export const HeaderContent = (logged) => {
   //console.log(logged.logged);
 
-  return <>{logged.logged ? <PubHeaderContent /> : <LoggedHeaderContent />}</>;
+  return <>{logged.logged ? <LoggedHeaderContent /> : <PubHeaderContent />}</>;
 };
 
 export const PubHeaderContentWrap = styled.div`
