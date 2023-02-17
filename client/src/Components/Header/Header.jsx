@@ -16,6 +16,7 @@ export const HeaderBlock = styled.div`
     0 2px 8px hsla(0, 0%, 0%, 0.05);
   nav {
     width: 98rem;
+    height: 100%;
     max-width: 1264px;
     margin: 0 auto;
     display: flex;
@@ -59,8 +60,20 @@ export const PubHeaderNavWrap = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 226px;
+  margin: 0 10px;
   li {
     list-style: none;
+    color: hsl(210, 8%, 35%);
+    text-decoration: none;
+    border: none;
+    padding: 8.5px 12px;
+    margin: 0px;
+    font-size: 13px;
+    :hover {
+      color: black;
+      border-radius: 1000px;
+      background-color: hsl(210, 8%, 90%);
+    }
   }
 `;
 
@@ -77,9 +90,9 @@ export const PubHeaderNav = () => {
 // Products
 export const LoggedHeaderNav = () => {
   return (
-    <>
-      <h3>Products</h3>
-    </>
+    <PubHeaderNavWrap>
+      <li>Products</li>
+    </PubHeaderNavWrap>
   );
 };
 
@@ -158,10 +171,13 @@ export const LoggedHeaderContent = () => {
 };
 
 export const LogoBlock = styled.div`
+  padding: 0 8px;
   img {
     width: 150px;
     height: 30px;
-    padding: 8px;
+  }
+  :hover {
+    background-color: #9181814c;
   }
 `;
 
