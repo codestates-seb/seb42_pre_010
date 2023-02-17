@@ -83,6 +83,27 @@ export const PubHeaderNavWrap = styled.div`
   }
 `;
 
+export const LoggedHeaderNavWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 10px;
+  li {
+    color: hsl(210, 8%, 35%);
+    text-decoration: none;
+    border: none;
+    padding: 8.5px 12px;
+    margin: 0px;
+    font-size: 13px;
+    :hover {
+      color: black;
+      border-radius: 1000px;
+      background-color: hsl(210, 8%, 90%);
+    }
+  }
+`;
+
 export const PubHeaderNav = () => {
   return (
     <PubHeaderNavWrap>
@@ -96,9 +117,9 @@ export const PubHeaderNav = () => {
 // Products
 export const LoggedHeaderNav = () => {
   return (
-    <PubHeaderNavWrap>
+    <LoggedHeaderNavWrap>
       <li>Products</li>
-    </PubHeaderNavWrap>
+    </LoggedHeaderNavWrap>
   );
 };
 
