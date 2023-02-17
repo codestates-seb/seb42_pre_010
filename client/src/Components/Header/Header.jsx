@@ -2,6 +2,10 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
+import { ImDrawer2 } from 'react-icons/im';
+import { RiTrophyFill } from 'react-icons/ri';
+import { BsQuestionCircleFill } from 'react-icons/bs';
+import { FaStackExchange } from 'react-icons/fa';
 
 export const HeaderBlock = styled.div`
   width: 100%;
@@ -44,6 +48,9 @@ export const HeaderBlock = styled.div`
     outline: none;
     font-size: 80%;
   }
+  li {
+    list-style: none;
+  }
 `;
 
 //! About, Products, For Teams || Products
@@ -62,7 +69,6 @@ export const PubHeaderNavWrap = styled.div`
   width: 226px;
   margin: 0 10px;
   li {
-    list-style: none;
     color: hsl(210, 8%, 35%);
     text-decoration: none;
     border: none;
@@ -118,25 +124,40 @@ export const PubHeaderContentWrap = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  li {
-    list-style: none;
-    border-radius: 3px;
-    margin: 3px;
-    padding: 9.5px 12px;
-    font-size: 0.8em;
-  }
 `;
 
-// 로그인, 회원 가입
+// 마이페이지
+export const MypageBlock = styled.li``;
+
+export const MessageBlock = styled.li``;
+
+export const AchievmentBlock = styled.li``;
+
+export const HelpBlock = styled.li``;
+
+export const CommunityBlock = styled.li``;
+
 export const PubHeaderContent = () => {
   return (
     <PubHeaderContentWrap>
-      <LoginBlock>Login</LoginBlock>
-      <SignupBlock>Signup</SignupBlock>
+      <MypageBlock />
+      <MessageBlock>
+        <ImDrawer2 />
+      </MessageBlock>
+      <AchievmentBlock>
+        <RiTrophyFill />
+      </AchievmentBlock>
+      <HelpBlock>
+        <BsQuestionCircleFill />
+      </HelpBlock>
+      <CommunityBlock>
+        <FaStackExchange />
+      </CommunityBlock>
     </PubHeaderContentWrap>
   );
 };
 
+// 로그인, 회원 가입
 export const LoginBlock = styled.li`
   color: hsl(205, 47%, 42%);
   border: 1px solid hsl(205, 41%, 63%);
@@ -161,23 +182,36 @@ export const SignupBlock = styled.li`
   }
 `;
 
-// 마이페이지
+export const LoggedHeaderContentWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  li {
+    border-radius: 3px;
+    margin: 3px;
+    padding: 9.5px 12px;
+    font-size: 0.8em;
+  }
+`;
+
 export const LoggedHeaderContent = () => {
   return (
-    <>
-      <h3>Mypage</h3>
-    </>
+    <LoggedHeaderContentWrap>
+      <LoginBlock>Login</LoginBlock>
+      <SignupBlock>Signup</SignupBlock>
+    </LoggedHeaderContentWrap>
   );
 };
 
 export const LogoBlock = styled.div`
-  padding: 0 8px;
+  padding: 10px 13px;
   img {
     width: 150px;
     height: 30px;
   }
   :hover {
-    background-color: #9181814c;
+    background-color: hsl(210, 8%, 90%);
   }
 `;
 
