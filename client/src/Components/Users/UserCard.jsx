@@ -24,7 +24,7 @@ export const initialState = {
       createdAt: '2023.02.16 14:00:00',
       questionCount: 3,
       answerCount: 4,
-      picture: `https://randomuser.me/api/portraits/women/${getRandomNumber(
+      picture: `https://randomuser.me/api/portraits/men/${getRandomNumber(
         1,
         98
       )}.jpg`,
@@ -32,11 +32,33 @@ export const initialState = {
   ],
 };
 
-const UserCardContainer = styled.main``;
+const userimg = initialState.users[0].picture;
+
+const UserCardContainer = styled.main`
+  max-width: 1100px;
+  height: 500px;
+  width: calc(100% - 164px);
+  border: 1px solid black;
+`;
+
+const UserCardInfoBlock = styled.div`
+  border: 1px solid purple;
+`;
+
+const UserCardImg = styled.img.attrs(() => ({
+  src: `${userimg}`,
+}))``;
 
 export const UserCard = () => {
   console.log(initialState);
-  return <UserCardContainer></UserCardContainer>;
+
+  return (
+    <UserCardContainer>
+      <UserCardInfoBlock>
+        <UserCardImg />
+      </UserCardInfoBlock>
+    </UserCardContainer>
+  );
 };
 
 export default UserCard;
