@@ -254,10 +254,9 @@ export const Header = () => {
   //로그인 여부를 확인하기 위한 상태가 필요
   const [logged, setLogged] = useState(false);
 
-  const modeHandler = () => {
-    //상태 임의로 바꿔주는 것까지 확인
-    setLogged(!logged);
-  };
+  // const modeHandler = () => {
+  //   setLogged(!logged);
+  // };
 
   return (
     <>
@@ -266,12 +265,12 @@ export const Header = () => {
           <LogoBlock>
             <img src="images/logo-stackoverflow.png" alt="logo" />
           </LogoBlock>
-          <HeaderNav logged={logged} />
+          <HeaderNav logged={logged} setLogged={setLogged} />
           <SearchBlock />
           <HeaderContent logged={logged} />
         </nav>
       </HeaderBlock>
-      <button onClick={modeHandler}>❤️</button>
+      {/* <button onClick={modeHandler}>❤️</button> */}
     </>
   );
 };

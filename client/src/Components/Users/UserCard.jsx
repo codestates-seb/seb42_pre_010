@@ -86,7 +86,7 @@ const UserCardConentSection = styled.div`
 const usercardNav = ['Profile', 'Activity', 'Saves', 'Settings'];
 
 export const UserCard = () => {
-  console.log(initialState);
+  //console.log(initialState);
 
   return (
     <UserCardContainer>
