@@ -17,7 +17,7 @@ const FooterLogo = styled.div`
   flex: 0 0 64px;
 `;
 
-const Logo = styled.span`
+const Logo = styled.img`
   width: 32px;
   height: 37px;
 `;
@@ -96,7 +96,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterLogo>
-        <Logo>Logo</Logo>
+        <Logo src="images/stackoverflow_small.png" />
       </FooterLogo>
       <FooterNav>
         <FooterNavSection>
