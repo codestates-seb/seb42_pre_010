@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import UserCardProfile from './UserCardProfile';
 
 const getRandomNumber = (min, max) => {
   return parseInt(Math.random() * (Number(max) - Number(min) + 2));
@@ -40,6 +41,7 @@ const UserCardContainer = styled.main`
   width: calc(100% - 164px);
   border: 1px solid black;
   position: relative;
+  list-style: none;
 `;
 
 const UserCardInfoBlock = styled.div`
@@ -68,6 +70,21 @@ const UserCardButtonWrap = styled.div`
   top: 0;
 `;
 
+const UserCardNavSection = styled.div`
+  border: 1px solid black;
+  display: flex;
+`;
+
+const UserCardNavList = styled.li``;
+
+const UserCardConentSection = styled.div`
+  background-color: blanchedalmond;
+  width: 100%;
+  height: 100%;
+`;
+
+const usercardNav = ['Profile', 'Activity', 'Saves', 'Settings'];
+
 export const UserCard = () => {
   console.log(initialState);
 
@@ -82,12 +99,27 @@ export const UserCard = () => {
             <li>Last seen this week</li>
             <li>Visited 6 days, 6 consecutive</li>
           </UserCardInfoList>
+          <UserCardInfoList>
+            <li>트위터</li>
+            <li>깃허브</li>
+            <li>개인 링크</li>
+            <li>위치</li>
+          </UserCardInfoList>
         </UserCardInfoContnet>
       </UserCardInfoBlock>
       <UserCardButtonWrap>
         <button>Edit profile</button>
         <button>Network profile</button>
       </UserCardButtonWrap>
+      <UserCardNavSection>
+        {usercardNav.map((ele, idx) => {
+          return <UserCardNavList key={idx}>{ele}</UserCardNavList>;
+        })}
+      </UserCardNavSection>
+      {/*선택 된 Nav Meue에 따라 UserCardConentSection에 출력이 달라 짐*/}
+      <UserCardConentSection>
+        <UserCardProfile />
+      </UserCardConentSection>
     </UserCardContainer>
   );
 };
