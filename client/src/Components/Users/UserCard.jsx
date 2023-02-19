@@ -32,22 +32,41 @@ export const initialState = {
   ],
 };
 
-const userimg = initialState.users[0].picture;
+const userimg = initialState.users[1].picture;
 
 const UserCardContainer = styled.main`
   max-width: 1100px;
   height: 500px;
   width: calc(100% - 164px);
   border: 1px solid black;
+  position: relative;
 `;
 
 const UserCardInfoBlock = styled.div`
   border: 1px solid purple;
+  display: flex;
+  align-items: center;
 `;
 
 const UserCardImg = styled.img.attrs(() => ({
   src: `${userimg}`,
 }))``;
+
+const UserCardInfoContnet = styled.div`
+  background-color: #86ddff76;
+`;
+
+const UserCardInfoList = styled.ul`
+  border: 1px solid yellow;
+  display: flex;
+`;
+
+const UserCardButtonWrap = styled.div`
+  border: 1px solid blue;
+  position: absolute;
+  right: 0;
+  top: 0;
+`;
 
 export const UserCard = () => {
   console.log(initialState);
@@ -56,7 +75,19 @@ export const UserCard = () => {
     <UserCardContainer>
       <UserCardInfoBlock>
         <UserCardImg />
+        <UserCardInfoContnet>
+          <h1>Youngk</h1>
+          <UserCardInfoList>
+            <li>Member for 6 days</li>
+            <li>Last seen this week</li>
+            <li>Visited 6 days, 6 consecutive</li>
+          </UserCardInfoList>
+        </UserCardInfoContnet>
       </UserCardInfoBlock>
+      <UserCardButtonWrap>
+        <button>Edit profile</button>
+        <button>Network profile</button>
+      </UserCardButtonWrap>
     </UserCardContainer>
   );
 };

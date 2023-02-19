@@ -162,7 +162,7 @@ export const PubHeaderContentWrap = styled.div`
 `;
 
 // 마이페이지
-export const MypageBlock = styled.li``;
+export const MypageWrap = styled.li``;
 
 export const MessageBlock = styled.li``;
 
@@ -175,7 +175,7 @@ export const CommunityBlock = styled.li``;
 export const PubHeaderContent = () => {
   return (
     <PubHeaderContentWrap>
-      <MypageBlock />
+      <MypageWrap></MypageWrap>
       <MessageBlock>
         <ImDrawer2 />
       </MessageBlock>
@@ -275,3 +275,5 @@ export const Header = () => {
     </>
   );
 };
+
+export default Header;
