@@ -5,25 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d6ba5c2-e071-4204-a467-52512019ef11" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.eslintrc.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.prettierrc.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/images/logo-stackoverflow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/images/stackoverflow_small.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/Footer/Footer.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/Header/Header.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/Nav/Nav.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Components/Sidebar/Sidebar.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/reportWebVitals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/seb10/User/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/User/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/User/mapstruct/mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/User/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/seb10/User/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/User/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/seb10/User/dto/UserPatchDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/User/dto/UserPatchDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/seb10/User/dto/UserPostDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/User/dto/UserPostDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/seb10/User/dto/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/User/dto/UserResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/seb10/User/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/User/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/seb10/User/mapstruct/mapper/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/seb10/User/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/seb10/User/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/User/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,6 +1,6 @@
-package com.seb10.User.service;
+package com.seb10.server.domain.User.service;
 
-import com.seb10.User.entity.User;
+import com.seb10.server.domain.User.entity.User;
 
 public class UserService {
     public User createUser(User user) {
