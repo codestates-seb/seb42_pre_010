@@ -1,11 +1,10 @@
-import questionsData from './QuestionsDummyData';
+import questionsData from '../Questions/QuestionsDummyData';
 import Question from '../../Components/Questions/Question';
 
-const Questions = () => {
+const Home = () => {
   return (
     <div>
       <h1>All Questions</h1>
-      <span>{questionsData.length} questions</span>
       <button>Ask Question</button>
       <ul>
         {questionsData.map((ele) => {
@@ -16,4 +15,4 @@ const Questions = () => {
   );
 };
 
-export default Questions;
+export default Home;
