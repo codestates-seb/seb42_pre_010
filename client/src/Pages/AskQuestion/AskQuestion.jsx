@@ -61,16 +61,12 @@ const WritingInfo = styled.div`
   }
 `;
 
-const WritingTitle = styled.div`
+const Writing = styled.div`
   width: 900px;
   padding: 24px;
   margin: 20px 0px;
   border-radius: 3px;
   border: 1px solid #d6d9dc;
-
-  /* .questionTitle {
-    padding: 20px;
-  } */
 
   .title {
     font-size: 18px;
@@ -88,7 +84,8 @@ const WritingTitle = styled.div`
     border-radius: 3px;
     border: 1px solid #c4c4c4;
     height: 30px;
-    width: 100%;
+    width: 96%;
+    padding: 3px 10px;
   }
 `;
 
@@ -121,7 +118,7 @@ const AskQuestion = () => {
         </ul>
       </WritingInfo>
       <form>
-        <WritingTitle>
+        <Writing>
           <div className="questionTitle">
             <h3 className="title">Title</h3>
             <p>
@@ -130,7 +127,29 @@ const AskQuestion = () => {
             </p>
             <input placeholder="e.g. Is there an R function for finding the index of an element in a vector?" />
           </div>
-        </WritingTitle>
+        </Writing>
+        <Writing>
+          <div className="writingProblem">
+            <h3 className="title">What are the details of your problem?</h3>
+            <p>
+              Introduce the problem and expand on what you put in the title.
+              Minimum 20 characters.
+            </p>
+            {/* 여기에 text editor 추가 */}
+          </div>
+        </Writing>
+        <Writing>
+          <div className="writingExpecting">
+            <h3 className="title">
+              What did you try and what were you expecting?
+            </h3>
+            <p>
+              Describe what you tried, what you expected to happen, and what
+              actually resulted. Minimum 20 characters.
+            </p>
+            {/* 여기에 text editor 추가 */}
+          </div>
+        </Writing>
       </form>
     </AskQuestionBlock>
   );
