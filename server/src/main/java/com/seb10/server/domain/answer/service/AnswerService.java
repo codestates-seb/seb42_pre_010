@@ -11,17 +11,23 @@ import java.util.Optional;
 //todo User
 @Service
 public class AnswerService {
+    //todo userRepository, questionRepository DI
     private final AnswerRepository answerRepository;
 
     public AnswerService(AnswerRepository answerRepository) {
-
-
         this.answerRepository = answerRepository;
     }
 
     public Answer createAnswer(Answer answer){
-        //todo 등록된 유저인지 확인
-        return answer;
+        //todo 등록된 유저인지 확인, 질문 상태 확인
+
+        return answerRepository.save(answer);
+    }
+
+    public Answer updateAnswer(Answer answer){
+        //todo 등록된 유저인지 확인, 질문 상태 확인, 답변 존재 확인
+
+        return answerRepository.save(answer);
     }
 
     //todo answer 찾기
