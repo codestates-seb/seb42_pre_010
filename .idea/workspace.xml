@@ -5,41 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d6ba5c2-e071-4204-a467-52512019ef11" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/dev-log-template.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/.eslintrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/.prettierrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/images/logo-stackoverflow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/images/stackoverflow_small.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/Footer/Footer.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/Header/Header.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/Nav/Nav.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/Sidebar/Sidebar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/Users/UserCard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/Users/UserCardActivity.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Components/Users/UserCardProfile.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Pages/Tag/Tag.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Pages/Tag/TagDummyData.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Pages/Tag/TagList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/Pages/Users.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/reportWebVitals.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/answer/controller/AnswerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/answer/dto/AnswerDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/answer/entity/Answer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/answer/mapper/AnswerMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/answer/repository/AnswerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/domain/answer/service/AnswerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/exception/BusinessLogicException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/server/exception/ExceptionCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslintrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.prettierrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/images/logo-stackoverflow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/images/stackoverflow_small.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/Footer/Footer.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/Header/Header.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/Nav/Nav.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Components/Sidebar/Sidebar.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/seb10/User/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/seb10/User/controller/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,12 +87,12 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="server [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
