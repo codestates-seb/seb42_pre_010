@@ -52,15 +52,11 @@ const ButtonBlock = styled.div`
   .resetButton {
     color: #ab262a;
     border: none;
-    /* background: #fdf2f2; */
     background: #ffffff;
     box-shadow: none;
 
     &:hover {
       background-color: #fdf2f2;
-      /* border: 1px solid #0a95ff;
-      box-shadow: inset 0 1px 0 0 #0a95ff;
-      color: #ffffff; */
       cursor: pointer;
     }
   }

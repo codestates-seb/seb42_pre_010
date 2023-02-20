@@ -46,12 +46,6 @@ function EditorComponent({ value, handleValue }) {
     'image',
   ];
 
-  // const [text, setText] = useState('');
-
-  // const handleText = (value) => {
-  //   console.log(value);
-  //   setText(value);
-  // };
   return (
     <div>
       <div className="text-editor " style={{ height: '350px' }}>
