@@ -49,7 +49,7 @@ const ButtonBlock = styled.div`
     }
   }
 
-  .reseButton {
+  .resetButton {
     color: #ab262a;
     border: none;
     /* background: #fdf2f2; */
@@ -99,7 +99,7 @@ const AskQuestion = () => {
           <button className="submitButton" type="sumit">
             Ask!
           </button>
-          <button className="reseButton" onClick={handleOnReset} type="reset">
+          <button className="resetButton" onClick={handleOnReset} type="reset">
             Discard draft
           </button>
         </ButtonBlock>
