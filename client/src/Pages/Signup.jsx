@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-const Signupwrap = styled.div`
+const SignupWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1264px;
+  /* max-width: 1264px; */
   height: 962px;
   background-color: hsl(210, 8%, 95%);
   a {
@@ -42,7 +42,6 @@ const InfoLogo = styled.div`
 `;
 
 const SignupFormSection = styled.div`
-  border: 1px solid black;
   width: 440px;
 `;
 const SignupSocialWrap = styled.div`
@@ -53,7 +52,7 @@ const SignupSocialWrap = styled.div`
 `;
 
 const SignupGoogle = styled.button`
-  width: 300px;
+  width: 350px;
   padding: 10px;
   margin: 4px 0px;
   background-color: white;
@@ -104,8 +103,8 @@ const SignupInputTitle = styled.div`
 
 const TextInput = styled.input`
   width: 100%;
-  margin-top: 5px;
-  padding: 0.6em 0.7em;
+  margin-top: 10px;
+  padding: 0.6em 0.1em;
   border: 1px solid hsl(210, 8%, 75%);
   border-radius: 3px;
   color: hsl(210, 8%, 5%);
@@ -142,9 +141,62 @@ const RecaptchaBox = styled.div`
   height: 144px;
 `;
 
+const OptionBlock = styled.div`
+  display: flex;
+  margin: 6px 0;
+`;
+
+const CheckBox = styled.input`
+  margin-right: 4px;
+  vertical-align: middle;
+  border-radius: 3px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 1em;
+  height: 1em;
+  border: 1px solid hsl(210, 8%, 75%);
+  outline: 0;
+  background-color: white;
+`;
+
+const OptionInfo = styled.label`
+  line-height: 1rem;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 12px;
+  padding: 0 2px;
+  color: hsl(210, 8%, 5%);
+`;
+
+const SignupSubmitBtn = styled.button`
+  margin: 8px 0;
+  background-color: hsl(206, 100%, 52%);
+  color: white;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
+  font-size: 13px;
+  padding: 0.8em;
+  display: inline-block;
+  font-weight: normal;
+  position: relative;
+  outline: none;
+  line-height: calc(15 / 13);
+  cursor: pointer;
+  border-radius: 3px;
+`;
+
+const PolicyBlock = styled.div`
+  line-height: 1rem;
+  text-align: left;
+  color: hsl(210, 8%, 45%);
+  font-size: 12px;
+  margin-top: 32px;
+`;
+
 const Signup = () => {
   return (
-    <Signupwrap>
+    <SignupWrap className="signup-wrap">
       <SignupInfoSection>
         <SignupInfoTitle>Join the Stack Overflow community</SignupInfoTitle>
         <SignupInfoContent>
@@ -292,9 +344,31 @@ const Signup = () => {
               ></iframe>
             </RecaptchaBox>
           </TestBlock>
+          <OptionBlock>
+            <CheckBox type="checkbox" />
+            <OptionInfo>
+              Opt-in to receive occasional product updates, user research
+              invitations, company announcements, and digests.
+            </OptionInfo>
+          </OptionBlock>
+          <SignupSubmitBtn type="submit">Sign up</SignupSubmitBtn>
+          <PolicyBlock>
+            By clicking “Sign up”, you agree to our
+            <a href="https://stackoverflow.com/legal/terms-of-service/public">
+              terms of service
+            </a>
+            ,
+            <a href="https://stackoverflow.com/legal/privacy-policy">
+              privacy policy
+            </a>
+            and
+            <a href="https://stackoverflow.com/legal/cookie-policy">
+              cookie policy
+            </a>
+          </PolicyBlock>
         </SignupInputWrap>
       </SignupFormSection>
-    </Signupwrap>
+    </SignupWrap>
   );
 };
 export default Signup;
