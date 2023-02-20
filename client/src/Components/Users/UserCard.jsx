@@ -44,9 +44,9 @@ const userimg = initialState.users[1].picture;
 const UserCardContainer = styled.main`
   max-width: 1100px;
   height: 500px;
-  width: calc(100% - 164px);
   position: relative;
   list-style: none;
+  padding: 12px;
   svg {
     margin-right: 5px;
   }
@@ -94,6 +94,7 @@ const UserCardButtonWrap = styled.div`
   position: absolute;
   right: 0;
   top: 0;
+  padding-top: 24px;
   button {
     height: 37px;
     text-decoration: none;
@@ -117,9 +118,22 @@ const UserCardButtonWrap = styled.div`
 
 const UserCardNavSection = styled.div`
   display: flex;
+  margin: 0 16px;
 `;
 
-const UserCardNavList = styled.li``;
+const UserCardNavList = styled.li`
+  color: hsl(210, 8%, 35%);
+  text-decoration: none;
+  border: none;
+  padding: 11px 15px;
+  font-size: 13px;
+  margin-bottom: 16px;
+  :hover {
+    color: black;
+    border-radius: 1000px;
+    background-color: hsl(210, 8%, 90%);
+  }
+`;
 
 const UserCardConentSection = styled.div`
   width: 100%;
