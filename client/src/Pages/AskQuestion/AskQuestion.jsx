@@ -16,7 +16,7 @@ const WritingInfo = styled.div`
   border: 1px solid #a6ceed;
   border-radius: 3px;
   padding: 24px;
-  width: 820px;
+  width: 900px;
   height: 220px;
 
   h2 {
