@@ -20,10 +20,10 @@ public class Answer {
     private String contents;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "LAST_MODIFIED_AT")
-    private LocalDateTime modifiedAt;
+    private LocalDateTime modifiedAt = LocalDateTime.now();
 
     /* todo user, question 엔티티 맵핑
     @ManyToOne
