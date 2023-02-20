@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import EditorComponent from './Quill';
 
 const AskQuestionBlock = styled.div`
   padding: 30px;
@@ -76,7 +77,7 @@ const Writing = styled.div`
 
   p {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin: 10px 0px 20px;
   }
 
   input {
@@ -86,6 +87,12 @@ const Writing = styled.div`
     height: 30px;
     width: 96%;
     padding: 3px 10px;
+  }
+
+  input:focus {
+    outline: none;
+    border: 1px solid #a6ceed;
+    box-shadow: 1px 1px 1px 5px #d9eaf7;
   }
 `;
 
@@ -135,19 +142,7 @@ const AskQuestion = () => {
               Introduce the problem and expand on what you put in the title.
               Minimum 20 characters.
             </p>
-            {/* 여기에 text editor 추가 */}
-          </div>
-        </Writing>
-        <Writing>
-          <div className="writingExpecting">
-            <h3 className="title">
-              What did you try and what were you expecting?
-            </h3>
-            <p>
-              Describe what you tried, what you expected to happen, and what
-              actually resulted. Minimum 20 characters.
-            </p>
-            {/* 여기에 text editor 추가 */}
+            <EditorComponent />
           </div>
         </Writing>
       </form>
