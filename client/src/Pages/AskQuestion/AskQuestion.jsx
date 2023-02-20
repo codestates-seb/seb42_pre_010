@@ -96,6 +96,31 @@ const Writing = styled.div`
   }
 `;
 
+const ButtonBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 20px 20px 80px 20px;
+  button {
+    margin-right: 20px;
+    width: 80px;
+    height: 35px;
+    border-radius: 4px;
+    border: none;
+    border: 1px solid #0a95ff;
+    background-color: #0a95ff;
+    box-shadow: inset 0 1px 0 0 #6fc0ff;
+    color: white;
+
+    &:hover {
+      background-color: #2277b8;
+      border: 1px solid #0a95ff;
+      box-shadow: inset 0 1px 0 0 #0a95ff;
+      color: #ffffff;
+      cursor: pointer;
+    }
+  }
+`;
+
 const AskQuestion = () => {
   const steps = [
     'Summarize your problem in a one-line title.',
@@ -145,6 +170,10 @@ const AskQuestion = () => {
             <EditorComponent />
           </div>
         </Writing>
+        <ButtonBlock>
+          <button type="reset">Discard draft</button>
+          <button type="sumit">Ask!</button>
+        </ButtonBlock>
       </form>
     </AskQuestionBlock>
   );
