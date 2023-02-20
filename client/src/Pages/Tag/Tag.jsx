@@ -49,7 +49,6 @@ const Tag = () => {
 
   const filtered = () => {
     const data = dummyData.filter((data) => {
-      console.log('가쟈옴', data);
       return data.tag.includes(search);
     });
 

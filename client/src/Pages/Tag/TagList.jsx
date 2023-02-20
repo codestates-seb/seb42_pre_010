@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 
-// const TagContainer = styled.div`
-//   border-radius: 3%;
-// `;
-
 const TagListBlock = styled.div`
-  /* display: flex;
-  flex-direction: column; */
   border: 1px solid #d8d8d8;
   border-radius: 3px;
   width: 250px;
