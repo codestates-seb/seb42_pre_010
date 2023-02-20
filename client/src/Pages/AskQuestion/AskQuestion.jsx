@@ -9,15 +9,6 @@ const AskQuestionBlock = styled.div`
     font-weight: bold;
     margin-bottom: 60px;
   }
-`;
-
-const WritingInfo = styled.div`
-  background: #ebf4fb;
-  border: 1px solid #a6ceed;
-  border-radius: 3px;
-  padding: 24px;
-  width: 900px;
-  height: 220px;
 
   h2 {
     font-size: 21px;
@@ -25,6 +16,15 @@ const WritingInfo = styled.div`
     margin-bottom: 20px;
     color: #141414;
   }
+`;
+
+const WritingInfo = styled.div`
+  background: #ebf4fb;
+  border: 1px solid #a6ceed;
+  border-radius: 3px;
+  width: 900px;
+  padding: 24px;
+  height: 220px;
 
   p {
     font-size: 16px;
@@ -61,6 +61,37 @@ const WritingInfo = styled.div`
   }
 `;
 
+const WritingTitle = styled.div`
+  width: 900px;
+  padding: 24px;
+  margin: 20px 0px;
+  border-radius: 3px;
+  border: 1px solid #d6d9dc;
+
+  /* .questionTitle {
+    padding: 20px;
+  } */
+
+  .title {
+    font-size: 18px;
+    font-weight: bolder;
+    margin: 5px 0px;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  input {
+    border: none;
+    border-radius: 3px;
+    border: 1px solid #c4c4c4;
+    height: 30px;
+    width: 100%;
+  }
+`;
+
 const AskQuestion = () => {
   const steps = [
     'Summarize your problem in a one-line title.',
@@ -89,6 +120,18 @@ const AskQuestion = () => {
           ))}
         </ul>
       </WritingInfo>
+      <form>
+        <WritingTitle>
+          <div className="questionTitle">
+            <h3 className="title">Title</h3>
+            <p>
+              Be specific and imagine you’re asking a question to another
+              person.
+            </p>
+            <input placeholder="e.g. Is there an R function for finding the index of an element in a vector?" />
+          </div>
+        </WritingTitle>
+      </form>
     </AskQuestionBlock>
   );
 };
