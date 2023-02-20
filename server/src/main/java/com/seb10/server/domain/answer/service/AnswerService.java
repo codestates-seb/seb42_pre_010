@@ -54,10 +54,10 @@ public class AnswerService {
     }
 
     //todo answer 존재여부 확인
-    public Answer verifyExistAnswer(long answerId){
-
-        return null;
-    }
+//    public Answer verifyExistAnswer(long answerId){
+//
+//        return null;
+//    }
 
     // answer 존재하지 않을 시, 오류 메시지 출력
     public Answer findVerifiedAnswer(long answerId){
