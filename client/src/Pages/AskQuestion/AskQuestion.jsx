@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import EditorComponent from './Quill';
 
@@ -122,6 +123,9 @@ const ButtonBlock = styled.div`
 `;
 
 const AskQuestion = () => {
+  const [title, setTitle] = useState('');
+  const [value, setValue] = useState('');
+
   const steps = [
     'Summarize your problem in a one-line title.',
     'Describe your problem in more detail.',
@@ -129,6 +133,21 @@ const AskQuestion = () => {
     'Add “tags” which help surface your question to members of the community.',
     'Review your question and post it to the site.',
   ];
+
+  const handleValue = (value) => {
+    console.log(value);
+    setValue(value);
+  };
+
+  const handleOnChangeTitle = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleOnReset = () => {
+    setTitle('');
+    setValue('');
+  };
+
   return (
     <AskQuestionBlock>
       <h1>Ask a public question</h1>
@@ -157,7 +176,11 @@ const AskQuestion = () => {
               Be specific and imagine you’re asking a question to another
               person.
             </p>
-            <input placeholder="e.g. Is there an R function for finding the index of an element in a vector?" />
+            <input
+              value={title}
+              onChange={handleOnChangeTitle}
+              placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
+            />
           </div>
         </Writing>
         <Writing>
@@ -167,11 +190,13 @@ const AskQuestion = () => {
               Introduce the problem and expand on what you put in the title.
               Minimum 20 characters.
             </p>
-            <EditorComponent />
+            <EditorComponent value={value} handleValue={handleValue} />
           </div>
         </Writing>
         <ButtonBlock>
-          <button type="reset">Discard draft</button>
+          <button onClick={handleOnReset} type="reset">
+            Discard draft
+          </button>
           <button type="sumit">Ask!</button>
         </ButtonBlock>
       </form>

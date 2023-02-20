@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -25,7 +24,7 @@ const CustomToolbar = () => (
   </div>
 );
 
-function EditorComponent() {
+function EditorComponent({ value, handleValue }) {
   const modules = {
     toolbar: {
       container: '#toolbar',
@@ -47,12 +46,12 @@ function EditorComponent() {
     'image',
   ];
 
-  const [text, setText] = useState('');
+  // const [text, setText] = useState('');
 
-  const handleText = (value) => {
-    console.log(value);
-    setText(value);
-  };
+  // const handleText = (value) => {
+  //   console.log(value);
+  //   setText(value);
+  // };
   return (
     <div>
       <div className="text-editor " style={{ height: '350px' }}>
@@ -61,8 +60,8 @@ function EditorComponent() {
           style={{ height: '300px' }}
           modules={modules}
           formats={formats}
-          value={text}
-          onChange={handleText}
+          value={value}
+          onChange={handleValue}
         />
       </div>
     </div>
