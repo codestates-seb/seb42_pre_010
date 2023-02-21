@@ -37,9 +37,11 @@ public class AnswerController {
                                      @Valid @RequestBody AnswerDto.Post answerPostDto){
         answerPostDto.setQuestionId(questionId);
         Answer answer = answerService.createAnswer(mapper.answerPostDtoToAnswer(answerPostDto));
-        URI location = UriCreator.createUri(ANSWER_DEFAULT_URL,answer.getAnswerId());
-
-        return ResponseEntity.created(location).build();
+//        URI location = UriCreator.createUri(ANSWER_DEFAULT_URL,answer.getAnswerId());
+//
+//        return ResponseEntity.created(location).build();
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.answerToAnswerResponse(answer)),HttpStatus.CREATED);
     }
 
     //답변을 data로 감싸서 List로 출력
@@ -51,9 +53,11 @@ public class AnswerController {
                 new MultiResponseDto<>(mapper.answersToAnswerResponses(answers)),HttpStatus.OK);
     }
 
-    //todo service단에서 update 메서드 구
+
+    //todo service단에서 update 메서드 구현
     @PatchMapping("/post/{answer-id}/edit")
-    public ResponseEntity patc현Answer(@PathVariable("answer-id") @Positive long answerId,
+    public ResponseEntity patchAnswer(@PathVariable("answer-id") @Positive long answerId,
+
                                       @Valid @RequestBody AnswerDto.Patch answerPatchDto){
         answerPatchDto.setAnswerId(answerId);
         Answer answer =

@@ -1,4 +1,4 @@
-package com.seb10.server.domain.User.entity;
+package com.seb10.server.domain.user.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
