@@ -7,7 +7,7 @@ const WritionForm = styled.div`
     border-radius: 3px;
     border: 1px solid #c4c4c4;
     height: 30px;
-    width: 96%;
+    width: 97%;
     padding: 3px 10px;
   }
 
