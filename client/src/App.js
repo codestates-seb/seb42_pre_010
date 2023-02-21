@@ -1,19 +1,20 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Root, WithoutRoot } from './GlobalStyle';
 //import Sidebar from './Components/Sidebar/Sidebar';
+import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Signin from './Pages/Signup/Signup';
 import AskQuestion from './Pages/AskQuestion/AskQuestion';
 import Tag from './Pages/Tag/Tag';
-import UserCard from './Components/Users/UserCard';
+import Users from './Pages/Users/Users';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
     children: [
-      { index: true, element: <UserCard /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
-      { path: '/users', element: <UserCard /> },
+      { index: true, element: <Home /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
+      { path: '/users', element: <Users /> },
       { path: '/tags', element: <Tag /> },
     ],
   },
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/users/login', element: <Login /> },
       { path: '/users/signup', element: <Signin /> },
-      { path: '/questions/ask', element: <AskQuestion /> },
+      { path: '/questions', element: <AskQuestion /> },
     ],
   },
 ]);
