@@ -53,9 +53,11 @@ public class AnswerController {
                 new MultiResponseDto<>(mapper.answersToAnswerResponses(answers)),HttpStatus.OK);
     }
 
+
     //todo service단에서 update 메서드 구현
     @PatchMapping("/post/{answer-id}/edit")
     public ResponseEntity patchAnswer(@PathVariable("answer-id") @Positive long answerId,
+
                                       @Valid @RequestBody AnswerDto.Patch answerPatchDto){
         answerPatchDto.setAnswerId(answerId);
         Answer answer =

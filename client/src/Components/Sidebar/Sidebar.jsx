@@ -5,23 +5,23 @@ const SidebarContainer = styled.div`
   width: 300px;
   min-width: 300px;
   max-width: 300px;
-  margin-left: 24px;
   float: right;
-  color: #e7e9eb;
   font-size: 12px;
+  padding: 0px 15px;
+  color: #656a6d;
 `;
 
 const YellowBox = styled.ul`
-  background-color: #474336;
-  border: 1px solid #665c37;
+  background-color: #fdf7e2;
+  border: 1px solid #efe8cd;
   border-radius: 3px;
   list-style: none;
-  color: #f2f2f3;
 `;
 
 const YellowBoxTitle = styled.li`
-  background-color: #524c38;
+  background-color: #fbf3d5;
   padding: 12px 15px;
+  font-weight: bold;
 `;
 
 const YellowBoxContent = styled.li`
@@ -33,12 +33,13 @@ const YellowBoxContent = styled.li`
   a {
     margin-left: 10px;
     text-decoration: none;
-    color: #e7e9eb;
+    color: #24272a;
   }
 `;
 const YellowBoxLogo = styled.div`
   width: 14px;
   height: 14px;
+  color: #24272a;
 `;
 
 const Sidebar = () => {
