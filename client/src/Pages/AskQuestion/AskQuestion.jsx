@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import WritingInfo from './WritingInfo';
+import WritingInfo from '../../Components/Question/WritingInfo';
 import {
   WritingTitleForm,
   WritingBodyForm,
