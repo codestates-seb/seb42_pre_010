@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+const QuestionList = styled.li`
+  padding: 16px;
+  border-bottom: 1px solid gray;
+`;
+
 const UserPic = styled.img`
   border-radius: 5px;
   width: 17px;
@@ -8,23 +13,35 @@ const UserPic = styled.img`
 
 const QuestionTitle = styled.h3`
   font-size: 17px;
+  margin: 10px 0px;
 `;
 
 const QuestionContent = styled.div`
   font-size: 13px;
 `;
 
+const UserInfoContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 10px 0px;
+`;
+
+const UserName = styled.span`
+  margin: 0px 10px;
+`;
+
 const Question = ({ questionData }) => {
   return (
-    <li key={questionData.id}>
+    <QuestionList key={questionData.id}>
       <QuestionTitle>{questionData.title}</QuestionTitle>
       <QuestionContent>{questionData.content}</QuestionContent>
-      <div>
+      <UserInfoContainer>
         <UserPic src={questionData.picture} alt="user-pics" />
-        <span>{questionData.username}</span>
+        <UserName>{questionData.username}</UserName>
         <span>{questionData.createdAt}</span>
-      </div>
-    </li>
+      </UserInfoContainer>
+    </QuestionList>
   );
 };
 
