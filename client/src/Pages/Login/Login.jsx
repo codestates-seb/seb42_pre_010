@@ -3,6 +3,7 @@ import {
   SocialGoogleSvg,
   SocialGithubSvg,
   SocialFacebookSvg,
+  ErrorSvg,
 } from '../../Components/Signup/SocialBtn';
 import TalentLogin from '../../Components/Signup/TalentLogin';
 import {
@@ -21,6 +22,8 @@ import {
   LoginSubmitBtn,
   MoreInfoWrap,
   SignupLink,
+  ErrorText,
+  TextInputWrap,
 } from '../../Components/Login/LoginStyle';
 
 const REACT_APP_URL = 'http://localhost:3000';
@@ -73,6 +76,12 @@ const Login = () => {
       setPasswordMsg('');
     }
   };
+
+  // 유효성 검사를 통과하지 못하면 Submit 비활성화
+  const isEmailValid = validateEmail(email);
+  const isPwdValid = validatePwd(password);
+  const isAllValid = isEmailValid && isPwdValid;
+
   return (
     <LoginWrap>
       <LoginLogo>
@@ -95,15 +104,23 @@ const Login = () => {
       <LoginInputWrap>
         <LoginInputBlock>
           <LoginInputTitle>Email</LoginInputTitle>
-          <TextInput onChange={onChangeEmail} />
+          <TextInputWrap>
+            <TextInput onChange={onChangeEmail} />
+            {email === '' ? null : isEmailValid ? null : <ErrorSvg />}
+          </TextInputWrap>
         </LoginInputBlock>
-        <h1>{emailMsg}</h1>
+        <ErrorText>{emailMsg}</ErrorText>
         <LoginInputBlock>
           <LoginInputTitle>Password</LoginInputTitle>
-          <TextInput onChange={onChangePassword} />
+          <TextInputWrap>
+            <TextInput onChange={onChangePassword} />
+            {password === '' ? null : isPwdValid ? null : <ErrorSvg />}
+          </TextInputWrap>
         </LoginInputBlock>
-        <h1>{passwordMsg}</h1>
-        <LoginSubmitBtn type="submit">Log in</LoginSubmitBtn>
+        <ErrorText>{passwordMsg}</ErrorText>
+        <LoginSubmitBtn type="submit" disabled={!isAllValid}>
+          Log in
+        </LoginSubmitBtn>
       </LoginInputWrap>
       <MoreInfoWrap>
         Don’t have an account?
