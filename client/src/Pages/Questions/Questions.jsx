@@ -2,7 +2,11 @@ import styled from 'styled-components';
 import questionsData from './QuestionsDummyData';
 import Question from '../../Components/Questions/Question';
 
-const QuestionsContainer = styled.ul`
+const QuestionsContainer = styled.div`
+  width: calc(100% - 324px);
+`;
+
+const QuestionsListContainer = styled.ul`
   border-top: 1px solid gray;
 `;
 
@@ -20,23 +24,56 @@ const TitleContainer = styled.div`
 
 const QuestionsLength = styled.span`
   display: flex;
-  margin-bottom: 15px;
+  text-align: center;
+`;
+
+const QuestionsButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  button {
+    padding: 10px;
+    border: 1px solid gray;
+  }
+
+  .QuestionsButton-first-button {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  .QuestionsButton-mid-button {
+    border-radius: 0%;
+  }
+
+  .QuestionsButton-third-button {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
 `;
 
 const Questions = () => {
   return (
-    <div>
+    <QuestionsContainer>
       <TitleContainer>
         <QuestionsTitle>All Questions</QuestionsTitle>
         <button>Ask Question</button>
       </TitleContainer>
-      <QuestionsLength>{questionsData.length} questions</QuestionsLength>
-      <QuestionsContainer>
+      <QuestionsButtonContainer>
+        <QuestionsLength>{questionsData.length} questions</QuestionsLength>
+        <div>
+          <button className="QuestionsButton-first-button">Newest</button>
+          <button className="QuestionsButton-mid-button">Unanswered</button>
+          <button className="QuestionsButtonthird-button">Voted</button>
+        </div>
+      </QuestionsButtonContainer>
+      <QuestionsListContainer>
         {questionsData.map((ele) => {
           return <Question questionData={ele} key={ele.id} />;
         })}
-      </QuestionsContainer>
-    </div>
+      </QuestionsListContainer>
+    </QuestionsContainer>
   );
 };
 

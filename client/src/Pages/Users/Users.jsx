@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // import Footer from '../../Components/Footer/Footer';
 import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
-import { initialState } from '../../Components/Users/UserCard';
+import questionsData from '../Questions/QuestionsDummyData';
 
 const UsersContainer = styled.div`
   width: 100%;
@@ -33,13 +33,34 @@ const SearchBox = styled.div`
   }
 `;
 
+const ProfileContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(224px, auto));
+  gap: 1rem;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const ProfilePic = styled.img`
+  width: 48px;
+  height: 48px;
+  margin-right: 13px;
+`;
+
 const Users = () => {
   const [userName, setUserName] = useState('');
-  const [userList, setUserList] = useState(initialState.users);
+  const [userList, setUserList] = useState(questionsData);
 
   const filterUser = () => {
-    const userData = initialState.users.filter((ele) => {
-      ele.userName === userName;
+    const userData = questionsData.filter((ele) => {
+      if (userName === '') {
+        return questionsData;
+      } else {
+        return ele.username.includes(userName);
+      }
     });
     setUserList(userData);
   };
@@ -50,12 +71,16 @@ const Users = () => {
     filterUser();
   };
 
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <UsersContainer>
       <UsersTitle>Users</UsersTitle>
       <SearchBox>
         <GoSearch />
-        <form>
+        <form onSubmit={handleOnSubmit}>
           <input
             placeholder="Filter by name"
             value={userName}
@@ -63,17 +88,16 @@ const Users = () => {
           ></input>
         </form>
       </SearchBox>
-
-      <div>
+      <ProfileContainer>
         {userList.map((ele, idx) => {
           return (
             <div key={idx}>
-              <img src={ele.picture} alt="user-name" />
-              <span>{ele.userName}</span>
+              <ProfilePic src={ele.picture} alt="user-name" />
+              <span>{ele.username}</span>
             </div>
           );
         })}
-      </div>
+      </ProfileContainer>
     </UsersContainer>
   );
 };
