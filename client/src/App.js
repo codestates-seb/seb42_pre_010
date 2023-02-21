@@ -4,7 +4,10 @@ import Header from './Components/Header/Header';
 import Nav from './Components/Nav/Nav';
 import Sidebar from './Components/Sidebar/Sidebar';
 import Footer from './Components/Footer/Footer';
-import UserCard from './Components/Users/UserCard';
+import Home from './Pages/Home/Home';
+import Questions from './Pages/Questions/Questions';
+import Tag from './Pages/Tag/Tag';
+import Users from './Pages/Users/Users';
 import styled from 'styled-components';
 
 //수정 함@16:28
@@ -14,9 +17,11 @@ const MainContainer = styled.div`
 `;
 
 const Content = styled.div`
+  display: flex;
   width: 1100px;
   max-width: 1100px;
   height: 100%;
+  padding: 24px;
 `;
 
 function App() {
@@ -26,10 +31,15 @@ function App() {
       <Header />
       <MainContainer>
         <Nav />
-        <Routes>
-          <Route />
-        </Routes>
-        <Sidebar />
+        <Content>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Users" element={<Users />} />
+            <Route path="questions" element={<Questions />} />
+            <Route path="/tags" element={<Tag />} />
+          </Routes>
+          <Sidebar />
+        </Content>
       </MainContainer>
       <Footer />
     </>
