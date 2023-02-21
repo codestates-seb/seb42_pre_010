@@ -6,7 +6,7 @@ import Sidebar from './Components/Sidebar/Sidebar';
 import Footer from './Components/Footer/Footer';
 // import Users from './Pages/Users/Users';
 // import Questions from './Pages/Questions/Questions';
-import Home from './Pages/Home/Home';
+// import Home from './Pages/Home/Home';
 import styled from 'styled-components';
 
 //수정 함@16:28
@@ -19,6 +19,7 @@ const Content = styled.div`
   width: 1100px;
   max-width: 1100px;
   height: 100%;
+  padding: 24px;
 `;
 
 function App() {
@@ -33,7 +34,6 @@ function App() {
             <Route />
           </Routes>
         </Content>
-        <Home />
         <Sidebar />
       </MainContainer>
       <Footer />
