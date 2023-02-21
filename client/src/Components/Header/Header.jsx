@@ -8,6 +8,8 @@ import { BsQuestionCircleFill } from 'react-icons/bs';
 import { FaStackExchange } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
+const REACT_APP_URL = 'http://localhost:3000';
+
 export const HeaderBlock = styled.div`
   width: 100%;
   height: 50px;
@@ -238,10 +240,10 @@ export const LoggedHeaderContentWrap = styled.div`
 export const LoggedHeaderContent = () => {
   return (
     <LoggedHeaderContentWrap>
-      <Link to="/login">
+      <Link to="/users/login">
         <LoginBlock>Login</LoginBlock>
       </Link>
-      <Link to="/signup">
+      <Link to="/users/signup">
         <SignupBlock>Sign up</SignupBlock>
       </Link>
     </LoggedHeaderContentWrap>
@@ -273,7 +275,10 @@ export const Header = () => {
         <nav>
           <Link to="/">
             <LogoBlock>
-              <img src="images/logo-stackoverflow.png" alt="logo" />
+              <img
+                src={REACT_APP_URL + '/images/logo-stackoverflow.png'}
+                alt="logo"
+              />
             </LogoBlock>
           </Link>
           <HeaderNav logged={logged} setLogged={setLogged} />

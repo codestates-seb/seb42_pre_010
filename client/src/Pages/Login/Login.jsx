@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 import TalentLogin from '../../Components/Signup/TalentLogin';
 
+const REACT_APP_URL = 'http://localhost:3000';
+
 const LoginWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 855px;
   background-color: hsl(210, 8%, 95%);
   a {
     text-decoration: none;
@@ -125,7 +129,7 @@ const Login = () => {
   return (
     <LoginWrap>
       <LoginLogo>
-        <LogoImg src="images/stackoverflow_small.png" />
+        <LogoImg src={REACT_APP_URL + '/images/stackoverflow_small.png'} />
       </LoginLogo>
       <LoginSocialWrap>
         <LoginGoogle>
