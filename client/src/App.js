@@ -4,9 +4,10 @@ import Header from './Components/Header/Header';
 import Nav from './Components/Nav/Nav';
 import Sidebar from './Components/Sidebar/Sidebar';
 import Footer from './Components/Footer/Footer';
-// import Users from './Pages/Users/Users';
-// import Questions from './Pages/Questions/Questions';
-// import Home from './Pages/Home/Home';
+import Home from './Pages/Home/Home';
+import Questions from './Pages/Questions/Questions';
+import Tag from './Pages/Tag/Tag';
+import Users from './Pages/Users/Users';
 import styled from 'styled-components';
 
 //수정 함@16:28
@@ -31,7 +32,10 @@ function App() {
         <Nav />
         <Content>
           <Routes>
-            <Route />
+            <Route path="/" element={<Home />} />
+            <Route path="/Users" element={<Users />} />
+            <Route path="questions" element={<Questions />} />
+            <Route path="/tags" element={<Tag />} />
           </Routes>
         </Content>
         <Sidebar />
