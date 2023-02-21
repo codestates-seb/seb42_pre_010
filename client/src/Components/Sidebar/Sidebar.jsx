@@ -5,9 +5,9 @@ const SidebarContainer = styled.div`
   width: 300px;
   min-width: 300px;
   max-width: 300px;
-  margin-left: 24px;
   float: right;
   font-size: 12px;
+  padding: 0px 15px;
   color: #656a6d;
 `;
 

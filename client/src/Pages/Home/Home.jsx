@@ -2,7 +2,11 @@ import styled from 'styled-components';
 import questionsData from '../Questions/QuestionsDummyData';
 import Question from '../../Components/Questions/Question';
 
-const HomeContainer = styled.ul`
+const HomeContainer = styled.div`
+  width: calc(100% - 324px);
+`;
+
+const HomeQuestionsListContainer = styled.ul`
   border-top: 1px solid gray;
 `;
 
@@ -18,19 +22,31 @@ const HomeTitleContainer = styled.div`
   margin-bottom: 20px;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+`;
+
 const Home = () => {
   return (
-    <div>
+    <HomeContainer>
       <HomeTitleContainer>
         <HomeTitle>All Questions</HomeTitle>
         <button>Ask Question</button>
       </HomeTitleContainer>
-      <HomeContainer>
+      <ButtonContainer>
+        <button>Year</button>
+        <button>Month</button>
+        <button>Day</button>
+      </ButtonContainer>
+      <HomeQuestionsListContainer>
         {questionsData.map((ele) => {
           return <Question questionData={ele} key={ele.id} />;
         })}
-      </HomeContainer>
-    </div>
+      </HomeQuestionsListContainer>
+    </HomeContainer>
   );
 };
 

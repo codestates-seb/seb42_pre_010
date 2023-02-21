@@ -17,6 +17,7 @@ const MainContainer = styled.div`
 `;
 
 const Content = styled.div`
+  display: flex;
   width: 1100px;
   max-width: 1100px;
   height: 100%;
@@ -37,8 +38,8 @@ function App() {
             <Route path="questions" element={<Questions />} />
             <Route path="/tags" element={<Tag />} />
           </Routes>
+          <Sidebar />
         </Content>
-        <Sidebar />
       </MainContainer>
       <Footer />
     </>
