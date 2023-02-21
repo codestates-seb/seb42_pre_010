@@ -6,6 +6,7 @@ import { ImDrawer2 } from 'react-icons/im';
 import { RiTrophyFill } from 'react-icons/ri';
 import { BsQuestionCircleFill } from 'react-icons/bs';
 import { FaStackExchange } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export const HeaderBlock = styled.div`
   width: 100%;
@@ -51,6 +52,9 @@ export const HeaderBlock = styled.div`
   }
   li {
     list-style: none;
+  }
+  a {
+    text-decoration: none;
   }
 `;
 
@@ -234,8 +238,12 @@ export const LoggedHeaderContentWrap = styled.div`
 export const LoggedHeaderContent = () => {
   return (
     <LoggedHeaderContentWrap>
-      <LoginBlock>Login</LoginBlock>
-      <SignupBlock>Signup</SignupBlock>
+      <Link to="/login">
+        <LoginBlock>Login</LoginBlock>
+      </Link>
+      <Link to="/signup">
+        <SignupBlock>Sign up</SignupBlock>
+      </Link>
     </LoggedHeaderContentWrap>
   );
 };
@@ -253,7 +261,7 @@ export const LogoBlock = styled.div`
 
 export const Header = () => {
   //로그인 여부를 확인하기 위한 상태가 필요
-  const [logged, setLogged] = useState(false);
+  const [logged, setLogged] = useState(true);
 
   // const modeHandler = () => {
   //   setLogged(!logged);
@@ -263,9 +271,11 @@ export const Header = () => {
     <>
       <HeaderBlock>
         <nav>
-          <LogoBlock>
-            <img src="images/logo-stackoverflow.png" alt="logo" />
-          </LogoBlock>
+          <Link to="/">
+            <LogoBlock>
+              <img src="images/logo-stackoverflow.png" alt="logo" />
+            </LogoBlock>
+          </Link>
           <HeaderNav logged={logged} setLogged={setLogged} />
           <SearchBlock />
           <HeaderContent logged={logged} />
