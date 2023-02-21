@@ -79,15 +79,9 @@ export const LoginInputTitle = styled.div`
 `;
 
 export const TextInput = styled.input`
-  width: 300px;
-  margin-top: 10px;
-  padding: 0.6em 0;
-  border: 1px solid hsl(210, 8%, 75%);
-  border-radius: 3px;
-  color: hsl(210, 8%, 5%);
-  font-size: 13px;
-  font-family: inherit;
-  position: relative;
+  width: 250px;
+  height: 32px;
+  border: none;
   &:focus {
     outline: none;
   }
@@ -120,4 +114,23 @@ export const SignupLink = styled.a`
   margin-left: 5px;
   color: hsl(206, 100%, 40%);
   font-size: 13px;
+`;
+export const ErrorText = styled.p`
+  color: red;
+  padding: 10px 0;
+  font-size: 12px;
+`;
+
+export const TextInputWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 300px;
+  margin-top: 10px;
+  border: 1px solid hsl(210, 8%, 75%);
+  border-radius: 3px;
+  color: hsl(210, 8%, 5%);
+  font-size: 13px;
+  font-family: inherit;
+  position: relative;
 `;

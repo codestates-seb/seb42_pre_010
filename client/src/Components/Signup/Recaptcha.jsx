@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
+const RecaptchaBox = styled.div`
+  width: 164px;
+  height: 144px;
+`;
+
 export const Recaptcha = () => {
-  const RecaptchaBox = styled.div`
-    width: 164px;
-    height: 144px;
-  `;
   return (
     <RecaptchaBox>
       <iframe

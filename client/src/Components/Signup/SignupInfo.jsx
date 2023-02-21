@@ -1,22 +1,23 @@
 import styled from 'styled-components';
 
+const SignupInfoTitle = styled.h1`
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+`;
+
+const SignupInfoContent = styled.div`
+  font-size: 1rem;
+  margin-bottom: 24px;
+  display: flex;
+`;
+
+const InfoLogo = styled.div`
+  margin-right: 8px;
+  vertical-align: bottom;
+  margin-top: -5px;
+`;
+
 export const SignupInfo = () => {
-  const SignupInfoTitle = styled.h1`
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-  `;
-
-  const SignupInfoContent = styled.div`
-    font-size: 1rem;
-    margin-bottom: 24px;
-    display: flex;
-  `;
-
-  const InfoLogo = styled.div`
-    margin-right: 8px;
-    vertical-align: bottom;
-    margin-top: -5px;
-  `;
   return (
     <>
       <SignupInfoTitle>Join the Stack Overflow community</SignupInfoTitle>
