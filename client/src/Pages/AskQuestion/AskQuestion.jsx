@@ -9,12 +9,12 @@ import Button from '../../Components/AskForm/Button';
 
 const AskQuestionBlock = styled.div`
   background: #f8f9f9;
-  padding: 5% 5% 5% 20%;
+  padding: 3% 5% 5% 18%;
 
   h1 {
     font-size: x-large;
     font-weight: bold;
-    margin-bottom: 60px;
+    margin-bottom: 100px;
   }
 
   h2 {
@@ -23,10 +23,17 @@ const AskQuestionBlock = styled.div`
     margin-bottom: 20px;
     color: #141414;
   }
+
+  img {
+    position: absolute;
+    width: 600px;
+    top: 50px;
+    left: 51.8%;
+  }
 `;
 
 const WritingBlock = styled.div`
-  width: 900px;
+  width: 55%;
   padding: 24px;
   margin: 20px 0px;
   border-radius: 3px;
@@ -68,8 +75,9 @@ const AskQuestion = () => {
 
   return (
     <AskQuestionBlock>
+      <div className=""></div>
       <h1>Ask a public question</h1>
-
+      <img alt="background images" src="/images/background.svg" />
       <WritingInfo />
       <form>
         <WritingBlock>

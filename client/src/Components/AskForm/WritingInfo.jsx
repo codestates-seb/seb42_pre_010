@@ -4,7 +4,7 @@ const WritingInfoBlock = styled.div`
   background: #ebf4fb;
   border: 1px solid #a6ceed;
   border-radius: 3px;
-  width: 900px;
+  width: 55%;
   padding: 24px;
   height: 220px;
 
