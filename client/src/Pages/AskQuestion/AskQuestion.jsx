@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import WritingInfo from './WritingInfo';
-import Writing from './Writing';
+import {
+  WritingTitleForm,
+  WritingBodyForm,
+} from '../../Components/Question/WritingForm';
+import WritingButton from '../../Components/Question/WritingButton';
 
 const AskQuestionBlock = styled.div`
   padding: 30px;
@@ -21,44 +25,26 @@ const AskQuestionBlock = styled.div`
   }
 `;
 
-const ButtonBlock = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 20px 20px 80px 20px;
+const WritingBlock = styled.div`
+  width: 900px;
+  padding: 24px;
+  margin: 20px 0px;
+  border-radius: 3px;
+  border: 1px solid #d6d9dc;
 
-  button {
-    margin-right: 20px;
-    width: 80px;
-    height: 35px;
-    border-radius: 4px;
-    border: none;
+  .title {
+    font-size: 18px;
+    font-weight: bolder;
+    margin: 5px 0px;
   }
 
-  .submitButton {
-    border: 1px solid #0a95ff;
-    background-color: #0a95ff;
-    box-shadow: inset 0 1px 0 0 #6fc0ff;
-    color: white;
-
-    &:hover {
-      background-color: #2277b8;
-      border: 1px solid #0a95ff;
-      box-shadow: inset 0 1px 0 0 #0a95ff;
-      color: #ffffff;
-      cursor: pointer;
-    }
+  p {
+    font-size: 16px;
+    margin: 10px 0px 20px;
   }
 
-  .resetButton {
-    color: #ab262a;
-    border: none;
-    background: #ffffff;
-    box-shadow: none;
-
-    &:hover {
-      background-color: #fdf2f2;
-      cursor: pointer;
-    }
+  .questionTitle {
+    margin-bottom: 30px;
   }
 `;
 
@@ -85,20 +71,32 @@ const AskQuestion = () => {
       <h1>Ask a public question</h1>
       <WritingInfo />
       <form>
-        <Writing
-          title={title}
-          value={value}
-          handleOnChangeTitle={handleOnChangeTitle}
-          handleValue={handleValue}
+        <WritingBlock>
+          <div className="questionTitle">
+            <h3 className="title">Title</h3>
+            <p>
+              Be specific and imagine you’re asking a question to another
+              person.
+            </p>
+            <WritingTitleForm
+              title={title}
+              handleOnChangeTitle={handleOnChangeTitle}
+            />
+          </div>
+          <div className="writingProblem">
+            <h3 className="title">What are the details of your problem?</h3>
+            <p>
+              Introduce the problem and expand on what you put in the title.
+              Minimum 20 characters.
+            </p>
+            <WritingBodyForm value={value} handleValue={handleValue} />
+          </div>
+        </WritingBlock>
+        <WritingButton
+          buttonSubmitText="Ask!"
+          buttonCancelText="Discard draft"
+          handleOnReset={handleOnReset}
         />
-        <ButtonBlock>
-          <button className="submitButton" type="sumit">
-            Ask!
-          </button>
-          <button className="resetButton" onClick={handleOnReset} type="reset">
-            Discard draft
-          </button>
-        </ButtonBlock>
       </form>
     </AskQuestionBlock>
   );
