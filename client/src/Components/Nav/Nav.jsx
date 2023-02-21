@@ -14,6 +14,7 @@ const NavBlock = styled.div`
   width: 100%;
   height: 382px;
   color: rgb(81, 81, 81);
+  margin-top: 20px;
 
   ul {
     display: flex;
