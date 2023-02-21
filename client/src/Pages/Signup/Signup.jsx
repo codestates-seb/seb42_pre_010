@@ -32,22 +32,53 @@ import {
 } from '../../Components/Signup/SignupStyle';
 
 const Signup = () => {
+  //const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  //이메일 유효성 검사 함수
-  // const validateEmail = (email) => {
-  //   return email
-  //     .toLowerCase()
-  //     .match(
-  //       /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
-  //     );
-  // };
+  const [emailMsg, setEmailMsg] = useState('');
+  const [passwordMsg, setPasswordMsg] = useState('');
 
-  //이메일
+  // 이메일 정규 표현식
+  const validateEmail = (email) => {
+    return email
+      .toLowerCase()
+      .match(
+        /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+      );
+  };
+
+  // 비밀번호 정규 표현식
+  const validatePwd = (password) => {
+    return password
+      .toLowerCase()
+      .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,25}$/);
+  };
+
+  // 이메일
   const onChangeEmail = (e) => {
     const currEmail = e.target.value;
     setEmail(currEmail);
-    console.log(email);
+
+    if (!validateEmail(email)) {
+      setEmailMsg(`${email} is not a valid email address.`);
+    } else {
+      setEmailMsg('');
+    }
+  };
+
+  // 비밀번호
+  const onChangePassword = (e) => {
+    const currPassword = e.target.value;
+    setPassword(currPassword);
+
+    if (!validatePwd(password)) {
+      setPasswordMsg(
+        `Please add one of the following things to make your password stronger:`
+      );
+    } else {
+      setPasswordMsg('');
+    }
   };
 
   return (
@@ -79,9 +110,11 @@ const Signup = () => {
             <SignupInputTitle>Email</SignupInputTitle>
             <TextInput onChange={onChangeEmail} />
           </SignupInputBlock>
+          <h1>{emailMsg}</h1>
           <SignupInputBlock>
             <SignupInputTitle>Password</SignupInputTitle>
-            <TextInput />
+            <TextInput onChange={onChangePassword} />
+            <h1>{passwordMsg}</h1>
             <Requisition>
               Passwords must contain at least eight characters, including at
               least 1 letter and 1 number.
