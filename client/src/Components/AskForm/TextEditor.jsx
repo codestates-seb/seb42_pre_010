@@ -24,7 +24,7 @@ const CustomToolbar = () => (
   </div>
 );
 
-function EditorComponent({ value, handleValue }) {
+function TextEditor({ value, handleValue }) {
   const modules = {
     toolbar: {
       container: '#toolbar',
@@ -62,4 +62,4 @@ function EditorComponent({ value, handleValue }) {
   );
 }
 
-export default EditorComponent;
+export default TextEditor;
