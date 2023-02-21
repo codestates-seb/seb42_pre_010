@@ -5,7 +5,6 @@ import {
   WritingTitleForm,
   WritingBodyForm,
 } from '../../Components/AskForm/WritingForm';
-import Button from '../../Components/AskForm/Button';
 
 const AskQuestionBlock = styled.div`
   background: #f8f9f9;
@@ -55,12 +54,52 @@ const WritingBlock = styled.div`
   }
 `;
 
+const ButtonBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 20px 20px 80px 20px;
+
+  button {
+    margin-right: 20px;
+    width: 80px;
+    height: 35px;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .submitButton {
+    border: 1px solid #0a95ff;
+    background-color: #0a95ff;
+    box-shadow: inset 0 1px 0 0 #6fc0ff;
+    color: white;
+
+    &:hover {
+      background-color: #2277b8;
+      border: 1px solid #0a95ff;
+      box-shadow: inset 0 1px 0 0 #0a95ff;
+      color: #ffffff;
+      cursor: pointer;
+    }
+  }
+
+  .cancelButton {
+    color: #ab262a;
+    border: none;
+    background: #ffffff;
+    box-shadow: none;
+
+    &:hover {
+      background-color: #fdf2f2;
+      cursor: pointer;
+    }
+  }
+`;
+
 const AskQuestion = () => {
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
 
   const handleValue = (value) => {
-    console.log(value);
     setValue(value);
   };
 
@@ -100,11 +139,14 @@ const AskQuestion = () => {
             <WritingBodyForm value={value} handleValue={handleValue} />
           </div>
         </WritingBlock>
-        <Button
-          buttonSubmitText="Ask!"
-          buttonCancelText="Discard draft"
-          handleOnReset={handleOnReset}
-        />
+        <ButtonBlock>
+          <button className="submitButton" type="submit">
+            Ask!
+          </button>
+          <button className="cancelButton" onClick={handleOnReset} type="reset">
+            Discard draft
+          </button>
+        </ButtonBlock>
       </form>
     </AskQuestionBlock>
   );
