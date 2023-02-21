@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export const SignupPolicy = () => {
-  const PolicyBlock = styled.div`
-    line-height: 1rem;
-    text-align: left;
-    color: hsl(210, 8%, 45%);
-    font-size: 12px;
-    margin-top: 32px;
-  `;
+const PolicyBlock = styled.div`
+  line-height: 1rem;
+  text-align: left;
+  color: hsl(210, 8%, 45%);
+  font-size: 12px;
+  margin-top: 32px;
+`;
 
+export const SignupPolicy = () => {
   return (
     <PolicyBlock>
       By clicking “Sign up”, you agree to our

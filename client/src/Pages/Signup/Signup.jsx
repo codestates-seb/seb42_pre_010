@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import TalentLogin from '../../Components/Signup/TalentLogin';
 import { SignupInfo } from '../../Components/Signup/SignupInfo';
 import SignupPolicy from '../../Components/Signup/SignupPolicy';
@@ -31,6 +32,24 @@ import {
 } from '../../Components/Signup/SignupStyle';
 
 const Signup = () => {
+  const [email, setEmail] = useState('');
+
+  //이메일 유효성 검사 함수
+  // const validateEmail = (email) => {
+  //   return email
+  //     .toLowerCase()
+  //     .match(
+  //       /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+  //     );
+  // };
+
+  //이메일
+  const onChangeEmail = (e) => {
+    const currEmail = e.target.value;
+    setEmail(currEmail);
+    console.log(email);
+  };
+
   return (
     <SignupWrap>
       <SignupInfoSection>
@@ -58,7 +77,7 @@ const Signup = () => {
           </SignupInputBlock>
           <SignupInputBlock>
             <SignupInputTitle>Email</SignupInputTitle>
-            <TextInput />
+            <TextInput onChange={onChangeEmail} />
           </SignupInputBlock>
           <SignupInputBlock>
             <SignupInputTitle>Password</SignupInputTitle>
