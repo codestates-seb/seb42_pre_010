@@ -19,7 +19,7 @@ public class AnswerService {
     }
 
     public Answer createAnswer(Answer answer){
-        //todo 등록된 유저인지 확인, 질문 상태 확인
+        //todo 등록된 유저인지 확인, 질문 상태 확인, 질문 상태 변경
 
         return answerRepository.save(answer);
     }
@@ -30,10 +30,9 @@ public class AnswerService {
         return answerRepository.save(answer);
     }
 
-    //todo answer 찾기
+    // 존재하는 answer 찾기
     public Answer findAnswer(long answerId){
-
-        return null;
+        return findVerifiedAnswer(answerId);
     }
 
     //todo answer 모두 찾기
@@ -55,10 +54,10 @@ public class AnswerService {
     }
 
     //todo answer 존재여부 확인
-    public Answer verifyExistAnswer(long answerId){
-
-        return null;
-    }
+//    public Answer verifyExistAnswer(long answerId){
+//
+//        return null;
+//    }
 
     // answer 존재하지 않을 시, 오류 메시지 출력
     public Answer findVerifiedAnswer(long answerId){
