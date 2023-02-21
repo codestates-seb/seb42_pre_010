@@ -4,9 +4,10 @@ const WritingInfoBlock = styled.div`
   background: #ebf4fb;
   border: 1px solid #a6ceed;
   border-radius: 3px;
-  width: 55%;
+  width: 800px;
   padding: 24px;
   height: 220px;
+  color: #3b4045;
 
   p {
     font-size: 16px;
@@ -21,14 +22,19 @@ const WritingInfoBlock = styled.div`
     color: #309df7;
   }
 
+  h2 {
+    color: #3b4045;
+  }
+
   h3 {
+    font-size: 14px;
     font-weight: bold;
     margin-bottom: 10px;
   }
 
   ul {
     list-style: disc;
-    color: #141414;
+    color: #3b4045;
     margin-left: 40px;
   }
 
@@ -38,7 +44,7 @@ const WritingInfoBlock = styled.div`
   }
 
   li::marker {
-    color: #141414;
+    color: #3b4045;
     font-size: 0.7pc;
   }
 `;

@@ -12,9 +12,10 @@ const AskQuestionBlock = styled.div`
   padding: 3% 5% 5% 18%;
 
   h1 {
-    font-size: x-large;
+    font-size: 27px;
     font-weight: bold;
     margin-bottom: 100px;
+    color: #232629;
   }
 
   h2 {
@@ -33,20 +34,19 @@ const AskQuestionBlock = styled.div`
 `;
 
 const WritingBlock = styled.div`
-  width: 55%;
+  width: 800px;
   padding: 24px;
   margin: 20px 0px;
   border-radius: 3px;
   border: 1px solid #d6d9dc;
 
   .title {
-    font-size: 18px;
-    font-weight: bolder;
+    font-size: 15px;
+    font-weight: bold;
     margin: 5px 0px;
   }
-
   p {
-    font-size: 16px;
+    font-size: 14px;
     margin: 10px 0px 20px;
   }
 
@@ -75,7 +75,6 @@ const AskQuestion = () => {
 
   return (
     <AskQuestionBlock>
-      <div className=""></div>
       <h1>Ask a public question</h1>
       <img alt="background images" src="/images/background.svg" />
       <WritingInfo />
