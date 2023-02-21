@@ -10,7 +10,7 @@ import { FaStackExchange } from 'react-icons/fa';
 export const HeaderBlock = styled.div`
   width: 100%;
   height: 50px;
-  position: sticky;
+  position: inherit; // 우선은 스티키 사용하지 않음
   top: 0;
   display: flex;
   justify-content: center;
@@ -18,6 +18,7 @@ export const HeaderBlock = styled.div`
   border-top: 3px solid hsl(27, 90%, 55%);
   box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
     0 2px 8px hsla(0, 0%, 0%, 0.05);
+  background-color: #ffffff;
   nav {
     width: 98rem;
     height: 100%;
@@ -254,10 +255,9 @@ export const Header = () => {
   //로그인 여부를 확인하기 위한 상태가 필요
   const [logged, setLogged] = useState(false);
 
-  const modeHandler = () => {
-    //상태 임의로 바꿔주는 것까지 확인
-    setLogged(!logged);
-  };
+  // const modeHandler = () => {
+  //   setLogged(!logged);
+  // };
 
   return (
     <>
@@ -266,12 +266,12 @@ export const Header = () => {
           <LogoBlock>
             <img src="images/logo-stackoverflow.png" alt="logo" />
           </LogoBlock>
-          <HeaderNav logged={logged} />
+          <HeaderNav logged={logged} setLogged={setLogged} />
           <SearchBlock />
           <HeaderContent logged={logged} />
         </nav>
       </HeaderBlock>
-      <button onClick={modeHandler}>❤️</button>
+      {/* <button onClick={modeHandler}>❤️</button> */}
     </>
   );
 };

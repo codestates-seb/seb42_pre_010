@@ -9,8 +9,16 @@ import Footer from './Components/Footer/Footer';
 import Home from './Pages/Home/Home';
 import styled from 'styled-components';
 
+//수정 함@16:28
 const MainContainer = styled.div`
   display: flex;
+  justify-content: center;
+`;
+
+const Content = styled.div`
+  width: 1100px;
+  max-width: 1100px;
+  height: 100%;
 `;
 
 function App() {
@@ -20,9 +28,11 @@ function App() {
       <Header />
       <MainContainer>
         <Nav />
-        <Routes>
-          <Route />
-        </Routes>
+        <Content>
+          <Routes>
+            <Route />
+          </Routes>
+        </Content>
         <Home />
         <Sidebar />
       </MainContainer>

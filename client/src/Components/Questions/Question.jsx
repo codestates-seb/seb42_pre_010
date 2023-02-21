@@ -1,10 +1,26 @@
+import styled from 'styled-components';
+
+const UserPic = styled.img`
+  border-radius: 5px;
+  width: 17px;
+  height: 17px;
+`;
+
+const QuestionTitle = styled.h3`
+  font-size: 17px;
+`;
+
+const QuestionContent = styled.div`
+  font-size: 13px;
+`;
+
 const Question = ({ questionData }) => {
   return (
     <li key={questionData.id}>
-      <h3>{questionData.title}</h3>
-      <div>{questionData.content}</div>
+      <QuestionTitle>{questionData.title}</QuestionTitle>
+      <QuestionContent>{questionData.content}</QuestionContent>
       <div>
-        <img src={questionData.picture} alt="user-pics" />
+        <UserPic src={questionData.picture} alt="user-pics" />
         <span>{questionData.username}</span>
         <span>{questionData.createdAt}</span>
       </div>
