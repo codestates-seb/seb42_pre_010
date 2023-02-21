@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import TalentLogin from '../../Components/Signup/TalentLogin';
 
 const SignupWrap = styled.div`
   display: flex;
@@ -102,9 +103,9 @@ const SignupInputTitle = styled.div`
 `;
 
 const TextInput = styled.input`
-  width: 100%;
+  width: 300px;
   margin-top: 10px;
-  padding: 0.6em 0.1em;
+  padding: 0.6em 0;
   border: 1px solid hsl(210, 8%, 75%);
   border-radius: 3px;
   color: hsl(210, 8%, 5%);
@@ -192,6 +193,18 @@ const PolicyBlock = styled.div`
   color: hsl(210, 8%, 45%);
   font-size: 12px;
   margin-top: 32px;
+`;
+
+const MoreInfoWrap = styled.div`
+  padding: 16px;
+  text-align: center;
+  font-size: 13px;
+`;
+
+const LoginLink = styled.a`
+  margin-left: 5px;
+  color: hsl(206, 100%, 40%);
+  font-size: 13px;
 `;
 
 const Signup = () => {
@@ -367,6 +380,11 @@ const Signup = () => {
             </a>
           </PolicyBlock>
         </SignupInputWrap>
+        <MoreInfoWrap>
+          Don’t have an account?
+          <LoginLink href="/login">Log in</LoginLink>
+          <TalentLogin />
+        </MoreInfoWrap>
       </SignupFormSection>
     </SignupWrap>
   );

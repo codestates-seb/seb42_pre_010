@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const TalentLoginWrap = styled.div`
   margin-top: 12px;
   a {
+    margin-left: 5px;
     font-size: 12px;
     color: hsl(206, 100%, 40%);
     font-size: 13px;
