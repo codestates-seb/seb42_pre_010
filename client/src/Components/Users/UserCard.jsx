@@ -42,8 +42,7 @@ export const initialState = {
 const userimg = initialState.users[1].picture;
 
 const UserCardContainer = styled.main`
-  max-width: 1100px;
-  height: 500px;
+  height: 100%;
   position: relative;
   list-style: none;
   padding: 12px;
@@ -92,7 +91,7 @@ const UserCardInfoList = styled.ul`
 const UserCardButtonWrap = styled.div`
   display: flex;
   position: absolute;
-  right: 0;
+  right: 60px;
   top: 0;
   padding-top: 24px;
   button {
