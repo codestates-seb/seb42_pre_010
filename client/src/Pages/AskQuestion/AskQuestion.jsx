@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import WritingInfo from '../../Components/Question/WritingInfo';
+import WritingInfo from '../../Components/AskForm/WritingInfo';
 import {
   WritingTitleForm,
   WritingBodyForm,
-} from '../../Components/Question/WritingForm';
-import WritingButton from '../../Components/Question/WritingButton';
+} from '../../Components/AskForm/WritingForm';
+import Button from '../../Components/AskForm/Button';
 
 const AskQuestionBlock = styled.div`
-  padding: 30px;
-  width: 100%;
+  background: #f8f9f9;
+  padding: 5% 5% 5% 20%;
 
   h1 {
     font-size: x-large;
@@ -69,6 +69,7 @@ const AskQuestion = () => {
   return (
     <AskQuestionBlock>
       <h1>Ask a public question</h1>
+
       <WritingInfo />
       <form>
         <WritingBlock>
@@ -92,7 +93,7 @@ const AskQuestion = () => {
             <WritingBodyForm value={value} handleValue={handleValue} />
           </div>
         </WritingBlock>
-        <WritingButton
+        <Button
           buttonSubmitText="Ask!"
           buttonCancelText="Discard draft"
           handleOnReset={handleOnReset}
