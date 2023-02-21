@@ -4,6 +4,8 @@ spring:
       enabled: true
   datasource:
     url: jdbc:h2:mem:test
+    username: lee
+    password : 1234
   jpa:
     hibernate:
       ddl-auto: create
@@ -11,9 +13,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
-  sql:
-    init:
-      data-locations: classpath*:db/h2/data.sql
+#  sql:
+#    init:
+#      data-locations: classpath*:db/h2/data.sql
 logging:
   level:
     org:
