@@ -5,6 +5,7 @@ const NavContainer = styled.div`
   width: 164px;
   height: 100vh;
   padding-top: 10px;
+  padding-left: 150px;
   border-right: 1px solid #d6d9dc;
   font-size: 13px;
 `;
@@ -26,7 +27,7 @@ const NavBlock = styled.div`
   li {
     display: flex;
     align-items: center;
-    padding: 7px 4px 7px 8px;
+    padding: 9px 4px 9px 8px;
 
     &:hover {
       color: #000;
