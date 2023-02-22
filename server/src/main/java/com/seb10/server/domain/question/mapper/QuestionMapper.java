@@ -7,6 +7,7 @@ import com.seb10.server.domain.question.dto.QuestionPostDto;
 import com.seb10.server.domain.question.dto.QuestionResponseDto;
 import com.seb10.server.domain.question.entity.Question;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
@@ -39,5 +40,10 @@ public interface QuestionMapper {
 //                .contents(questionPostDto.getContents())
 //                .build();
 //    }
+
+//    @Mapping(source = )
+    QuestionResponseDto questionToQuestionResponseDto(Question question);
+
+    List<QuestionResponseDto> questionsToQuestionResponseDtos(List<Question> questions);
 
 }
