@@ -5,16 +5,16 @@ import {
   WritingTitleForm,
   WritingBodyForm,
 } from '../../Components/AskForm/WritingForm';
-import Button from '../../Components/AskForm/Button';
 
 const AskQuestionBlock = styled.div`
   background: #f8f9f9;
-  padding: 5% 5% 5% 20%;
+  padding: 3% 5% 5% 18%;
 
   h1 {
-    font-size: x-large;
+    font-size: 27px;
     font-weight: bold;
-    margin-bottom: 60px;
+    margin-bottom: 100px;
+    color: #232629;
   }
 
   h2 {
@@ -23,23 +23,29 @@ const AskQuestionBlock = styled.div`
     margin-bottom: 20px;
     color: #141414;
   }
+
+  img {
+    position: absolute;
+    width: 600px;
+    top: 50px;
+    left: 51.8%;
+  }
 `;
 
 const WritingBlock = styled.div`
-  width: 900px;
+  width: 800px;
   padding: 24px;
   margin: 20px 0px;
   border-radius: 3px;
   border: 1px solid #d6d9dc;
 
   .title {
-    font-size: 18px;
-    font-weight: bolder;
+    font-size: 15px;
+    font-weight: bold;
     margin: 5px 0px;
   }
-
   p {
-    font-size: 16px;
+    font-size: 14px;
     margin: 10px 0px 20px;
   }
 
@@ -48,12 +54,52 @@ const WritingBlock = styled.div`
   }
 `;
 
+const ButtonBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 20px 20px 80px 20px;
+
+  button {
+    margin-right: 20px;
+    width: 80px;
+    height: 35px;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .submitButton {
+    border: 1px solid #0a95ff;
+    background-color: #0a95ff;
+    box-shadow: inset 0 1px 0 0 #6fc0ff;
+    color: white;
+
+    &:hover {
+      background-color: #2277b8;
+      border: 1px solid #0a95ff;
+      box-shadow: inset 0 1px 0 0 #0a95ff;
+      color: #ffffff;
+      cursor: pointer;
+    }
+  }
+
+  .cancelButton {
+    color: #ab262a;
+    border: none;
+    background: #ffffff;
+    box-shadow: none;
+
+    &:hover {
+      background-color: #fdf2f2;
+      cursor: pointer;
+    }
+  }
+`;
+
 const AskQuestion = () => {
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
 
   const handleValue = (value) => {
-    console.log(value);
     setValue(value);
   };
 
@@ -69,7 +115,7 @@ const AskQuestion = () => {
   return (
     <AskQuestionBlock>
       <h1>Ask a public question</h1>
-
+      <img alt="background images" src="/images/background.svg" />
       <WritingInfo />
       <form>
         <WritingBlock>
@@ -93,11 +139,14 @@ const AskQuestion = () => {
             <WritingBodyForm value={value} handleValue={handleValue} />
           </div>
         </WritingBlock>
-        <Button
-          buttonSubmitText="Ask!"
-          buttonCancelText="Discard draft"
-          handleOnReset={handleOnReset}
-        />
+        <ButtonBlock>
+          <button className="submitButton" type="submit">
+            Ask!
+          </button>
+          <button className="cancelButton" onClick={handleOnReset} type="reset">
+            Discard draft
+          </button>
+        </ButtonBlock>
       </form>
     </AskQuestionBlock>
   );
