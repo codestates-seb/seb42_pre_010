@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 public class QuestionPatchDto {
 
     @NotNull
-    private Long question_id;
+    private long question_id;
     private String title;
     private String contents;
     private Question.QuestionStatus questionStatus;
