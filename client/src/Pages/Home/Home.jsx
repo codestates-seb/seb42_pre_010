@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import questionsData from '../../data/Questions';
 import Question from '../../Components/Questions/Question';
 import { useState } from 'react';
+import Pagination from '../../Components/Pagination';
 
 const HomeContainer = styled.div`
   width: calc(100% - 324px);
@@ -66,6 +67,21 @@ const ButtonNav = styled.button`
 const Home = () => {
   const [currentTap, setCurrentTap] = useState('year');
   const sortTap = ['Year', 'Month', 'Day'];
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 쪽수
+  const [postsPerPage] = useState(5); // 한 페이지 당 보여지는 게시물수
+  const page = Math.ceil(questionsData.length / postsPerPage);
+
+  const indexOfLastPost = currentPage * postsPerPage; // 페이지의 마지막 게시물 위치
+  const indexOfFirstPost = indexOfLastPost - postsPerPage; // 페이지의 첫번째 게시물 위치
+  const currentPosts = questionsData.slice(indexOfFirstPost, indexOfLastPost); // 보여져야 하는 게시물만큼 Slice
+
+  // paginate
+  const paginate = (pageNumber) => {
+    if (pageNumber === 0) return;
+    if (pageNumber > page) return;
+    setCurrentPage(pageNumber);
+  };
 
   const onTapClick = (tabName) => {
     setCurrentTap(tabName.toLowerCase());
@@ -95,12 +111,18 @@ const Home = () => {
         })}
       </ButtonContainer>
       <HomeQuestionsListContainer>
-        {questionsData.map((ele) => {
+        {currentPosts.map((ele) => {
           return (
             <Question questionData={ele} key={ele.id} currentTap={currentTap} />
           );
         })}
       </HomeQuestionsListContainer>
+      <Pagination
+        postPerPage={postsPerPage}
+        totalPosts={questionsData.length}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
     </HomeContainer>
   );
 };
