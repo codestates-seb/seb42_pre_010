@@ -6,6 +6,9 @@ import com.seb10.server.domain.question.repository.QuestionRepository;
 import com.seb10.server.exception.BusinessLogicException;
 import com.seb10.server.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -46,6 +49,17 @@ public class QuestionService {
         findQuestion.setModifiedAt(LocalDateTime.now());
 
         return saveQuestion(findQuestion);
+    }
+
+    public Question findQuestion(long question_id) {
+
+        return findVerifiedQuestion(question_id);
+    }
+
+    public Page<Question> findQuestions(int page, int size) {
+
+        return questionRepository.findAll(PageRequest.of(page, size,
+                Sort.by("question_id").descending()));
     }
 
     // 질문 삭제
