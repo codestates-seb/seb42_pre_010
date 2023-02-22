@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { WritingBodyForm } from '../../Components/AskForm/WritingForm';
 import questionsData from '../Questions/QuestionsDummyData';
 import EditButton from '../../Components/Button/EditButton';
+import { EditMemo, FormatMemo } from '../../Components/SideMemo/SideMemo';
 
 const ModifyAnswerContainer = styled.div`
   display: flex;
@@ -49,6 +50,11 @@ const WritingFormBlock = styled.div`
   }
 `;
 
+const MemoBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const ModifyAnswer = () => {
   const [value, setValue] = useState('');
 
@@ -75,6 +81,10 @@ const ModifyAnswer = () => {
         </ModifyAnswerBlock>
         <EditButton className="button" handleOnCancel={handleOnCancel} />
       </ModifyAnsweyrWrap>
+      <MemoBlock>
+        <EditMemo />
+        <FormatMemo />
+      </MemoBlock>
     </ModifyAnswerContainer>
   );
 };
