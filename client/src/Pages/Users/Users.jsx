@@ -2,12 +2,11 @@ import styled from 'styled-components';
 // import Footer from '../../Components/Footer/Footer';
 import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
-import questionsData from '../Questions/QuestionsDummyData';
+import questionsData from '../../data/Questions';
 
-const UsersContainer = styled.div`
+const UsersBlock = styled.div`
   width: 100%;
-  max-width: 1100px;
-  padding: 24px;
+  width: 1100px;
 `;
 
 const UsersTitle = styled.h1`
@@ -15,7 +14,7 @@ const UsersTitle = styled.h1`
   margin-bottom: 24px;
 `;
 
-const SearchBox = styled.div`
+const SearchBlock = styled.div`
   display: flex;
   margin: 40px 0px 20px;
   border: 1px solid #c5c5c5;
@@ -33,7 +32,7 @@ const SearchBox = styled.div`
   }
 `;
 
-const ProfileContainer = styled.div`
+const ProfileBlock = styled.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(224px, auto));
   gap: 1rem;
@@ -76,9 +75,9 @@ const Users = () => {
   };
 
   return (
-    <UsersContainer>
+    <UsersBlock>
       <UsersTitle>Users</UsersTitle>
-      <SearchBox>
+      <SearchBlock>
         <GoSearch />
         <form onSubmit={handleOnSubmit}>
           <input
@@ -87,8 +86,8 @@ const Users = () => {
             onChange={handleUserName}
           ></input>
         </form>
-      </SearchBox>
-      <ProfileContainer>
+      </SearchBlock>
+      <ProfileBlock>
         {userList.map((ele, idx) => {
           return (
             <div key={idx}>
@@ -97,8 +96,8 @@ const Users = () => {
             </div>
           );
         })}
-      </ProfileContainer>
-    </UsersContainer>
+      </ProfileBlock>
+    </UsersBlock>
   );
 };
 

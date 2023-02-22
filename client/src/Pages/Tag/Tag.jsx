@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import TagList from './TagList';
-import dummyData from './TagDummyData';
+import tag from '../../data/Tag';
 import { GoSearch } from 'react-icons/go';
 
 const TagBlock = styled.div`
@@ -45,10 +45,10 @@ const SerchBlock = styled.div`
 
 const Tag = () => {
   const [search, setSearch] = useState('');
-  const [list, setList] = useState(dummyData);
+  const [list, setList] = useState(tag);
 
   const filtered = () => {
-    const data = dummyData.filter((data) => {
+    const data = tag.filter((data) => {
       return data.tag.includes(search);
     });
 

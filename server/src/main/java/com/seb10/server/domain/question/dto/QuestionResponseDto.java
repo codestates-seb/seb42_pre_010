@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class QuestionResponseDto {
-    private long question_id;
-    private long user_id;
+    private Long question_id;
+    private Long user_id;
     private String title;
     private String contents;
     private Question.QuestionStatus questionStatus;

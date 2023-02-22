@@ -1,4 +1,4 @@
-const dummyData = [
+const tag = [
   {
     id: 1,
     tag: 'javascript',
@@ -76,4 +76,4 @@ const dummyData = [
   },
 ];
 
-export default dummyData;
+export default tag;

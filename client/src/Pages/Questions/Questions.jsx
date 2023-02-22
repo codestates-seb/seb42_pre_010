@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import questionsData from './QuestionsDummyData';
+import questionsData from '../../data/Questions';
 import Question from '../../Components/Questions/Question';
+import { useState } from 'react';
 
 const QuestionsContainer = styled.div`
   width: calc(100% - 324px);
@@ -32,40 +33,72 @@ const QuestionsButtonContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+`;
 
-  button {
-    padding: 10px;
-    border: 1px solid gray;
+const QuestionsButtonNav = styled.button`
+  background-color: ${(props) =>
+    props.value === props.currentTap ? '#e3e6e8' : 'white'};
+  box-sizing: border-box;
+  height: 100%;
+  border: none;
+  border-right: 1px solid gray;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+
+  :first-child {
+    border-left: 1px solid gray;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
   }
 
-  .QuestionsButton-first-button {
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
+  :nth-child(2) {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
   }
 
-  .QuestionsButton-mid-button {
-    border-radius: 0%;
-  }
-
-  .QuestionsButton-third-button {
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+  :last-child {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
   }
 `;
 
 const Questions = () => {
+  const questionsNavButton = ['Newest', 'Unanswered', 'Voted'];
+  const [currentTap, setCurrentTap] = useState('newest');
+
+  const onTapClick = (tabName) => {
+    setCurrentTap(tabName.toLowerCase());
+    console.log(currentTap);
+  };
+
   return (
     <QuestionsContainer>
       <TitleContainer>
         <QuestionsTitle>All Questions</QuestionsTitle>
-        <button>Ask Question</button>
+        <button>
+          <a href="/askquestions">Ask Question</a>
+        </button>
       </TitleContainer>
       <QuestionsButtonContainer>
         <QuestionsLength>{questionsData.length} questions</QuestionsLength>
         <div>
-          <button className="QuestionsButton-first-button">Newest</button>
-          <button className="QuestionsButton-mid-button">Unanswered</button>
-          <button className="QuestionsButtonthird-button">Voted</button>
+          {questionsNavButton.map((ele, idx) => {
+            return (
+              <QuestionsButtonNav
+                key={idx}
+                onClick={() => onTapClick(ele)}
+                value={ele.toLowerCase()}
+                currentTap={currentTap}
+              >
+                {ele}
+              </QuestionsButtonNav>
+            );
+          })}
         </div>
       </QuestionsButtonContainer>
       <QuestionsListContainer>

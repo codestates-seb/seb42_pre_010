@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FaPen, FaStackOverflow, FaCommentAlt } from 'react-icons/fa';
 
-const SidebarContainer = styled.div`
+const SidebarBlock = styled.div`
   width: 300px;
   min-width: 300px;
   max-width: 300px;
@@ -11,7 +11,7 @@ const SidebarContainer = styled.div`
   color: #656a6d;
 `;
 
-const YellowBox = styled.ul`
+const YellowBoxBlock = styled.ul`
   background-color: #fdf7e2;
   border: 1px solid #efe8cd;
   border-radius: 3px;
@@ -42,10 +42,28 @@ const YellowBoxLogo = styled.div`
   color: #24272a;
 `;
 
+const ImgBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+
+  a {
+    box-sizing: border-box;
+  }
+
+  img {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+`;
+
+// const FrontEndAd = styled.img``;
+
 const Sidebar = () => {
   return (
-    <SidebarContainer>
-      <YellowBox>
+    <SidebarBlock>
+      <YellowBoxBlock>
         <YellowBoxTitle>The Overflow Blog</YellowBoxTitle>
         <YellowBoxContent>
           <YellowBoxLogo>
@@ -113,8 +131,31 @@ const Sidebar = () => {
             Microsoft Azure Collective launch and proposed tag changes
           </a>
         </YellowBoxContent>
-      </YellowBox>
-    </SidebarContainer>
+      </YellowBoxBlock>
+      <ImgBlock>
+        <a
+          href="https://www.codestates.com/course/backend-engineering?gclid=CjwKCAiA9NGfBhBvEiwAq5vSy0OU6g_8Hk9JUxNIQtxCY1YY7arVx8AjuIAeUMJGFGiIUvXb3reBAhoCIi0QAvD_BwE"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src="/images/back-end-ad.png" alt="ad" />
+        </a>
+        <a
+          href="https://www.codestates.com/course/frontend-engineering?gclid=CjwKCAiA9NGfBhBvEiwAq5vSy9oHGo3edBcfJW50qzorSktTDIt6vdOT1ZkiAloGrdZRn5s-KFhFrBoCmf4QAvD_BwE"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src="/images/front-end-ad.png" alt="ad" />
+        </a>
+        <a
+          href="https://dhlottery.co.kr/common.do?method=main"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src="/images/loopy.jpg" alt="ad" />
+        </a>
+      </ImgBlock>
+    </SidebarBlock>
   );
 };
 
