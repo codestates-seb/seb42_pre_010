@@ -7,6 +7,7 @@ import Signin from './Pages/Signup/Signup';
 import AskQuestion from './Pages/AskQuestion/AskQuestion';
 import Tag from './Pages/Tag/Tag';
 import Users from './Pages/Users/Users';
+import Questions from './Pages/Questions/Questions';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
       { path: '/users', element: <Users /> },
       { path: '/tags', element: <Tag /> },
+      { path: '/questions', element: <Questions /> },
     ],
   },
   {
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/users/login', element: <Login /> },
       { path: '/users/signup', element: <Signin /> },
-      { path: '/questions', element: <AskQuestion /> },
+      { path: '/askquestions', element: <AskQuestion /> },
     ],
   },
 ]);

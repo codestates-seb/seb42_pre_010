@@ -42,6 +42,24 @@ const YellowBoxLogo = styled.div`
   color: #24272a;
 `;
 
+const ImgContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+
+  a {
+    box-sizing: border-box;
+  }
+
+  img {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+`;
+
+// const FrontEndAd = styled.img``;
+
 const Sidebar = () => {
   return (
     <SidebarContainer>
@@ -114,6 +132,29 @@ const Sidebar = () => {
           </a>
         </YellowBoxContent>
       </YellowBox>
+      <ImgContainer>
+        <a
+          href="https://www.codestates.com/course/backend-engineering?gclid=CjwKCAiA9NGfBhBvEiwAq5vSy0OU6g_8Hk9JUxNIQtxCY1YY7arVx8AjuIAeUMJGFGiIUvXb3reBAhoCIi0QAvD_BwE"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src="/images/back-end-ad.png" alt="ad" />
+        </a>
+        <a
+          href="https://www.codestates.com/course/frontend-engineering?gclid=CjwKCAiA9NGfBhBvEiwAq5vSy9oHGo3edBcfJW50qzorSktTDIt6vdOT1ZkiAloGrdZRn5s-KFhFrBoCmf4QAvD_BwE"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src="/images/front-end-ad.png" alt="ad" />
+        </a>
+        <a
+          href="https://dhlottery.co.kr/common.do?method=main"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src="/images/loopy.jpg" alt="ad" />
+        </a>
+      </ImgContainer>
     </SidebarContainer>
   );
 };

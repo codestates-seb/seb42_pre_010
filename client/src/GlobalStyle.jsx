@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { Outlet } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Nav from './Components/Nav/Nav';
-//import Sidebar from './Components/Sidebar/Sidebar';
+import Sidebar from './Components/Sidebar/Sidebar';
 import Footer from './Components/Footer/Footer';
 
 export const GlobalStyle = createGlobalStyle`
@@ -79,6 +79,7 @@ export const Root = () => {
         <Content>
           <Outlet />
         </Content>
+        <Sidebar />
       </MainContainer>
       <Footer />
     </div>

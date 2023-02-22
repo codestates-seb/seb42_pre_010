@@ -25,6 +25,7 @@ const HomeTitleContainer = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
+  box-sizing: border-box;
   align-items: center;
   justify-content: flex-end;
   margin-bottom: 16px;
@@ -40,8 +41,24 @@ const ButtonNav = styled.button`
   align-items: center;
   text-align: center;
   padding: 15px;
+  :first-child {
+    border-left: 1px solid gray;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+
+  :nth-child(2) {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+  }
+
   :last-child {
-    border-right: none;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
   }
 `;
 
@@ -58,7 +75,9 @@ const Home = () => {
     <HomeContainer>
       <HomeTitleContainer>
         <HomeTitle>All Questions</HomeTitle>
-        <button>Ask Question</button>
+        <button>
+          <a href="/askquestions">Ask Question</a>
+        </button>
       </HomeTitleContainer>
       <ButtonContainer>
         {sortTap.map((ele, idx) => {
