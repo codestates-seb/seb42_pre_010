@@ -38,7 +38,7 @@ export const initialState = {
     },
     {
       id: 2,
-      userName: 'younghyun',
+      userName: 'Young K',
       createdAt: '2023.02.16 14:00:00',
       questionCount: 3,
       answerCount: 4,
@@ -50,17 +50,15 @@ export const initialState = {
   ],
 };
 
-const userimg = initialState.users[1].picture;
-
 const usercardNav = ['Profile', 'Activity', 'Saves', 'Settings'];
 
 export const UserCard = () => {
   return (
     <UserCardContainer>
       <UserCardInfoBlock>
-        <UserCardImg src={userimg} />
+        <UserCardImg src={initialState.users[1].picture} />
         <UserCardInfoContnet>
-          <h1>Youngk</h1>
+          <h1>{initialState.users[1].userName}</h1>
           <UserCardInfoListWrap>
             <UserCardInfoList>
               <MdCake />
