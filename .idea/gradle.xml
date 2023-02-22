@@ -1,24 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-<<<<<<< HEAD
-=======
   <component name="GradleMigrationSettings" migrationVersion="1" />
->>>>>>> 1837cd9e213b98f0f207eed5839bae371ca7f0c3
-  <component name="GradleSettings">
-    <option name="linkedExternalProjectsSettings">
-      <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/server" />
-<<<<<<< HEAD
-        <option name="gradleJvm" value="#JAVA_HOME" />
-=======
->>>>>>> 1837cd9e213b98f0f207eed5839bae371ca7f0c3
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$/server" />
-          </set>
-        </option>
-      </GradleProjectSettings>
-    </option>
-  </component>
 </project>
