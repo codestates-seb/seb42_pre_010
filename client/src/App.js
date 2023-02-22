@@ -15,8 +15,8 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       { index: true, element: <Home /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
-      { path: '/users', element: <Users /> },
       { path: '/tags', element: <Tag /> },
+      { path: '/users', element: <Users /> },
       { path: '/questions', element: <Questions /> },
     ],
   },

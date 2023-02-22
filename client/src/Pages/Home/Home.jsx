@@ -9,6 +9,7 @@ const HomeContainer = styled.div`
 
 const HomeQuestionsListContainer = styled.ul`
   border-top: 1px solid gray;
+  width: auto;
 `;
 
 const HomeTitle = styled.h1`

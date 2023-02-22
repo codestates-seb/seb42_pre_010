@@ -63,7 +63,10 @@ export const MainContainer = styled.div`
 
 export const Content = styled.div`
   display: flex;
+  max-width: 1100px;
+  padding: 24px;
   height: 100%;
+  justify-content: center;
 `;
 
 export const WithoutRootConent = styled.div`
@@ -78,8 +81,8 @@ export const Root = () => {
         <Nav />
         <Content>
           <Outlet />
+          <Sidebar />
         </Content>
-        <Sidebar />
       </MainContainer>
       <Footer />
     </div>
