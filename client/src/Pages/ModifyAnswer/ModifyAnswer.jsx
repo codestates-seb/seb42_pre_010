@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { WritingBodyForm } from '../../Components/AskForm/WritingForm';
-import questionsData from '../Questions/QuestionsDummyData';
+import questionsData from '../../data/Questions';
 import EditButton from '../../Components/Button/EditButton';
 import { EditMemo, FormatMemo } from '../../Components/SideMemo/SideMemo';
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // import Footer from '../../Components/Footer/Footer';
 import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
-import questionsData from '../Questions/QuestionsDummyData';
+import questionsData from '../../data/Questions';
 
 const UsersContainer = styled.div`
   width: 100%;
