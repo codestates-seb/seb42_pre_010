@@ -1,4 +1,4 @@
-package com.seb10.server.domain.user.dto;
+package com.seb10.server.domain.User.dto;
 
 public class UserPatchDto {
     private long userId;
