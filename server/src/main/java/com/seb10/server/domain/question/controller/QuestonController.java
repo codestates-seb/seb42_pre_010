@@ -1,11 +1,13 @@
 package com.seb10.server.domain.question.controller;
 
-import com.seb10.server.domain.question.dto.QuestionPatchDto;
 import com.seb10.server.domain.question.dto.QuestionPostDto;
 import com.seb10.server.domain.question.entity.Question;
-import com.seb10.server.domain.question.mapper.QuestionMapper;
 import com.seb10.server.domain.question.service.QuestionService;
+<<<<<<< HEAD
+import com.seb10.server.domain.question.mapper.QuestionMapper;
+=======
 import com.seb10.server.dto.MultiResponseDto;
+>>>>>>> 8d1200d40579072c7171c5613190da4deb7fd00f
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -23,7 +25,7 @@ import java.util.List;
 @Validated
 @RequiredArgsConstructor
 @Controller
-public class QuestionController {
+public class QuestonController {
     private final QuestionService questionService;
     private final QuestionMapper questionMapper;
 
@@ -32,17 +34,14 @@ public class QuestionController {
     public ResponseEntity postQuestion(@Valid @RequestBody QuestionPostDto questionPostDto) {
         Question question = questionService.createQuestion(questionMapper.questionPostDtoToQuestion(questionPostDto));
 
-        return new ResponseEntity<>(questionMapper.questionPostDtoToQuestion(question), HttpStatus.CREATED);
+        return new ResponseEntity<>(questionMapper.questionPostDtoToQuestion(questionPostDto), HttpStatus.CREATED);
     }
 
     // 질문 수정
-    @PatchMapping("/posts/{question_id}/edit")
-    public ResponseEntity patchQuestion(@PathVariable("question_id") @Positive long question_id,
-                                        @Valid @RequestBody QuestionPatchDto questionPatchDto) {
-        questionPatchDto.setQuestion_id(question_id);
-        Question question = questionService.updateQuestion(questionMapper.questionPatchDtoToQuestion(questionPatchDto));
+    @PatchMapping("/{question_id}")
+    public ResponseEntity patchQuestion(@PathVariable("question_id") @Positive Long question_id,
+                                        @Valid @RequestBody QuestionPostDto questionPostDto) {
 
-        return new ResponseEntity<>(questionMapper.questionPatchDtoToQuestion(question), HttpStatus.OK);
     }
 
     // 질문 조회
@@ -63,19 +62,11 @@ public class QuestionController {
     }
 
     // 질문 삭제
-    @PatchMapping("/question/{question_id}/{delete}")
-    public ResponseEntity deleteQuestion(@PathVariable("question_id") @Positive long question_id,
-                                         @Valid @RequestBody QuestionPatchDto questionPatchDto) {
+    @DeleteMapping("/{question_id}")
+    public ResponseEntity deleteQuestion(@PathVariable("question_id") @Positive Long question_id) {
         questionService.deleteQuestion(question_id);
-        return new ResponseEntity<>(HttpStatus.OK);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-
-//    @DeleteMapping("/question/{question_id}")
-//    public ResponseEntity deleteQuestion(@PathVariable("question_id") @Positive long question_id) {
-//        questionService.deleteQuestion(question_id);
-//
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
 
 }

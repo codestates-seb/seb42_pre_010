@@ -2,8 +2,6 @@ package com.seb10.server.domain.answer.service;
 
 import com.seb10.server.domain.answer.entity.Answer;
 import com.seb10.server.domain.answer.repository.AnswerRepository;
-import com.seb10.server.domain.question.entity.Question;
-import com.seb10.server.domain.question.service.QuestionService;
 import com.seb10.server.exception.BusinessLogicException;
 import com.seb10.server.exception.ExceptionCode;
 import org.springframework.stereotype.Service;
@@ -16,22 +14,16 @@ public class AnswerService {
 
     //todo userRepository, questionRepository DI
     private final AnswerRepository answerRepository;
-//    private final UserService userService;
-    private final QuestionService questionService;
+//    private final UserReporitory userReporitory;
+//    private final QuestionRepository questionRepository;
 
-    public AnswerService(AnswerRepository answerRepository, QuestionService questionService) {
+    public AnswerService(AnswerRepository answerRepository) {
         this.answerRepository = answerRepository;
-        this.questionService = questionService;
     }
 
     public Answer createAnswer(Answer answer){
-        //todo 등록된 유저인지 확인
+        //todo 등록된 유저인지 확인, 질문 상태 확인, 질문 상태 변경
 
-
-        //질문 찾기, 질문 상태 확인, 질문 상태 변경
-        Question question = questionService.findVerifiedQuestion(answer.getQuestion().getQuestion_id());
-        question.setQuestionStatus(Question.QuestionStatus.QUESTION_SELECT);
-        answer.setQuestion(question);
         return answerRepository.save(answer);
     }
 
