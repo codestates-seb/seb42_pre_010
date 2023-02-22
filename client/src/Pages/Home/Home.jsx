@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import questionsData from '../Questions/QuestionsDummyData';
+import questionsData from '../../data/Questions';
 import Question from '../../Components/Questions/Question';
 
 const HomeContainer = styled.div`
