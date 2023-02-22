@@ -64,7 +64,7 @@ const Signup = () => {
     setEmail(currEmail);
 
     if (!validateEmail(email)) {
-      setEmailMsg(`${email} is not a valid email address.`);
+      setEmailMsg(`${currEmail} is not a valid email address.`);
     } else {
       setEmailMsg('');
     }
