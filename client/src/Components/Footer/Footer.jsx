@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const FooterContainer = styled.footer`
+const FooterBlock = styled.footer`
   display: flex;
   justify-content: space-around;
   height: 322px;
@@ -28,7 +28,7 @@ const FooterNav = styled.div`
   flex-wrap: wrap;
 `;
 
-const FooterNavSection = styled.div`
+const FooterNavBlock = styled.div`
   flex: 1 0 auto;
 `;
 
@@ -36,6 +36,7 @@ const FooterTitle = styled.h4`
   font-weight: bold;
   text-transform: uppercase;
   margin-top: 0;
+  margin-bottom: 10px;
 `;
 
 const FooterContentsList = styled.ul`
@@ -94,42 +95,42 @@ const network = [
 const sns = ['Blog', 'Facebook', 'Twitter', 'Linkedin', 'Instagram'];
 const Footer = () => {
   return (
-    <FooterContainer>
+    <FooterBlock>
       <FooterLogo>
         <Logo src="images/stackoverflow_small.png" />
       </FooterLogo>
       <FooterNav>
-        <FooterNavSection>
+        <FooterNavBlock>
           <FooterTitle>STACK OVERFLOW</FooterTitle>
           <FooterContentsList>
             <ContentsList>Questions</ContentsList>
             <ContentsList>Help</ContentsList>
           </FooterContentsList>
-        </FooterNavSection>
-        <FooterNavSection>
+        </FooterNavBlock>
+        <FooterNavBlock>
           <FooterTitle>Products</FooterTitle>
           <FooterContentsList>
             {products.map((ele, idx) => {
               return <ContentsList key={idx}>{ele}</ContentsList>;
             })}
           </FooterContentsList>
-        </FooterNavSection>
-        <FooterNavSection>
+        </FooterNavBlock>
+        <FooterNavBlock>
           <FooterTitle>company</FooterTitle>
           <FooterContentsList>
             {company.map((ele, idx) => {
               return <ContentsList key={idx}>{ele}</ContentsList>;
             })}
           </FooterContentsList>
-        </FooterNavSection>
-        <FooterNavSection>
+        </FooterNavBlock>
+        <FooterNavBlock>
           <FooterTitle>Stack exchanges network</FooterTitle>
           <FooterContentsList>
             {network.map((ele, idx) => {
               return <ContentsList key={idx}>{ele}</ContentsList>;
             })}
           </FooterContentsList>
-        </FooterNavSection>
+        </FooterNavBlock>
       </FooterNav>
       <FooterCopyright>
         <SocialMedia>
@@ -146,7 +147,7 @@ const Footer = () => {
           .<span> rev 2023.2.16.43246</span>
         </p>
       </FooterCopyright>
-    </FooterContainer>
+    </FooterBlock>
   );
 };
 

@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { Outlet } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Nav from './Components/Nav/Nav';
-//import Sidebar from './Components/Sidebar/Sidebar';
+import Sidebar from './Components/Sidebar/Sidebar';
 import Footer from './Components/Footer/Footer';
 
 export const GlobalStyle = createGlobalStyle`
@@ -63,7 +63,10 @@ export const MainContainer = styled.div`
 
 export const Content = styled.div`
   display: flex;
+  max-width: 1100px;
+  padding: 24px;
   height: 100%;
+  justify-content: center;
 `;
 
 export const WithoutRootConent = styled.div`
@@ -78,6 +81,7 @@ export const Root = () => {
         <Nav />
         <Content>
           <Outlet />
+          <Sidebar />
         </Content>
       </MainContainer>
       <Footer />
@@ -92,6 +96,21 @@ export const WithoutRoot = () => {
       <WithoutRootConent>
         <Outlet />
       </WithoutRootConent>
+    </div>
+  );
+};
+
+export const WithoutSideBar = () => {
+  return (
+    <div>
+      <Header />
+      <MainContainer>
+        <Nav />
+        <Content>
+          <Outlet />
+        </Content>
+      </MainContainer>
+      <Footer />
     </div>
   );
 };
