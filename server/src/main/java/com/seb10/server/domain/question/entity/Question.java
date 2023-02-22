@@ -21,7 +21,7 @@ import java.util.List;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long question_id;
+    private long question_id;
 
     @Column(nullable = false, length = 200)
     private String title;
@@ -40,11 +40,6 @@ public class Question {
     @LastModifiedDate
     @Column(name = "question_last_modified_at")
     private LocalDateTime modifiedAt;
-
-    // USER와 연관관계 매핑
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
 
     // 질문의 상태
     public enum QuestionStatus {
