@@ -1,4 +1,4 @@
-package com.seb10.server.domain.User.dto;
+package com.seb10.server.domain.user.dto;
 
 public class UserResponseDto {
 

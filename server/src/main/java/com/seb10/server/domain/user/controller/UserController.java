@@ -1,11 +1,11 @@
-package com.seb10.server.domain.User.controller;
+package com.seb10.server.domain.user.controller;
 
-import com.seb10.server.domain.User.dto.UserPatchDto;
-import com.seb10.server.domain.User.dto.UserPostDto;
+import com.seb10.server.domain.user.dto.UserPatchDto;
+import com.seb10.server.domain.user.dto.UserPostDto;
 
-import com.seb10.server.domain.User.mapstruct.mapper.UserMapper;
-import com.seb10.server.domain.User.service.UserService;
-import com.seb10.server.domain.User.entity.User;
+import com.seb10.server.domain.user.mapstruct.mapper.UserMapper;
+import com.seb10.server.domain.user.service.UserService;
+import com.seb10.server.domain.user.entity.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -69,4 +69,5 @@ public class UserController {
 //
 //        return new ResponseEntity<>(userStatusPatchDto, HttpStatus.NO_CONTENT);
 //    }
+
 }

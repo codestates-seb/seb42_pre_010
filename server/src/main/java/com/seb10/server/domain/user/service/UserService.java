@@ -1,25 +1,54 @@
-package com.seb10.server.domain.User.service;
+package com.seb10.server.domain.user.service;
 
-import com.seb10.server.domain.User.entity.User;
+import com.seb10.server.domain.user.entity.User;
+import com.seb10.server.domain.user.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+@Service
 public class UserService {
+
+    private final UserRepository userRepository;
+
+    // MemberRepository DI
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public User createUser(User user) {
-        User createdUser = user;
-        return createdUser;
+        // 이미 등록된 이메일인지 검증
+        verifyExistsEmail(member.getEmail());
+
+        // 회원 정보 저장
+        return userRepository.save(user);
     }
 
     public User updateUser(User user) {
-        User updatedUser = user;
-        return updatedUser;
+        // 존재하는 회원인지 검증
+        User findUser = findVerifiedUser(user.getUserId());
+
+        // 이름, 이메일, 유저 상태 업데이트
+        Optional.ofNullable(user.getUsername())
+                .ifPresent(name -> findUser.setUsername(username));
+        Optional.ofNullable(user.getEmail())
+                .isPresent(email -> findUser.setEmail(email));
+        Optional.ofNullable(user.getUserStatus())
+                .ifPresent(userStatus -> findUser.setUserStatus(userStatus));
+
+        // 회원 정보 업데이트
+        return userRepository.save(findUser);
     }
 
+    // 특정 회원 정보 조회
     public User findUser(long userId) {
-        User user =
-                new User(userId, "홍길동","abc@gmail.com", "123456");
-        return user;
+
+        return findVerifiedUser(userId);
     }
 
-//    public UserStatus updateUserStatus(UserStatus userStatus) {
+
+    // todo 회원 탈퇴(특정 유저 상태 비활성화)
+//    public User.UserStatus updateUserStatus(User.UserStatus userStatus) {
 //        return null;
 //    }
 }
