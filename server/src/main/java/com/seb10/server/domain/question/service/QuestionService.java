@@ -2,6 +2,7 @@ package com.seb10.server.domain.question.service;
 
 
 import com.seb10.server.domain.question.entity.Question;
+import com.seb10.server.domain.question.entity.QuestionStatus;
 import com.seb10.server.domain.question.repository.QuestionRepository;
 import com.seb10.server.exception.BusinessLogicException;
 import com.seb10.server.exception.ExceptionCode;
@@ -31,7 +32,7 @@ public class QuestionService {
 
     // 질문 수정
     public Question updateQuestion(Question question) {
-        Question findQuestion = findVerifiedQuestion(question.getQuestion_id());
+        Question findQuestion = findVerifiedQuestion(question.getQuestionId());
 
         // 질문 상태 변경
         Optional.ofNullable(question.getQuestionStatus())
@@ -65,17 +66,17 @@ public class QuestionService {
     // 질문 삭제
     public void deleteQuestion(long question_id) {
         Question question = findVerifiedQuestion(question_id);
-        String status = question.getQuestionStatus().getStatus();
+        QuestionStatus status = question.getQuestionStatus();
         // 답변이 있는 질문 일때
         if (status.equals("답변이 있는 질문"))
             throw new BusinessLogicException(ExceptionCode.QUESTION_CANNOT_CHANGE);
-        question.setQuestionStatus(Question.QuestionStatus.QUESTION_DELETE);
+        question.setQuestionStatus(QuestionStatus.QUESTION_DELETE);
         questionRepository.save(question);
     }
 
     public Question findVerifiedQuestion(long question_id) {
         Optional<Question> optionalQuestion = questionRepository.findById(question_id);
-        String status = optionalQuestion.get().getQuestionStatus().getStatus();
+        QuestionStatus status = optionalQuestion.get().getQuestionStatus();
         // 이미 삭제된 질문 일때
         if (status.equals("삭제된 질문"))
             throw new BusinessLogicException(ExceptionCode.QUESTION_CANNOT_DELETE);

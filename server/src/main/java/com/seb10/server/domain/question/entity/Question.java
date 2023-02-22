@@ -1,8 +1,9 @@
 package com.seb10.server.domain.question.entity;
 
+import com.seb10.server.domain.answer.entity.Answer;
+import com.seb10.server.domain.user.entity.User;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -21,7 +22,7 @@ import java.util.List;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long question_id;
+    private long questionId;
 
     @Column(nullable = false, length = 200)
     private String title;
@@ -41,17 +42,21 @@ public class Question {
     @Column(name = "question_last_modified_at")
     private LocalDateTime modifiedAt;
 
-    // 질문의 상태
-    public enum QuestionStatus {
-        QUESTION_SELECT("답변이 있는 질문"),
-        QUESTION_NOSELECT("답변이 없는 질문"),
-        QUESTION_DELETE("삭제된 질문");
+    // user 매핑
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
-        @Getter
-        private String status;
 
-        QuestionStatus(String status) {
-            this.status = status;
+    // answer 매핑
+    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Answer> answers = new ArrayList<>();
+
+    public void setAnswer(Answer answer) {
+        answers.add(answer);
+        if (answer.getQuestion() != this) {
+            answer.setQuestion(this);
         }
     }
+
 }
