@@ -109,9 +109,15 @@ export const PubHeaderContentWrap = styled.div`
 export const MypageWrap = styled.li`
   display: flex;
   align-content: center;
+  align-items: center;
   img {
     width: 20px;
     margin-right: 15px;
+  }
+  span {
+    font-size: 12px;
+    color: hsl(210, 8%, 45%);
+    font-weight: 600;
   }
 `;
 
