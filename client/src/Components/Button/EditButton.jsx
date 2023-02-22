@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const EditButtonBlock = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 20px 20px 80px 25px;
+  margin: 20px 20px 80px 0px;
 
   button {
     margin-right: 20px;

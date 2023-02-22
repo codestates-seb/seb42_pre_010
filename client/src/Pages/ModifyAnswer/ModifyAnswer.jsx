@@ -18,7 +18,7 @@ const ModifyAnsweyrWrap = styled.div`
 
 const ModifyAnswerBlock = styled.div`
   width: 700px;
-  padding-left: 24px;
+  /* padding-left: 24px; */
 `;
 
 const QuestionPost = styled.div`
