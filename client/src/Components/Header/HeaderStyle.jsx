@@ -106,7 +106,14 @@ export const PubHeaderContentWrap = styled.div`
   }
 `;
 
-export const MypageWrap = styled.li``;
+export const MypageWrap = styled.li`
+  display: flex;
+  align-content: center;
+  img {
+    width: 20px;
+    margin-right: 15px;
+  }
+`;
 
 export const MessageBlock = styled.li``;
 

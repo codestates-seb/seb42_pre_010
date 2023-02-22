@@ -15,12 +15,12 @@ import {
   LoggedHeaderContentWrap,
   LogoBlock,
 } from './HeaderStyle';
-
 import { FiSearch } from 'react-icons/fi';
 import { ImDrawer2 } from 'react-icons/im';
 import { RiTrophyFill } from 'react-icons/ri';
 import { BsQuestionCircleFill } from 'react-icons/bs';
 import { FaStackExchange } from 'react-icons/fa';
+import userList from '../../data/userList';
 
 const REACT_APP_URL = 'http://localhost:3000';
 
@@ -60,9 +60,13 @@ export const HeaderContent = (logged) => {
 };
 
 export const LoggedHeaderContent = () => {
+  console.log(userList);
   return (
     <LoggedHeaderContentWrap>
-      <MypageWrap></MypageWrap>
+      <MypageWrap>
+        <img src={userList[0].picture} alt={'user-img'} />
+        {userList[0].questionCount}
+      </MypageWrap>
       <MessageBlock>
         <ImDrawer2 />
       </MessageBlock>
@@ -94,7 +98,7 @@ export const PubHeaderContent = () => {
 
 export const Header = () => {
   //로그인 여부를 확인하기 위한 상태가 필요
-  const [logged, setLogged] = useState(false);
+  const [logged, setLogged] = useState(true);
 
   return (
     <>
