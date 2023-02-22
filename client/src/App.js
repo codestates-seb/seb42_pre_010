@@ -8,6 +8,8 @@ import AskQuestion from './Pages/AskQuestion/AskQuestion';
 import Tag from './Pages/Tag/Tag';
 import Users from './Pages/Users/Users';
 import Questions from './Pages/Questions/Questions';
+import EditQuestion from './Pages/EditQuestion/EditQuestion';
+// import ModifyAnswer from './Pages/ModifyAnswer/ModifyAnswer';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/tags', element: <Tag /> },
       { path: '/users', element: <Users /> },
+      { path: '/edit', element: <EditQuestion /> },
     ],
   },
 ]);

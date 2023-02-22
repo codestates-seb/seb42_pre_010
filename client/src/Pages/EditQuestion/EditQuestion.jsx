@@ -16,19 +16,22 @@ const EditQuestionContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 1200px;
-  padding-left: 24px;
+  padding-left: 100px;
 `;
 
 const WritingFormBlock = styled.div`
   border-radius: 3px;
   width: 700px;
-  padding: 17px 0px 0px 0px;
 
   .title {
     font-size: 18px;
     font-weight: bolder;
     margin: 20px 0px;
   }
+`;
+
+const ButtonBlock = styled.div`
+  margin-left: 100px;
 `;
 
 const EditQuestion = () => {
@@ -62,7 +65,9 @@ const EditQuestion = () => {
         </WritingFormBlock>
         <EditMemo />
       </EditQuestionContainer>
-      <EditButton handleOnCancel={handleOnCancel} />
+      <ButtonBlock>
+        <EditButton className="button" handleOnCancel={handleOnCancel} />
+      </ButtonBlock>
     </EditQuestionBlock>
   );
 };
