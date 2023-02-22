@@ -65,7 +65,7 @@ export const LoggedHeaderContent = () => {
     <LoggedHeaderContentWrap>
       <MypageWrap>
         <img src={userList[0].picture} alt={'user-img'} />
-        {userList[0].questionCount}
+        <span>{userList[0].questionCount}</span>
       </MypageWrap>
       <MessageBlock>
         <ImDrawer2 />
