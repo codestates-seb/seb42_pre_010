@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import questionsData from '../Questions/QuestionsDummyData';
 import Question from '../../Components/Questions/Question';
+import { useState } from 'react';
 
 const HomeContainer = styled.div`
   width: calc(100% - 324px);
@@ -27,28 +28,32 @@ const ButtonContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-bottom: 16px;
+`;
 
-  button {
-    padding: 10px;
-    border: 1px solid gray;
-  }
-
-  .Home-first-button {
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-  }
-
-  .Home-mid-button {
-    border-radius: 0%;
-  }
-
-  .Home-third-button {
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+const ButtonNav = styled.button`
+  background-color: ${(props) =>
+    props.value === props.currentTap ? '#e3e6e8' : 'white'};
+  box-sizing: border-box;
+  height: 100%;
+  border: none;
+  border-right: 1px solid gray;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+  :last-child {
+    border-right: none;
   }
 `;
 
 const Home = () => {
+  const [currentTap, setCurrentTap] = useState('year');
+  const sortTap = ['Year', 'Month', 'Day'];
+
+  const onTapClick = (tabName) => {
+    setCurrentTap(tabName.toLowerCase());
+    console.log(currentTap);
+  };
+
   return (
     <HomeContainer>
       <HomeTitleContainer>
@@ -56,13 +61,24 @@ const Home = () => {
         <button>Ask Question</button>
       </HomeTitleContainer>
       <ButtonContainer>
-        <button className="Home-first-button">Year</button>
-        <button className="Home-mid-button">Month</button>
-        <button className="Home-third-button">Day</button>
+        {sortTap.map((ele, idx) => {
+          return (
+            <ButtonNav
+              onClick={() => onTapClick(ele)}
+              value={ele.toLowerCase()}
+              key={idx}
+              currentTap={currentTap}
+            >
+              {ele}
+            </ButtonNav>
+          );
+        })}
       </ButtonContainer>
       <HomeQuestionsListContainer>
         {questionsData.map((ele) => {
-          return <Question questionData={ele} key={ele.id} />;
+          return (
+            <Question questionData={ele} key={ele.id} currentTap={currentTap} />
+          );
         })}
       </HomeQuestionsListContainer>
     </HomeContainer>
