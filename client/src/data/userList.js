@@ -1,3 +1,7 @@
+const getRandomNumber = (min, max) => {
+  return parseInt(Math.random() * (Number(max) - Number(min) + 2));
+};
+
 const userList = [
   {
     id: 0,
@@ -5,7 +9,7 @@ const userList = [
     createdAt: '2023.02.16 14:00:00',
     questionCount: 23,
     answerCount: 45,
-    picture: `https://randomuser.me/api/portraits/women/${getRandomNumber(
+    picture: `https://randomuser.me/api/portraits/men/${getRandomNumber(
       1,
       98
     )}.jpg`,
@@ -66,9 +70,5 @@ const userList = [
     )}.jpg`,
   },
 ];
-
-const getRandomNumber = (min, max) => {
-  return parseInt(Math.random() * (Number(max) - Number(min) + 2));
-};
 
 export default userList;
