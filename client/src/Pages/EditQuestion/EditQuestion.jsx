@@ -4,6 +4,7 @@ import {
   WritingTitleForm,
   WritingBodyForm,
 } from '../../Components/AskForm/WritingForm';
+import EditButton from '../../Components/Button/EditButton';
 
 const EditQuestionBlock = styled.div`
   display: flex;
@@ -63,47 +64,6 @@ const SideMemo = styled.div`
   }
 `;
 
-const ButtonBlock = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 20px 20px 80px 25px;
-
-  button {
-    margin-right: 20px;
-    width: 80px;
-    height: 35px;
-    border-radius: 4px;
-    border: none;
-  }
-
-  .submitButton {
-    border: 1px solid #0a95ff;
-    background-color: #0a95ff;
-    box-shadow: inset 0 1px 0 0 #6fc0ff;
-    color: white;
-
-    &:hover {
-      background-color: #2277b8;
-      border: 1px solid #0a95ff;
-      box-shadow: inset 0 1px 0 0 #0a95ff;
-      color: #ffffff;
-      cursor: pointer;
-    }
-  }
-
-  .cancelButton {
-    color: #0074cc;
-    border: none;
-    background: #ffffff;
-    box-shadow: none;
-
-    &:hover {
-      background-color: #f0f8ff;
-      cursor: pointer;
-    }
-  }
-`;
-
 const EditQuestion = () => {
   // DB에서 title, value 값 가지고 와서 초기값에 넣어 줘야 함
   const [title, setTitle] = useState('');
@@ -150,14 +110,7 @@ const EditQuestion = () => {
           </ul>
         </SideMemo>
       </EditQuestionContainer>
-      <ButtonBlock>
-        <button className="submitButton" type="submit">
-          Save edits
-        </button>
-        <button className="cancelButton" onClick={handleOnCancel} type="reset">
-          Cancel
-        </button>
-      </ButtonBlock>
+      <EditButton handleOnCancel={handleOnCancel} />
     </EditQuestionBlock>
   );
 };
