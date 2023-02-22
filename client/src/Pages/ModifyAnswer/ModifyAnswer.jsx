@@ -6,17 +6,33 @@ import questionsData from '../Questions/QuestionsDummyData';
 const ModifyAnswerContainer = styled.div`
   display: flex;
   flex-direction: row;
+  width: 1200px;
 `;
 
 const ModifyAnswerBlock = styled.div`
+  width: 700px;
   display: flex;
   flex-direction: column;
-  width: 1200px;
   padding-left: 24px;
 `;
 
 const QuestionPost = styled.div`
-  background: red;
+  /* background: red; */
+  margin-top: 30px;
+  max-height: 300px;
+  overflow: scroll;
+
+  .QuestionTitle {
+    font-size: 18px;
+    color: #0074d2;
+    margin: 5px 0px 20px 0px;
+  }
+
+  .QuestionContent {
+    font-size: 14px;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+  }
 `;
 
 const WritingFormBlock = styled.div`
@@ -27,7 +43,7 @@ const WritingFormBlock = styled.div`
   .title {
     font-size: 18px;
     /* font-weight: bolder; */
-    margin: 20px 0px;
+    margin: 10px 0px 20px 0px;
   }
 `;
 
@@ -43,6 +59,7 @@ const ModifyAnswer = () => {
       <ModifyAnswerBlock>
         <QuestionPost>
           <h3 className="QuestionTitle">{questionsData[0].title}</h3>
+          <div className="QuestionContent">{questionsData[0].content}</div>
         </QuestionPost>
         <WritingFormBlock>
           <h3 className="title">Answer</h3>
