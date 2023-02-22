@@ -9,7 +9,7 @@ import javax.validation.constraints.Positive;
 @Getter
 public class QuestionPostDto {
     @Positive
-    private Long user_id;
+    private long user_id;
     private String title;
     private String contents;
 
