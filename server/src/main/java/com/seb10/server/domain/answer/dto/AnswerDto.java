@@ -10,8 +10,12 @@ public class AnswerDto {
     @Getter
     @AllArgsConstructor
     public static class Post{
-        @NotBlank
+        private long questionId;
+
+        @NotBlank(message = "내용을 입력하세요.")
         private String contents;
+
+        public void setQuestionId(long questionId){this.questionId = questionId;}
     }
     @Getter
     @AllArgsConstructor

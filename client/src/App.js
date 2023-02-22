@@ -1,30 +1,36 @@
-import { Route, Routes } from 'react-router-dom';
-import { GlobalStyle } from '.';
-import Header from './Components/Header/Header';
-import Nav from './Components/Nav/Nav';
-import Sidebar from './Components/Sidebar/Sidebar';
-import Footer from './Components/Footer/Footer';
-import styled from 'styled-components';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Root, WithoutRoot } from './GlobalStyle';
+//import Sidebar from './Components/Sidebar/Sidebar';
+import Home from './Pages/Home/Home';
+import Login from './Pages/Login/Login';
+import Signin from './Pages/Signup/Signup';
+import AskQuestion from './Pages/AskQuestion/AskQuestion';
+import Tag from './Pages/Tag/Tag';
+import Users from './Pages/Users/Users';
 
-const MainContainer = styled.div`
-  display: flex;
-`;
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    children: [
+      { index: true, element: <Home /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
+      { path: '/users', element: <Users /> },
+      { path: '/tags', element: <Tag /> },
+    ],
+  },
+  {
+    path: '/',
+    element: <WithoutRoot />, // Nav, Footer, Sidebar가 없는 페이지
+    children: [
+      { path: '/users/login', element: <Login /> },
+      { path: '/users/signup', element: <Signin /> },
+      { path: '/questions', element: <AskQuestion /> },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <>
-      <GlobalStyle />
-      <Header />
-      <MainContainer>
-        <Nav />
-        <Routes>
-          <Route />
-        </Routes>
-        <Sidebar />
-      </MainContainer>
-      <Footer />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

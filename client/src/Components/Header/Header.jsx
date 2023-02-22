@@ -6,11 +6,14 @@ import { ImDrawer2 } from 'react-icons/im';
 import { RiTrophyFill } from 'react-icons/ri';
 import { BsQuestionCircleFill } from 'react-icons/bs';
 import { FaStackExchange } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
+const REACT_APP_URL = 'http://localhost:3000';
 
 export const HeaderBlock = styled.div`
   width: 100%;
   height: 50px;
-  position: sticky;
+  position: inherit; // 우선은 스티키 사용하지 않음
   top: 0;
   display: flex;
   justify-content: center;
@@ -18,6 +21,7 @@ export const HeaderBlock = styled.div`
   border-top: 3px solid hsl(27, 90%, 55%);
   box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
     0 2px 8px hsla(0, 0%, 0%, 0.05);
+  background-color: #ffffff;
   nav {
     width: 98rem;
     height: 100%;
@@ -50,6 +54,9 @@ export const HeaderBlock = styled.div`
   }
   li {
     list-style: none;
+  }
+  a {
+    text-decoration: none;
   }
 `;
 
@@ -233,8 +240,12 @@ export const LoggedHeaderContentWrap = styled.div`
 export const LoggedHeaderContent = () => {
   return (
     <LoggedHeaderContentWrap>
-      <LoginBlock>Login</LoginBlock>
-      <SignupBlock>Signup</SignupBlock>
+      <Link to="/users/login">
+        <LoginBlock>Login</LoginBlock>
+      </Link>
+      <Link to="/users/signup">
+        <SignupBlock>Sign up</SignupBlock>
+      </Link>
     </LoggedHeaderContentWrap>
   );
 };
@@ -252,26 +263,30 @@ export const LogoBlock = styled.div`
 
 export const Header = () => {
   //로그인 여부를 확인하기 위한 상태가 필요
-  const [logged, setLogged] = useState(false);
+  const [logged, setLogged] = useState(true);
 
-  const modeHandler = () => {
-    //상태 임의로 바꿔주는 것까지 확인
-    setLogged(!logged);
-  };
+  // const modeHandler = () => {
+  //   setLogged(!logged);
+  // };
 
   return (
     <>
       <HeaderBlock>
         <nav>
-          <LogoBlock>
-            <img src="images/logo-stackoverflow.png" alt="logo" />
-          </LogoBlock>
-          <HeaderNav logged={logged} />
+          <Link to="/">
+            <LogoBlock>
+              <img
+                src={REACT_APP_URL + '/images/logo-stackoverflow.png'}
+                alt="logo"
+              />
+            </LogoBlock>
+          </Link>
+          <HeaderNav logged={logged} setLogged={setLogged} />
           <SearchBlock />
           <HeaderContent logged={logged} />
         </nav>
       </HeaderBlock>
-      <button onClick={modeHandler}>❤️</button>
+      {/* <button onClick={modeHandler}>❤️</button> */}
     </>
   );
 };
