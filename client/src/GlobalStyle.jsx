@@ -99,3 +99,18 @@ export const WithoutRoot = () => {
     </div>
   );
 };
+
+export const WithoutSideBar = () => {
+  return (
+    <div>
+      <Header />
+      <MainContainer>
+        <Nav />
+        <Content>
+          <Outlet />
+        </Content>
+      </MainContainer>
+      <Footer />
+    </div>
+  );
+};
