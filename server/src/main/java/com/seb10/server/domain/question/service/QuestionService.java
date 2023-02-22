@@ -4,6 +4,9 @@ package com.seb10.server.domain.question.service;
 import com.seb10.server.domain.question.entity.Question;
 import com.seb10.server.domain.question.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -27,6 +30,17 @@ public class QuestionService {
     public Question updateQuestion(Question question) {
         Question findQuestion = findVerifiedQuestion(question.getQuestion_id());
 
+    }
+
+    public Question findQuestion(long question_id) {
+
+        return findVerifiedQuestion(question_id);
+    }
+
+    public Page<Question> findQuestions(int page, int size) {
+
+        return questionRepository.findAll(PageRequest.of(page, size,
+                Sort.by("question_id").descending()));
     }
 
     // 질문 삭제
