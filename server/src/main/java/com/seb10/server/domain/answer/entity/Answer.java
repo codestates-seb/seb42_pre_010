@@ -27,7 +27,7 @@ public class Answer {
     @Column(name = "LAST_MODIFIED_AT")
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-    /* todo user, question 엔티티 맵핑
+
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
@@ -35,7 +35,7 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
-     */
+
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

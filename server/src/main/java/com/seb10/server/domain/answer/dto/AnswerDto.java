@@ -1,8 +1,11 @@
 package com.seb10.server.domain.answer.dto;
 
 import com.seb10.server.domain.answer.entity.Answer;
+import com.seb10.server.domain.question.entity.Question;
+import com.seb10.server.domain.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.util.Assert;
 
 import javax.validation.constraints.NotBlank;
 
@@ -15,14 +18,17 @@ public class AnswerDto {
         @NotBlank(message = "내용을 입력하세요.")
         private String contents;
 
-        public void setQuestionId(long questionId){this.questionId = questionId;}
+        public void setQuestionId(long questionId){
+            Assert.notNull(questionId, "question id must not be null.");
+            this.questionId = questionId;
+        }
     }
     @Getter
     @AllArgsConstructor
     public static class Patch{
         private long answerId;
 
-        @NotBlank
+        @NotBlank(message = "내용을 입력하세요.")
         private String contents;
 
         private Answer.AnswerStatus answerStatus;
@@ -36,12 +42,10 @@ public class AnswerDto {
         private long answerId;
         private String contents;
         private Answer.AnswerStatus answerStatus;
-        /* todo user, question 연결
-        private User user;
-        private Question question;
-        private String getUserName(){return user.getUserName();}
-         */
-
+        // user, question 연결
+        private long userId;
+        private long questionId;
+        private String userName;
 
     }
 }

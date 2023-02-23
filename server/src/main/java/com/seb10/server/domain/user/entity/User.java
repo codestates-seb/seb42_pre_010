@@ -3,7 +3,6 @@ package com.seb10.server.domain.user.entity;
 import com.seb10.server.domain.answer.entity.Answer;
 import com.seb10.server.domain.question.entity.Question;
 import lombok.*;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,19 +32,20 @@ public class User {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
+
     // 권한 부여를 위한 권한 테이블
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
     // question, answer 맵핑
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+
     @JoinColumn(name = "QUESTION_ID")
     List<Question> questions = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JoinColumn(name = "ANSWER_ID")
     List<Answer> answers = new ArrayList<>();
-
 
     @Enumerated(EnumType.STRING)
     private User.UserStatus userStatus = User.UserStatus.USER_ACTIVE;

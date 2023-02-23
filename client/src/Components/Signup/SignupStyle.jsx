@@ -142,10 +142,12 @@ export const OptionInfo = styled.label`
   color: hsl(210, 8%, 5%);
 `;
 
+export const SignupSubmitBtnWrap = styled.div``;
+
 export const SignupSubmitBtn = styled.button`
+  width: 100%;
   margin: 8px 0;
   background-color: hsl(206, 100%, 52%);
-  color: white;
   border: 1px solid transparent;
   box-shadow: 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
   font-size: 13px;
@@ -155,8 +157,9 @@ export const SignupSubmitBtn = styled.button`
   position: relative;
   outline: none;
   line-height: calc(15 / 13);
-  cursor: pointer;
   border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
 `;
 
 export const MoreInfoWrap = styled.div`
