@@ -3,8 +3,8 @@ package com.seb10.server.domain.question.controller;
 import com.seb10.server.domain.question.dto.QuestionPatchDto;
 import com.seb10.server.domain.question.dto.QuestionPostDto;
 import com.seb10.server.domain.question.entity.Question;
-import com.seb10.server.domain.question.mapper.QuestionMapper;
 import com.seb10.server.domain.question.service.QuestionService;
+import com.seb10.server.domain.question.mapper.QuestionMapper;
 import com.seb10.server.dto.MultiResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -41,9 +41,18 @@ public class QuestionController {
                                                   @Valid @RequestBody QuestionPatchDto questionPatchDto) {
         questionPatchDto.setQuestionId(questionId);
 
+        return new ResponseEntity<>(questionMapper.questionPostDtoToQuestion(questionPostDto), HttpStatus.CREATED);
+    }
+
+    // 질문 수정
+    @PatchMapping("/{question_id}")
+    public ResponseEntity patchQuestion(@PathVariable("question_id") @Positive Long question_id,
+                                        @Valid @RequestBody QuestionPostDto questionPostDto) {
+
         return new ResponseEntity<>(questionMapper.questionPatchDtoToQuestion(questionPatchDto),
                 HttpStatus.OK);
     }
+
 
     // 질문 조회
     @GetMapping("/question/{question-id}")
@@ -69,15 +78,16 @@ public class QuestionController {
     public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId,
                                          @Valid @RequestBody QuestionPatchDto questionPatchDto) {
         questionService.deleteQuestion(questionId);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @DeleteMapping("/{question_id}")
+    public ResponseEntity deleteQuestion(@PathVariable("question_id") @Positive Long question_id) {
+        questionService.deleteQuestion(question_id);
 
-//    @DeleteMapping("/question/{question_id}")
-//    public ResponseEntity deleteQuestion(@PathVariable("question_id") @Positive long question_id) {
-//        questionService.deleteQuestion(question_id);
-//
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+    }
 
 }

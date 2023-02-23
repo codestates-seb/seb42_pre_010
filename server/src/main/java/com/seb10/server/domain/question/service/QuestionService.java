@@ -52,30 +52,31 @@ public class QuestionService {
         return saveQuestion(findQuestion);
     }
 
-    public Question findQuestion(long question_id) {
+    public Question findQuestion(long questionId) {
 
-        return findVerifiedQuestion(question_id);
+        return findVerifiedQuestion(questionId);
     }
 
     public Page<Question> findQuestions(int page, int size) {
 
         return questionRepository.findAll(PageRequest.of(page, size,
-                Sort.by("question_id").descending()));
+                Sort.by("question-id").descending()));
     }
 
     // 질문 삭제
-    public void deleteQuestion(long question_id) {
-        Question question = findVerifiedQuestion(question_id);
+    public void deleteQuestion(long questionId) {
+        Question question = findVerifiedQuestion(questionId);
         QuestionStatus status = question.getQuestionStatus();
         // 답변이 있는 질문 일때
         if (status.equals("답변이 있는 질문"))
             throw new BusinessLogicException(ExceptionCode.QUESTION_CANNOT_CHANGE);
         question.setQuestionStatus(QuestionStatus.QUESTION_DELETE);
+
         questionRepository.save(question);
     }
 
-    public Question findVerifiedQuestion(long question_id) {
-        Optional<Question> optionalQuestion = questionRepository.findById(question_id);
+    public Question findVerifiedQuestion(long questionId) {
+        Optional<Question> optionalQuestion = questionRepository.findById(questionId);
         QuestionStatus status = optionalQuestion.get().getQuestionStatus();
         // 이미 삭제된 질문 일때
         if (status.equals("삭제된 질문"))

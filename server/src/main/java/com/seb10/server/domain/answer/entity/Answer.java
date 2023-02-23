@@ -1,7 +1,5 @@
 package com.seb10.server.domain.answer.entity;
 
-import com.seb10.server.domain.question.entity.Question;
-import com.seb10.server.domain.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,7 +26,7 @@ public class Answer {
     @Column(name = "LAST_MODIFIED_AT")
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-    // user, question 엔티티 맵핑
+    /* todo user, question 엔티티 맵핑
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
@@ -36,7 +34,7 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
-
+     */
 
     @Enumerated(EnumType.STRING)
     private AnswerStatus answerStatus = AnswerStatus.ANSWER_NORMAL;

@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+<<<<<<< HEAD
+  <component name="ProjectRootManager" version="2" project-jdk-name="11" project-jdk-type="JavaSDK" />
+=======
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/server" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="zulu-11" project-jdk-type="JavaSDK" />
+>>>>>>> 1837cd9e213b98f0f207eed5839bae371ca7f0c3
   <component name="ProjectType">
     <option name="id" value="jpab" />
   </component>

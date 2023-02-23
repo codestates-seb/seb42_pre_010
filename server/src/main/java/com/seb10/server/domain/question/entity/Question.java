@@ -24,6 +24,7 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long questionId;
 
+
     @Column(nullable = false, length = 200)
     private String title;
 
@@ -47,16 +48,15 @@ public class Question {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-
     // answer 매핑
     @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Answer> answers = new ArrayList<>();
 
     public void setAnswer(Answer answer) {
         answers.add(answer);
-        if (answer.getQuestion() != this) {
-            answer.setQuestion(this);
-        }
+//        if (answer.getQuestion() != this) {
+//            answer.setQuestion(this);
+//        }
     }
 
 }

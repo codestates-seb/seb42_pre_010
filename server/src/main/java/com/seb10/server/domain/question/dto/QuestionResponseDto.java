@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class QuestionResponseDto {
+
     private long questionId;
     private long userId;
     private String username;
