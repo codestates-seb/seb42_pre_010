@@ -3,21 +3,25 @@ import styled from 'styled-components';
 import questionsData from '../../data/Questions';
 import Pagination from '../../Components/Pagination';
 import Question from '../../Components/Questions/Question';
+import { AskButton } from '../../Components/Button/AskButton';
 
-const QuestionsContainer = styled.div`
+const QuestionsBlock = styled.div`
   width: calc(100% - 324px);
+  display: flex;
+  flex-direction: column;
 `;
 
-const QuestionsListContainer = styled.ul`
-  border-top: 1px solid gray;
+const QuestionsListBlock = styled.ul`
+  border-top: 1px solid #d6d9dc;
 `;
 
 const QuestionsTitle = styled.h1`
   font-size: 27px;
+  padding-left: 24px;
   font: bold;
 `;
 
-const TitleContainer = styled.div`
+const TitleBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -29,10 +33,11 @@ const QuestionsLength = styled.span`
   text-align: center;
 `;
 
-const QuestionsButtonContainer = styled.div`
+const QuestionsButtonBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 24px;
   margin-bottom: 16px;
 `;
 
@@ -93,14 +98,14 @@ const Questions = () => {
   };
 
   return (
-    <QuestionsContainer>
-      <TitleContainer>
+    <QuestionsBlock>
+      <TitleBlock>
         <QuestionsTitle>All Questions</QuestionsTitle>
-        <button>
+        <AskButton>
           <a href="/askquestions">Ask Question</a>
-        </button>
-      </TitleContainer>
-      <QuestionsButtonContainer>
+        </AskButton>
+      </TitleBlock>
+      <QuestionsButtonBlock>
         <QuestionsLength>{questionsData.length} questions</QuestionsLength>
         <div>
           {questionsNavButton.map((ele, idx) => {
@@ -116,19 +121,19 @@ const Questions = () => {
             );
           })}
         </div>
-      </QuestionsButtonContainer>
-      <QuestionsListContainer>
+      </QuestionsButtonBlock>
+      <QuestionsListBlock>
         {currentPosts.map((ele) => {
           return <Question questionData={ele} key={ele.id} />;
         })}
-      </QuestionsListContainer>
+      </QuestionsListBlock>
       <Pagination
         postPerPage={postsPerPage}
         totalPosts={questionsData.length}
         paginate={paginate}
         currentPage={currentPage}
       />
-    </QuestionsContainer>
+    </QuestionsBlock>
   );
 };
 
