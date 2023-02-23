@@ -1,5 +1,6 @@
 package com.seb10.server.domain.answer.entity;
 
+import com.seb10.server.domain.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,9 +37,20 @@ public class Answer {
     private Question question;
      */
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Enumerated(EnumType.STRING)
     private AnswerStatus answerStatus = AnswerStatus.ANSWER_NORMAL;
-
 
     public enum AnswerStatus{
         ANSWER_NORMAL("일반 상태"),
