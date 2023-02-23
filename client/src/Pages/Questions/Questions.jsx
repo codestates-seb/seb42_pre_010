@@ -7,6 +7,8 @@ import { AskButton } from '../../Components/Button/AskButton';
 
 const QuestionsBlock = styled.div`
   width: calc(100% - 324px);
+  display: flex;
+  flex-direction: column;
 `;
 
 const QuestionsListBlock = styled.ul`
