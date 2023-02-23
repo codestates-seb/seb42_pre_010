@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import TalentLogin from '../../Components/Signup/TalentLogin';
 import { SignupInfo } from '../../Components/Signup/SignupInfo';
 import SignupPolicy from '../../Components/Signup/SignupPolicy';
@@ -32,15 +34,41 @@ import {
   LoginLink,
   TextInputWrap,
   ErrorText,
+  SignupSubmitBtnWrap,
 } from '../../Components/Signup/SignupStyle';
 
-const Signup = () => {
-  //const [nickname, setNickname] = useState('');
+const Signup = ({ logged, setLogged }) => {
+  const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [emailMsg, setEmailMsg] = useState('');
   const [passwordMsg, setPasswordMsg] = useState('');
+
+  const handleSubmit = () => {
+    axios({
+      method: 'post',
+      url: 'http://localhost:3001/signup',
+      data: {
+        email,
+        password,
+      },
+      Headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(() => {
+        setLogged(!logged);
+      })
+      .catch(() => {
+        console.log('Error!');
+      });
+  };
+
+  // 닉네임이 받은 값이 null은 아니도록
+  const vaildateNickname = (nickname) => {
+    return nickname !== null;
+  };
 
   // 이메일 정규 표현식
   const validateEmail = (email) => {
@@ -56,6 +84,12 @@ const Signup = () => {
     return password
       .toLowerCase()
       .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,25}$/);
+  };
+
+  // 닉네임
+  const onChangeNkicname = (e) => {
+    const currNickname = e.target.value;
+    setNickname(currNickname);
   };
 
   // 이메일
@@ -87,7 +121,8 @@ const Signup = () => {
   // 유효성 검사를 통과하지 못하면 Submit 비활성화
   const isEmailValid = validateEmail(email);
   const isPwdValid = validatePwd(password);
-  const isAllValid = isEmailValid && isPwdValid;
+  const isNickname = vaildateNickname(nickname);
+  const isAllValid = isEmailValid && isPwdValid && isNickname;
 
   return (
     <SignupWrap>
@@ -113,7 +148,7 @@ const Signup = () => {
           <SignupInputBlock>
             <SignupInputTitle>Display name</SignupInputTitle>
             <TextInputWrap>
-              <TextInput />
+              <TextInput onChange={onChangeNkicname} />
             </TextInputWrap>
           </SignupInputBlock>
           <SignupInputBlock>
@@ -146,9 +181,17 @@ const Signup = () => {
               invitations, company announcements, and digests.
             </OptionInfo>
           </OptionBlock>
-          <SignupSubmitBtn type="submit" disabled={!isAllValid}>
-            Sign up
-          </SignupSubmitBtn>
+          <SignupSubmitBtnWrap>
+            <Link to="/">
+              <SignupSubmitBtn
+                onClick={handleSubmit}
+                type="submit"
+                disabled={!isAllValid}
+              >
+                Sign up
+              </SignupSubmitBtn>
+            </Link>
+          </SignupSubmitBtnWrap>
           <SignupPolicy />
         </SignupInputWrap>
         <MoreInfoWrap>
