@@ -98,7 +98,7 @@ export const PubHeaderContent = () => {
 
 export const Header = () => {
   //로그인 여부를 확인하기 위한 상태가 필요
-  const [logged, setLogged] = useState(true);
+  const [logged, setLogged] = useState(false);
 
   return (
     <>
