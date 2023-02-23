@@ -1,6 +1,7 @@
 package com.seb10.server.domain.user.entity;
 
 import com.seb10.server.domain.answer.entity.Answer;
+import com.seb10.server.domain.question.entity.Question;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,8 @@ import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,7 +36,10 @@ public class User {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    /* todo question, andswer 맵핑
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
+
+    // todo question, andswer 맵핑
     @OneToMany(mappedBy = "user")
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
@@ -41,7 +47,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JoinColumn(name = "ANSWER_ID")
     private Answer answer;
-    * */
 
 
     @Enumerated(EnumType.STRING)

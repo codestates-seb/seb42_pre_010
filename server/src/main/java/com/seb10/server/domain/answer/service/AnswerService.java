@@ -53,7 +53,7 @@ public class AnswerService {
 
     //answer delete(status 변경)
     public void deleteAnswer(long answerId){
-        //todo answer 찾기, answer status 확인, answer status 변경
+        // answer 찾기, answer status 확인, answer status 변경
         Answer findAnswer = findVerifiedAnswer(answerId);
         Answer.AnswerStatus status = findAnswer.getAnswerStatus();
 

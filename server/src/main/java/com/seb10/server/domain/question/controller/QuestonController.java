@@ -3,11 +3,8 @@ package com.seb10.server.domain.question.controller;
 import com.seb10.server.domain.question.dto.QuestionPostDto;
 import com.seb10.server.domain.question.entity.Question;
 import com.seb10.server.domain.question.service.QuestionService;
-<<<<<<< HEAD
 import com.seb10.server.domain.question.mapper.QuestionMapper;
-=======
 import com.seb10.server.dto.MultiResponseDto;
->>>>>>> 8d1200d40579072c7171c5613190da4deb7fd00f
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
