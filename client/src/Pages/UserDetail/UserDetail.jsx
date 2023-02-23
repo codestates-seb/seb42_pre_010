@@ -1,4 +1,4 @@
-import UserCardProfile from './UserCardProfile';
+import UserCardProfile from '../../Components/Users/UserCardProfile';
 import { MdCake, MdLocationOn } from 'react-icons/md';
 import { FiClock } from 'react-icons/fi';
 import { BiCalendar } from 'react-icons/bi';
@@ -16,7 +16,7 @@ import {
   UserCardNavSection,
   UserCardNavList,
   UserCardConentSection,
-} from './UserCardStyle';
+} from '../../Components/Users/UserCardStyle';
 
 const getRandomNumber = (min, max) => {
   return parseInt(Math.random() * (Number(max) - Number(min) + 2));
@@ -52,7 +52,7 @@ export const initialState = {
 
 const usercardNav = ['Profile', 'Activity', 'Saves', 'Settings'];
 
-export const UserCard = () => {
+export const UserDetail = () => {
   return (
     <UserCardContainer>
       <UserCardInfoBlock>
@@ -100,4 +100,4 @@ export const UserCard = () => {
   );
 };
 
-export default UserCard;
+export default UserDetail;
