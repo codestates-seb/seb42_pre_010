@@ -6,6 +6,9 @@ import com.seb10.server.domain.user.dto.UserPostDto;
 import com.seb10.server.domain.user.mapstruct.mapper.UserMapper;
 import com.seb10.server.domain.user.service.UserService;
 import com.seb10.server.domain.user.entity.User;
+import com.seb10.server.dto.MultiResponseDto;
+import com.seb10.server.dto.SingleResponseDto;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -28,17 +32,19 @@ public class UserController {
         this.mapper = mapper;
     }
 
-    @PostMapping
+    // (1) user 등록(일반회원 가입)
+    @PostMapping("/signup")
     public ResponseEntity postUser(@Valid @RequestBody UserPostDto userDto) {
 
         User user = mapper.userPostDtoToUser(userDto);
 
         User response = userService.createUser(user);
 
-        return new ResponseEntity<>(mapper.userToUserResponseDto(response),
-                HttpStatus.CREATED);
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.userToUserResponseDto(response)), HttpStatus.CREATED);
     }
 
+    // (2) user 정보 수정
     @PatchMapping("/{user-id}")
     public ResponseEntity patchUser(
             @PathVariable("user-id") @Positive long userId,
@@ -47,27 +53,38 @@ public class UserController {
 
         User response = userService.updateUser(mapper.userPatchDtoToUser(userPatchDto));
 
-        return new ResponseEntity<>(mapper.userToUserResponseDto(response), HttpStatus.OK);
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.userToUserResponseDto(response)), HttpStatus.OK);
     }
 
+    // (3) user 정보 조회
     @GetMapping("/{user-id}")
-    public ResponseEntity getUser(
-            @PathVariable("user-id") @Positive long userId) {
-
+    public ResponseEntity getUser(@PathVariable("user-id") @Positive long userId) {
         User response = userService.findUser(userId);
-        return new ResponseEntity<>(mapper.userToUserResponseDto(response), HttpStatus.OK);
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.userToUserResponseDto(response)), HttpStatus.OK);
     }
 
-//    @PatchMapping("/{user-status}")
-//    public ResponseEntity patchUser(
-//            @PathVariable("user-id") @Positive long userId,
-//            @Valid @RequestBody UserStatusPatchDto userStatusPatchDto) {
-//        userStatusPatchDto.setUserStatus(userStatus);
-//
-//        User user = new User();
-//        user.setUserStatus(userStatusPatchDto.getUserStatus);
-//
-//        return new ResponseEntity<>(userStatusPatchDto, HttpStatus.NO_CONTENT);
-//    }
+    // (4) users 정보 리스트 조회
+    @GetMapping
+    public ResponseEntity getUsers(@Positive @RequestParam int page,
+                                   @Positive @RequestParam int size) {
+        Page<User> pageUsers = userService.findUsers(page - 1, size);
+        List<User> users = pageUsers.getContent();
+
+        return new ResponseEntity<>(
+                new MultiResponseDto<>(mapper.usersToUserResponses(users), pageUsers), HttpStatus.OK);
+    }
+
+    // (5) user 탈퇴(비활성화)
+    @PatchMapping("/{user-status}")
+    public ResponseEntity deleteUser(@PathVariable("user-id") @Positive long userId) {
+        userService.deleteUser(userId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 
 }
