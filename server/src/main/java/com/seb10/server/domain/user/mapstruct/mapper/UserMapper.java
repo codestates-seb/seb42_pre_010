@@ -10,6 +10,8 @@ import com.seb10.server.domain.user.dto.UserResponseDto;
 import com.seb10.server.domain.user.entity.User;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     User userPostDtoToUser(UserPostDto userPostDto);
@@ -17,4 +19,6 @@ public interface UserMapper {
     User userPatchDtoToUser(UserPatchDto userPatchDto);
 
     UserResponseDto userToUserResponseDto(User user);
+
+    List<UserResponseDto> usersToUserResponses(List<User> users);
 }

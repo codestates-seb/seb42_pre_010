@@ -1,39 +1,34 @@
 package com.seb10.server.domain.question.mapper;
 
+import com.seb10.server.domain.question.dto.QuestionPatchDto;
 import com.seb10.server.domain.question.dto.QuestionPostDto;
+import com.seb10.server.domain.question.dto.QuestionResponseDto;
 import com.seb10.server.domain.question.entity.Question;
+import com.seb10.server.domain.user.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
 
 @Mapper(componentModel = "spring")
-public class QuestionMapper {
+public interface QuestionMapper {
 
-    public Question questionPostDtoToQuestion(QuestionPostDto questionPostDto) {
+    default Question questionPostDtoToQuestion(QuestionPostDto questionPostDto) {
         Question question = new Question();
         question.setTitle(questionPostDto.getTitle());
         question.setContents(questionPostDto.getContents());
 
-//        User user = new User();
-//        user.setUser_id(questionPostDto.getUser_id());
-//        question.setUser(user);
+        User user = new User();
+        user.setUserId(questionPostDto.getUserId());
+        question.setUser(user);
 
         return question;
     }
 
-//    public Question questionPostToQuestion(QuestionPostDto questionPostDto){
-//
-//          return new Question(0L,
-//                  questionPostDto.getTitle(),
-//                  questionPostDto.getContents(),
-//                  );
-//        return Question.builder()
-//                .title(questionPostDto.getTitle())
-//                .contents(questionPostDto.getContents())
-//                .build();
-//    }
+    Question questionPatchDtoToQuestion(QuestionPatchDto questionPatchDto);
 
-//    @Mapping(source = )
+    @Mapping(source = "user.userId", target = "userId")
+    @Mapping(source = "user.username", target = "username")
     QuestionResponseDto questionToQuestionResponseDto(Question question);
 
     List<QuestionResponseDto> questionsToQuestionResponseDtos(List<Question> questions);

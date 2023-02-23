@@ -1,19 +1,24 @@
 package com.seb10.server.domain.question.dto;
 
-import com.seb10.server.domain.question.entity.Question;
+import com.seb10.server.domain.answer.dto.AnswerDto;
+import com.seb10.server.domain.question.entity.QuestionStatus;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Builder
 public class QuestionResponseDto {
-    private Long question_id;
-    private Long user_id;
+
+    private long questionId;
+    private long userId;
+    private String username;
     private String title;
     private String contents;
-    private Question.QuestionStatus questionStatus;
+    private QuestionStatus questionStatus;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+    private List<AnswerDto.Response> answers;
 }
