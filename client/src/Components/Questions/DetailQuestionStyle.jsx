@@ -34,7 +34,7 @@ export const AskBtn = styled.button`
   color: white;
   background-color: rgb(0, 137, 254);
   box-shadow: inset 0 1px 0 0 rgba(250, 250, 250, 0.5);
-
+  cursor: pointer;
   &:hover {
     background-color: #0074cc;
   }

@@ -32,7 +32,9 @@ const DetailQuestion = () => {
       <DetailQuestionTitleSection>
         <DetailQuestionTitle>{questionsData[0].title}</DetailQuestionTitle>
         <AskBtnWrap>
-          <AskBtn>Ask Question</AskBtn>
+          <Link to="/askquestions">
+            <AskBtn>Ask Question</AskBtn>
+          </Link>
         </AskBtnWrap>
       </DetailQuestionTitleSection>
       <TimeInfoSection>
