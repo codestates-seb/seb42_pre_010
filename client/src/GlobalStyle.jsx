@@ -64,7 +64,7 @@ export const MainContainer = styled.div`
 export const Content = styled.div`
   display: flex;
   max-width: 1100px;
-  padding: 24px;
+  padding: 24px 24px 24px 0px;
   height: 100%;
   justify-content: center;
 `;
@@ -73,10 +73,10 @@ export const WithoutRootConent = styled.div`
   margin-top: 2px;
 `;
 
-export const Root = () => {
+export const Root = ({ logged }) => {
   return (
     <div>
-      <Header />
+      <Header logged={logged} />
       <MainContainer>
         <Nav />
         <Content>
@@ -89,10 +89,10 @@ export const Root = () => {
   );
 };
 
-export const WithoutRoot = () => {
+export const WithoutRoot = ({ logged }) => {
   return (
     <div>
-      <Header />
+      <Header logged={logged} />
       <WithoutRootConent>
         <Outlet />
       </WithoutRootConent>
@@ -100,10 +100,10 @@ export const WithoutRoot = () => {
   );
 };
 
-export const WithoutSideBar = () => {
+export const WithoutSideBar = ({ logged }) => {
   return (
     <div>
-      <Header />
+      <Header logged={logged} />
       <MainContainer>
         <Nav />
         <Content>

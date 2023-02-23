@@ -16,6 +16,8 @@ const YellowBoxBlock = styled.ul`
   border: 1px solid #efe8cd;
   border-radius: 3px;
   list-style: none;
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
+    0 2px 8px hsla(0, 0%, 0%, 0.05);
 `;
 
 const YellowBoxTitle = styled.li`
@@ -55,6 +57,8 @@ const ImgBlock = styled.div`
   img {
     margin-bottom: 20px;
     width: 100%;
+    box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
+      0 2px 8px hsla(0, 0%, 0%, 0.05);
   }
 `;
 

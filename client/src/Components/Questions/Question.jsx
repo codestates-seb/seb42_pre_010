@@ -1,8 +1,30 @@
 import styled from 'styled-components';
 
+const QuestionBlock = styled.div`
+  display: flex;
+  align-items: center;
+  float: right;
+  height: max-content;
+  max-width: 900px;
+  padding: 16px 16px 16px 40px;
+  border-bottom: 1px solid #d6d9dc;
+
+  div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 13%;
+    margin-right: 15px;
+  }
+  span {
+    font-size: 13px;
+    margin: 0 0 8px;
+    display: block;
+  }
+`;
+
 const QuestionList = styled.li`
-  padding: 16px;
-  border-bottom: 1px solid gray;
+  width: 90%;
 `;
 
 const UserPic = styled.img`
@@ -20,11 +42,12 @@ const QuestionContent = styled.div`
   font-size: 13px;
 `;
 
-const UserInfoContainer = styled.div`
+const UserInfoBlock = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin: 10px 0px;
+  font-size: 12px;
 `;
 
 const UserName = styled.span`
@@ -33,15 +56,22 @@ const UserName = styled.span`
 
 const Question = ({ questionData }) => {
   return (
-    <QuestionList key={questionData.id}>
-      <QuestionTitle>{questionData.title}</QuestionTitle>
-      <QuestionContent>{questionData.content}</QuestionContent>
-      <UserInfoContainer>
-        <UserPic src={questionData.picture} alt="user-pics" />
-        <UserName>{questionData.username}</UserName>
-        <span>{questionData.createdAt}</span>
-      </UserInfoContainer>
-    </QuestionList>
+    <QuestionBlock>
+      <div>
+        <span>0 votes</span>
+        <span>5 answer</span>
+        <span>5 views</span>
+      </div>
+      <QuestionList>
+        <QuestionTitle>{questionData.title}</QuestionTitle>
+        <QuestionContent>{questionData.contents}</QuestionContent>
+        <UserInfoBlock>
+          <UserPic src={questionData.picture} alt="user-pics" />
+          <UserName>{questionData.userName}</UserName>
+          <span>{questionData.createdAt}</span>
+        </UserInfoBlock>
+      </QuestionList>
+    </QuestionBlock>
   );
 };
 
