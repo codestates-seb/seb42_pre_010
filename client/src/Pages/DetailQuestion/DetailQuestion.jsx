@@ -24,7 +24,7 @@ import {
   DetailQuestionTitle,
 } from '../../Components/Questions/DetailQuestionStyle';
 
-import questionsData from '../../data/Questions.js ';
+import questionsData from '../../data/Questions';
 
 const DetailQuestion = () => {
   return (
