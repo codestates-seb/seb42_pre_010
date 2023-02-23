@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 // import Footer from '../../Components/Footer/Footer';
-import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
-import questionsData from '../../data/Questions';
+import { useState, useEffect } from 'react';
+import { getAllUsers } from '../../services/UserService';
 
 const UsersBlock = styled.div`
   width: 1100px;
@@ -122,7 +122,7 @@ const UserFilterName = styled.span`
 
 const Users = () => {
   const [userName, setUserName] = useState('');
-  const [userList, setUserList] = useState(questionsData);
+  const [userList, setUserList] = useState([]);
   const [currentNavButton, setCurrentNavButton] = useState('reputation');
   const [userFilter, setUserFilter] = useState('week');
   const buttonList = [
@@ -132,6 +132,15 @@ const Users = () => {
     'Editors',
     'Moderators',
   ];
+
+  useEffect(() => {
+    const getdata = async () => {
+      const userLists = await getAllUsers();
+      setUserList(userLists);
+    };
+    getdata();
+  }, []);
+
   const userFilterList = ['week', 'month', 'quarter', 'year', 'all'];
 
   const onTapClick = (tabName) => {
@@ -143,9 +152,9 @@ const Users = () => {
   };
 
   const filterUser = () => {
-    const userData = questionsData.filter((ele) => {
+    const userData = userList.filter((ele) => {
       if (userName === '') {
-        return questionsData;
+        return userList;
       } else {
         return ele.username.includes(userName);
       }
