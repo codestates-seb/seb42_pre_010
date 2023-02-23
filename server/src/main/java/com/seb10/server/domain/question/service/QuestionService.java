@@ -60,7 +60,7 @@ public class QuestionService {
     public Page<Question> findQuestions(int page, int size) {
 
         return questionRepository.findAll(PageRequest.of(page, size,
-                Sort.by("question-id").descending()));
+                Sort.by("questionId").descending()));
     }
 
     // 질문 삭제
