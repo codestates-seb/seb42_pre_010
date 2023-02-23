@@ -64,7 +64,7 @@ export const MainContainer = styled.div`
 export const Content = styled.div`
   display: flex;
   max-width: 1100px;
-  padding: 24px;
+  padding: 24px 24px 24px 0px;
   height: 100%;
   justify-content: center;
 `;

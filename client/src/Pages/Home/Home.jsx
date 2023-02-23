@@ -1,31 +1,33 @@
 import styled from 'styled-components';
 import questionsData from '../../data/Questions';
 import Question from '../../Components/Questions/Question';
+import { AskButton } from '../../Components/Button/AskButton.jsx';
 import { useState } from 'react';
 import Pagination from '../../Components/Pagination';
 
-const HomeContainer = styled.div`
+const HomeBlock = styled.div`
   width: calc(100% - 324px);
 `;
 
-const HomeQuestionsListContainer = styled.ul`
-  border-top: 1px solid gray;
+const HomeQuestionsListBlock = styled.ul`
+  border-top: 1px solid #d6d9dc;
   width: auto;
 `;
 
 const HomeTitle = styled.h1`
   font-size: 27px;
+  padding-left: 24px;
   font: bold;
 `;
 
-const HomeTitleContainer = styled.div`
+const HomeTitleBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 20px;
 `;
 
-const ButtonContainer = styled.div`
+const ButtonBlock = styled.div`
   display: flex;
   box-sizing: border-box;
   align-items: center;
@@ -85,18 +87,17 @@ const Home = () => {
 
   const onTapClick = (tabName) => {
     setCurrentTap(tabName.toLowerCase());
-    console.log(currentTap);
   };
 
   return (
-    <HomeContainer>
-      <HomeTitleContainer>
+    <HomeBlock>
+      <HomeTitleBlock>
         <HomeTitle>All Questions</HomeTitle>
-        <button>
+        <AskButton>
           <a href="/askquestions">Ask Question</a>
-        </button>
-      </HomeTitleContainer>
-      <ButtonContainer>
+        </AskButton>
+      </HomeTitleBlock>
+      <ButtonBlock>
         {sortTap.map((ele, idx) => {
           return (
             <ButtonNav
@@ -109,21 +110,21 @@ const Home = () => {
             </ButtonNav>
           );
         })}
-      </ButtonContainer>
-      <HomeQuestionsListContainer>
+      </ButtonBlock>
+      <HomeQuestionsListBlock>
         {currentPosts.map((ele) => {
           return (
             <Question questionData={ele} key={ele.id} currentTap={currentTap} />
           );
         })}
-      </HomeQuestionsListContainer>
+      </HomeQuestionsListBlock>
       <Pagination
         postPerPage={postsPerPage}
         totalPosts={questionsData.length}
         paginate={paginate}
         currentPage={currentPage}
       />
-    </HomeContainer>
+    </HomeBlock>
   );
 };
 
