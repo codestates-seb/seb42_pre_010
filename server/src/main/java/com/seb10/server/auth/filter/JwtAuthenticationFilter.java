@@ -58,12 +58,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
     }
 
-    //todo User 엔티티에 Roles 추가
+    // 사용자 인증 성공 시, AccessToken 생성
     private String delegateAccessToken(User user){
         Map<String, Object> claims = new HashMap<>();
-        claims.put("userId", user.getUserId());
+//        claims.put("userId", user.getUserId());
         claims.put("email", user.getEmail());
-//        claims.put("roles", user.getRoles());
+        claims.put("roles", user.getRoles());
 
         String subject = user.getEmail();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
@@ -75,6 +75,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         return accessToken;
     }
 
+
+    // 사용자 인증 성공 시, RefreshToken 생성
     private String delegateRefreshToken(User user){
         String subject = user.getEmail();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getRefreshTokenExpirationMinutes());
