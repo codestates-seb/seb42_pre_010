@@ -1,5 +1,6 @@
 package com.seb10.server.domain.question.mapper;
 
+import com.seb10.server.domain.question.dto.QuestionPatchDto;
 import com.seb10.server.domain.question.dto.QuestionPostDto;
 import com.seb10.server.domain.question.dto.QuestionResponseDto;
 import com.seb10.server.domain.question.entity.Question;
@@ -10,9 +11,9 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public class QuestionMapper {
+public interface QuestionMapper {
 
-    public Question questionPostDtoToQuestion(QuestionPostDto questionPostDto) {
+    default Question questionPostDtoToQuestion(QuestionPostDto questionPostDto) {
         Question question = new Question();
         question.setTitle(questionPostDto.getTitle());
         question.setContents(questionPostDto.getContents());
@@ -23,6 +24,8 @@ public class QuestionMapper {
 
         return question;
     }
+
+    Question questionPatchDtoToQuestion(QuestionPatchDto questionPatchDto);
 
     @Mapping(source = "user.userId", target = "userId")
     @Mapping(source = "user.username", target = "username")

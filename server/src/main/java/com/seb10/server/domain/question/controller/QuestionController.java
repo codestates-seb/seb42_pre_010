@@ -36,26 +36,17 @@ public class QuestionController {
     }
 
     // 질문 수정
-    @PatchMapping("/posts/{question-id}/edit")
+    @PatchMapping("/{question-id}/edit")
     public ResponseEntity<Question> patchQuestion(@PathVariable("question-id") @Positive long questionId,
                                                   @Valid @RequestBody QuestionPatchDto questionPatchDto) {
         questionPatchDto.setQuestionId(questionId);
-
-        return new ResponseEntity<>(questionMapper.questionPostDtoToQuestion(questionPostDto), HttpStatus.CREATED);
-    }
-
-    // 질문 수정
-    @PatchMapping("/{question_id}")
-    public ResponseEntity patchQuestion(@PathVariable("question_id") @Positive Long question_id,
-                                        @Valid @RequestBody QuestionPostDto questionPostDto) {
-
         return new ResponseEntity<>(questionMapper.questionPatchDtoToQuestion(questionPatchDto),
                 HttpStatus.OK);
     }
 
 
     // 질문 조회
-    @GetMapping("/question/{question-id}")
+    @GetMapping("/{question-id}")
     public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId) {
         Question question = questionService.findQuestion(questionId);
 
@@ -64,7 +55,7 @@ public class QuestionController {
     }
 
     // 전체 질문 조회
-    @GetMapping
+    @GetMapping("/questions/")
     public ResponseEntity getQuestions(@Positive @RequestParam int page, @Positive @RequestParam int size) {
         Page<Question> pageQuestions = questionService.findQuestions(page - 1, size);
         List<Question> questions = pageQuestions.getContent();
@@ -74,20 +65,20 @@ public class QuestionController {
     }
 
     // 질문 삭제
-    @PatchMapping("/question/{question-id}/{delete}")
+    @PatchMapping("/question/{question-id}")
     public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId,
                                          @Valid @RequestBody QuestionPatchDto questionPatchDto) {
         questionService.deleteQuestion(questionId);
 
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @DeleteMapping("/{question_id}")
-    public ResponseEntity deleteQuestion(@PathVariable("question_id") @Positive Long question_id) {
-        questionService.deleteQuestion(question_id);
-
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
     }
+
+//    @DeleteMapping("/{question-id}/{delete}")
+//    public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId) {
+//        questionService.deleteQuestion(questionId);
+//
+//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//
+//    }
 
 }
