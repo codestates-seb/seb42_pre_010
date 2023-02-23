@@ -1,13 +1,11 @@
 package com.seb10.server.domain.question.controller;
 
+import com.seb10.server.domain.question.dto.QuestionPatchDto;
 import com.seb10.server.domain.question.dto.QuestionPostDto;
 import com.seb10.server.domain.question.entity.Question;
 import com.seb10.server.domain.question.service.QuestionService;
-<<<<<<< HEAD
 import com.seb10.server.domain.question.mapper.QuestionMapper;
-=======
 import com.seb10.server.dto.MultiResponseDto;
->>>>>>> 8d1200d40579072c7171c5613190da4deb7fd00f
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -25,14 +23,23 @@ import java.util.List;
 @Validated
 @RequiredArgsConstructor
 @Controller
-public class QuestonController {
+public class QuestionController {
     private final QuestionService questionService;
     private final QuestionMapper questionMapper;
 
     // 질문 등록
     @PostMapping("/")
-    public ResponseEntity postQuestion(@Valid @RequestBody QuestionPostDto questionPostDto) {
-        Question question = questionService.createQuestion(questionMapper.questionPostDtoToQuestion(questionPostDto));
+    public ResponseEntity<Question> postQuestion(@Valid @RequestBody QuestionPostDto questionPostDto) {
+
+        return new ResponseEntity<>(questionService.createQuestion(questionMapper.questionPostDtoToQuestion(questionPostDto)),
+                HttpStatus.CREATED);
+    }
+
+    // 질문 수정
+    @PatchMapping("/posts/{question-id}/edit")
+    public ResponseEntity<Question> patchQuestion(@PathVariable("question-id") @Positive long questionId,
+                                                  @Valid @RequestBody QuestionPatchDto questionPatchDto) {
+        questionPatchDto.setQuestionId(questionId);
 
         return new ResponseEntity<>(questionMapper.questionPostDtoToQuestion(questionPostDto), HttpStatus.CREATED);
     }
@@ -42,14 +49,18 @@ public class QuestonController {
     public ResponseEntity patchQuestion(@PathVariable("question_id") @Positive Long question_id,
                                         @Valid @RequestBody QuestionPostDto questionPostDto) {
 
+        return new ResponseEntity<>(questionMapper.questionPatchDtoToQuestion(questionPatchDto),
+                HttpStatus.OK);
     }
 
-    // 질문 조회
-    @GetMapping("/question/{question_id}")
-    public ResponseEntity getQuestion(@PathVariable("question_id") @Positive long question_id) {
-        Question question = questionService.findQuestion(question_id);
 
-        return new ResponseEntity<>(questionMapper.questionToQuestionResponseDto(question), HttpStatus.OK);
+    // 질문 조회
+    @GetMapping("/question/{question-id}")
+    public ResponseEntity getQuestion(@PathVariable("question-id") @Positive long questionId) {
+        Question question = questionService.findQuestion(questionId);
+
+        return new ResponseEntity<>(questionMapper.questionToQuestionResponseDto(question),
+                HttpStatus.OK);
     }
 
     // 전체 질문 조회
@@ -58,15 +69,25 @@ public class QuestonController {
         Page<Question> pageQuestions = questionService.findQuestions(page - 1, size);
         List<Question> questions = pageQuestions.getContent();
 
-        return new ResponseEntity<>(new MultiResponseDto<>(questionMapper.questionsToQuestionResponseDtos(questions), pageQuestions), HttpStatus.OK);
+        return new ResponseEntity<>(new MultiResponseDto<>(questionMapper.questionsToQuestionResponseDtos(questions), pageQuestions),
+                HttpStatus.OK);
     }
 
     // 질문 삭제
+    @PatchMapping("/question/{question-id}/{delete}")
+    public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive long questionId,
+                                         @Valid @RequestBody QuestionPatchDto questionPatchDto) {
+        questionService.deleteQuestion(questionId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @DeleteMapping("/{question_id}")
     public ResponseEntity deleteQuestion(@PathVariable("question_id") @Positive Long question_id) {
         questionService.deleteQuestion(question_id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 
 }
