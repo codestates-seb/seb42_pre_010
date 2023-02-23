@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   HeaderBlock,
@@ -96,10 +95,7 @@ export const PubHeaderContent = () => {
   );
 };
 
-export const Header = () => {
-  //로그인 여부를 확인하기 위한 상태가 필요
-  const [logged, setLogged] = useState(false);
-
+export const Header = ({ logged }) => {
   return (
     <>
       <HeaderBlock>
@@ -112,7 +108,7 @@ export const Header = () => {
               />
             </LogoBlock>
           </Link>
-          <HeaderNav logged={logged} setLogged={setLogged} />
+          <HeaderNav logged={logged} />
           <SearchBlock />
           <HeaderContent logged={logged} />
         </nav>
