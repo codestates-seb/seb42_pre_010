@@ -10,12 +10,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Optional;
 
 
 // USER ROLE DB에서 조회하여 Spring Security에게 Role 정보 제공
+@Service
 @Component
 public class MemberDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
@@ -50,7 +52,7 @@ public class MemberDetailsService implements UserDetailsService {
         }
 
         @Override
-        public String getEmail(){ return getEmail();}
+        public String getUsername(){ return getEmail();}
 
         @Override
         public boolean isAccountNonExpired(){ return  true;}
