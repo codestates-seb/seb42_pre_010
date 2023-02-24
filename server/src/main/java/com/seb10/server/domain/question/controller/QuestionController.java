@@ -82,7 +82,8 @@ public class QuestionController {
                                          @Valid @RequestBody QuestionPatchDto questionPatchDto) {
         questionService.deleteQuestion(questionId);
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(questionMapper.questionPatchDtoToQuestion(questionPatchDto),
+                HttpStatus.OK);
     }
 
 //    @DeleteMapping("/{question-id}/{delete}")

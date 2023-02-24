@@ -1,9 +1,13 @@
 package com.seb10.server.domain.question.service;
 
 
+import com.seb10.server.domain.answer.repository.AnswerRepository;
 import com.seb10.server.domain.question.entity.Question;
 import com.seb10.server.domain.question.entity.QuestionStatus;
 import com.seb10.server.domain.question.repository.QuestionRepository;
+import com.seb10.server.domain.user.entity.User;
+import com.seb10.server.domain.user.repository.UserRepository;
+import com.seb10.server.domain.user.service.UserService;
 import com.seb10.server.exception.BusinessLogicException;
 import com.seb10.server.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +25,9 @@ import java.util.Optional;
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
+    private final UserService userService;
+    private final UserRepository userRepository;
+    private final AnswerRepository answerRepository;
 
     // 질문 생성
     public Question createQuestion(Question question) {
@@ -90,10 +97,13 @@ public class QuestionService {
 
     private void verifyQuestion(Question question) {
         // 회원 확인
-//        UserService.findVerifiedUser(question.getUser().getUserId);
+        UserService.findVerifiedUser(question.getUser().getUserId());
     }
 
     private Question saveQuestion(Question question) {
+        User user = userRepository.findById(question.getUser().getUserId())
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
+        question.setUser(user);
 
         return questionRepository.save(question);
     }
