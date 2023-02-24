@@ -37,7 +37,7 @@ import {
   SignupSubmitBtnWrap,
 } from '../../Components/Signup/SignupStyle';
 
-const Signup = ({ logged, setLogged }) => {
+const Signup = ({ logged, setLogged, setCurrUser }) => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -57,8 +57,9 @@ const Signup = ({ logged, setLogged }) => {
         'Content-Type': 'application/json',
       },
     })
-      .then(() => {
+      .then((response) => {
         setLogged(!logged);
+        setCurrUser(response.data);
       })
       .catch(() => {
         console.log('Error!');
