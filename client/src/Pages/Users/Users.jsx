@@ -2,7 +2,8 @@ import styled from 'styled-components';
 // import Footer from '../../Components/Footer/Footer';
 import { GoSearch } from 'react-icons/go';
 import { useState, useEffect } from 'react';
-import { getAllUsers } from '../../services/UserService';
+import axios from 'axios';
+// import { getAllUsers } from '../../services/UserService';
 
 const UsersBlock = styled.div`
   width: 1100px;
@@ -132,40 +133,66 @@ const Users = () => {
     'Editors',
     'Moderators',
   ];
+  const userFilterList = ['week', 'month', 'quarter', 'year', 'all'];
+
+  // 서버로부터 userData 받아와서 userList에 넣기
+  // useEffect(() => {
+  //   const getdata = async () => {
+  //     //서버에서 데이터를 받아온 상태
+  //     const userLists = await getAllUsers();
+  //     // 검색창이 빈칸일경우는 전체 렌더링
+  //     if (userName === null || userName === '') {
+  //       setUserList(userLists);
+  //       // 검색창에 입력값이 있을 경우, 필터링 해서 출력
+  //     } else {
+  //       let filteredList = [];
+  //       filteredList = userList.filter((ele) => {
+  //         return ele.userName.toLowerCase().includes(userName.toLowerCase());
+  //       });
+  //       setUserList(filteredList);
+  //     }
+  //   };
+  //   getdata();
+  // }, [userName]);
 
   useEffect(() => {
-    const getdata = async () => {
-      const userLists = await getAllUsers();
-      setUserList(userLists);
-    };
-    getdata();
-  }, []);
-
-  const userFilterList = ['week', 'month', 'quarter', 'year', 'all'];
+    if (userName === null || userName === '') {
+      axios.get('http://localhost:3001/users').then((res) => {
+        setUserList(res.data);
+      });
+    } else {
+      axios.get('http://localhost:3001/users').then((res) => {
+        const filteredList = res.data.filter((ele) => {
+          return ele.userName.toLowerCase().includes(userName.toLowerCase());
+        });
+        setUserList(filteredList);
+      });
+    }
+  }, [userName]);
 
   const onTapClick = (tabName) => {
     setCurrentNavButton(tabName.toLowerCase());
+    console.log(userList);
   };
 
   const onUserFilterClick = (filterName) => {
     setUserFilter(filterName);
   };
 
-  const filterUser = () => {
-    const userData = userList.filter((ele) => {
-      if (userName === '') {
-        return userList;
-      } else {
-        return ele.username.includes(userName);
-      }
-    });
-    setUserList(userData);
-  };
+  //useEffect를 사용, input의 value가 바뀌면 state값 바로바로 변경 해주기
+  // useEffect(() => {
+  //   const userData = userList.filter((ele) => {
+  //     if (userName === '') {
+  //       return userList;
+  //     } else {
+  //       return ele.userName.toLowerCase().includes(userName.toLowerCase());
+  //     }
+  //   });
+  //   setUserList(userData);
+  // }, [userName]);
 
   const handleUserName = (e) => {
-    e.preventDefault();
     setUserName(e.target.value);
-    filterUser();
   };
 
   const handleOnSubmit = (e) => {
@@ -217,7 +244,7 @@ const Users = () => {
         })}
       </UserFilterBlock>
       <ProfileBlock>
-        {userList.map((ele, idx) => {
+        {userList?.map((ele, idx) => {
           return (
             <div key={idx}>
               <ProfilePic src={ele.picture} alt="user-name" />
