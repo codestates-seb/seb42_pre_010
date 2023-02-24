@@ -12,21 +12,19 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name = "USERS")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "user_name", nullable = false)
     private String username;
 
     @Column(nullable = false, updatable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false,updatable = false)
     private String password;
 
     @Column(name = "created_at", updatable = false)
@@ -57,12 +55,9 @@ public class User {
 
     // question, answer 맵핑
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-
-    @JoinColumn(name = "QUESTION_ID")
     List<Question> questions = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JoinColumn(name = "ANSWER_ID")
     List<Answer> answers = new ArrayList<>();
 
 
