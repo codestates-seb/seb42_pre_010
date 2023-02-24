@@ -1,7 +1,6 @@
 package com.seb10.server.domain.user.mapstruct.mapper;
 
 import com.seb10.server.domain.user.dto.UserPatchDto;
-import com.seb10.server.domain.user.dto.UserPostDto;
 import com.seb10.server.domain.user.dto.UserResponseDto;
 import com.seb10.server.domain.user.entity.User;
 import java.util.ArrayList;
@@ -11,26 +10,11 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-02-24T23:46:54+0900",
+    date = "2023-02-25T04:05:25+0900",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component
 public class UserMapperImpl implements UserMapper {
-
-    @Override
-    public User userPostDtoToUser(UserPostDto userPostDto) {
-        if ( userPostDto == null ) {
-            return null;
-        }
-
-        User user = new User();
-
-        user.setUsername( userPostDto.getUsername() );
-        user.setEmail( userPostDto.getEmail() );
-        user.setPassword( userPostDto.getPassword() );
-
-        return user;
-    }
 
     @Override
     public User userPatchDtoToUser(UserPatchDto userPatchDto) {
@@ -45,33 +29,6 @@ public class UserMapperImpl implements UserMapper {
         user.setPassword( userPatchDto.getPassword() );
 
         return user;
-    }
-
-    @Override
-    public UserResponseDto userToUserResponseDto(User user) {
-        if ( user == null ) {
-            return null;
-        }
-
-        long userId = 0L;
-        String email = null;
-        String password = null;
-        String userStatus = null;
-
-        if ( user.getUserId() != null ) {
-            userId = user.getUserId();
-        }
-        email = user.getEmail();
-        password = user.getPassword();
-        if ( user.getUserStatus() != null ) {
-            userStatus = user.getUserStatus().name();
-        }
-
-        String userName = null;
-
-        UserResponseDto userResponseDto = new UserResponseDto( userId, userName, email, password, userStatus );
-
-        return userResponseDto;
     }
 
     @Override
