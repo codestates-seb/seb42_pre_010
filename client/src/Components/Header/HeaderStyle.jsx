@@ -72,6 +72,9 @@ export const PubHeaderNavWrap = styled.div`
   }
   a {
     color: hsl(210, 8%, 35%);
+    :hover {
+      color: black;
+    }
   }
 `;
 
