@@ -7,10 +7,10 @@ import com.seb10.server.auth.handler.UserAuthenticationEntryPoint;
 import com.seb10.server.auth.handler.UserAuthenticationFailureHandler;
 import com.seb10.server.auth.handler.UserAuthenticationSuccessHandler;
 import com.seb10.server.auth.jwt.JwtTokenizer;
+import com.seb10.server.auth.utils.CustomAuthorityUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,9 +30,11 @@ import java.util.Arrays;
 @EnableWebSecurity(debug = true)
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
+    private final CustomAuthorityUtils authorityUtils;
 
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer) {
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils) {
         this.jwtTokenizer = jwtTokenizer;
+        this.authorityUtils = authorityUtils;
     }
 
     @Bean
@@ -53,9 +55,15 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-                        .antMatchers(HttpMethod.POST,"/users/login").permitAll()
-                        .antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
-                        .antMatchers(HttpMethod.PATCH,"/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST,"/users/**").permitAll()
+//                        .antMatchers(HttpMethod.POST,"/users/login").permitAll()
+                        .antMatchers(HttpMethod.GET,"/users/**").permitAll()
+//                        .antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/questions/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/questions/**").permitAll()
+//                        .antMatchers(HttpMethod.PATCH,"/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH,"/questions/**").permitAll()
+
                         .antMatchers(HttpMethod.GET,"/users/*").hasRole("USER")
                         .anyRequest().permitAll());
 
@@ -93,7 +101,7 @@ public class SecurityConfiguration {
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new UserAuthenticationSuccessHandler());
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new UserAuthenticationFailureHandler());
 
-//            JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer,authorityUtils);
+            JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer,authorityUtils);
 
             builder
                     .addFilter(jwtAuthenticationFilter)

@@ -38,7 +38,7 @@ public class QuestionController {
 //                HttpStatus.CREATED);
 //    }
 
-    @PostMapping("/")
+    @PostMapping("/ask")
     public ResponseEntity postQuestion(@Valid @RequestBody QuestionPostDto questionPostDto) {
         Question question = questionService.createQuestion(questionMapper.questionPostDtoToQuestion(questionPostDto));
         userService.updateQuestionCount(question.getUser(), question.getUser().getQuestionCount());

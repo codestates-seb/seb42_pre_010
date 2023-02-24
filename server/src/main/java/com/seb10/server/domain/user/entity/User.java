@@ -53,10 +53,10 @@ public class User {
 
 
     // question, answer 맵핑
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     List<Question> questions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     List<Answer> answers = new ArrayList<>();
 
 
