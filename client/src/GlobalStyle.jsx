@@ -73,10 +73,10 @@ export const WithoutRootConent = styled.div`
   margin-top: 2px;
 `;
 
-export const Root = ({ logged }) => {
+export const Root = ({ logged, currUser }) => {
   return (
     <div>
-      <Header logged={logged} />
+      <Header logged={logged} currUser={currUser} />
       <MainContainer>
         <Nav />
         <Content>
@@ -89,10 +89,10 @@ export const Root = ({ logged }) => {
   );
 };
 
-export const WithoutRoot = ({ logged }) => {
+export const WithoutRoot = ({ logged, currUser }) => {
   return (
     <div>
-      <Header logged={logged} />
+      <Header logged={logged} currUser={currUser} />
       <WithoutRootConent>
         <Outlet />
       </WithoutRootConent>
@@ -100,10 +100,10 @@ export const WithoutRoot = ({ logged }) => {
   );
 };
 
-export const WithoutSideBar = ({ logged }) => {
+export const WithoutSideBar = ({ logged, currUser }) => {
   return (
     <div>
-      <Header logged={logged} />
+      <Header logged={logged} currUser={currUser} />
       <MainContainer>
         <Nav />
         <Content>

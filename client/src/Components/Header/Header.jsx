@@ -59,7 +59,6 @@ export const HeaderContent = (logged) => {
 };
 
 export const LoggedHeaderContent = () => {
-  console.log(userList);
   return (
     <LoggedHeaderContentWrap>
       <MypageWrap>
@@ -95,7 +94,9 @@ export const PubHeaderContent = () => {
   );
 };
 
-export const Header = ({ logged }) => {
+export const Header = ({ logged, currUser }) => {
+  console.log(currUser);
+
   return (
     <>
       <HeaderBlock>
