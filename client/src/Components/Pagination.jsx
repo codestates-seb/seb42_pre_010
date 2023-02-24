@@ -50,12 +50,26 @@ const IconBlock = styled.div`
   height: 28.5px;
 `;
 
-const Pagination = ({ postPerPage, totalPosts, paginate, currentPage }) => {
+const Pagination = ({
+  postsPerPage,
+  totalPosts,
+  setCurrentPage,
+  currentPage,
+}) => {
+  const page = Math.ceil(totalPosts / postsPerPage);
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
+  // paginate
+  const paginate = (pageNumber) => {
+    if (pageNumber === 0) return;
+    if (pageNumber > page) return;
+    setCurrentPage(pageNumber);
+  };
+
+  for (let i = 1; i <= page; i++) {
     pageNumbers.push(i);
   }
+
   return (
     <PaginationBlock>
       <IconBlock
