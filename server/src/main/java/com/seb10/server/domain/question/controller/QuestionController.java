@@ -5,7 +5,9 @@ import com.seb10.server.domain.question.dto.QuestionPostDto;
 import com.seb10.server.domain.question.entity.Question;
 import com.seb10.server.domain.question.service.QuestionService;
 import com.seb10.server.domain.question.mapper.QuestionMapper;
+import com.seb10.server.domain.user.service.UserService;
 import com.seb10.server.dto.MultiResponseDto;
+import com.seb10.server.dto.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -25,14 +27,24 @@ import java.util.List;
 @Controller
 public class QuestionController {
     private final QuestionService questionService;
+    private final UserService userService;
     private final QuestionMapper questionMapper;
 
     // 질문 등록
-    @PostMapping("/")
-    public ResponseEntity<Question> postQuestion(@Valid @RequestBody QuestionPostDto questionPostDto) {
+//    @PostMapping("/")
+//    public ResponseEntity<Question> postQuestion(@Valid @RequestBody QuestionPostDto questionPostDto) {
+//
+//        return new ResponseEntity<>(questionService.createQuestion(questionMapper.questionPostDtoToQuestion(questionPostDto)),
+//                HttpStatus.CREATED);
+//    }
 
-        return new ResponseEntity<>(questionService.createQuestion(questionMapper.questionPostDtoToQuestion(questionPostDto)),
-                HttpStatus.CREATED);
+    @PostMapping("/")
+    public ResponseEntity postQuestion(@Valid @RequestBody QuestionPostDto questionPostDto) {
+        Question question = questionService.createQuestion(questionMapper.questionPostDtoToQuestion(questionPostDto));
+        userService.updateQuestionCount(question.getUser(), question.getUser().getQuestionCount());
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(questionMapper.questionToQuestionResponseDto(question)),HttpStatus.CREATED);
     }
 
     // 질문 수정
@@ -70,7 +82,8 @@ public class QuestionController {
                                          @Valid @RequestBody QuestionPatchDto questionPatchDto) {
         questionService.deleteQuestion(questionId);
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(questionMapper.questionPatchDtoToQuestion(questionPatchDto),
+                HttpStatus.OK);
     }
 
 //    @DeleteMapping("/{question-id}/{delete}")

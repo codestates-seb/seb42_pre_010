@@ -76,10 +76,38 @@ const Home = () => {
   useEffect(() => {
     const getData = async () => {
       const questionData = await getAllQuestion();
-      setPosts(questionData);
+      setPosts(
+        questionData.sort(
+          (a, b) => a.createdAt.slice(0, 4) - b.createdAt.slice(0, 4)
+        )
+      );
     };
     getData();
   }, []);
+
+  const onTapClick = (tabName) => {
+    setCurrentTap(tabName.toLowerCase());
+
+    if (tabName === 'Year') {
+      setPosts(
+        [...posts].sort(
+          (a, b) => a.createdAt.slice(0, 4) - b.createdAt.slice(0, 4)
+        )
+      );
+    } else if (tabName === 'Month') {
+      setPosts(
+        [...posts].sort(
+          (a, b) => a.createdAt.slice(5, 7) - b.createdAt.slice(5, 7)
+        )
+      );
+    } else if (tabName === 'Day') {
+      setPosts(
+        [...posts].sort(
+          (a, b) => a.createdAt.slice(8, 10) - b.createdAt.slice(8, 10)
+        )
+      );
+    }
+  };
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 쪽수
@@ -94,10 +122,6 @@ const Home = () => {
     if (pageNumber === 0) return;
     if (pageNumber > page) return;
     setCurrentPage(pageNumber);
-  };
-
-  const onTapClick = (tabName) => {
-    setCurrentTap(tabName.toLowerCase());
   };
 
   return (

@@ -20,7 +20,7 @@ import java.util.Map;
 public class JwtTokenizer {
 
     @Getter
-    @Value("${jwt.key}")
+    @Value("${JWT_SECRET_KEY}")
     private String secretKey;
 
     @Getter

@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "answer")
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,17 +28,41 @@ public class Answer {
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
 
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+
     @Enumerated(EnumType.STRING)
     private AnswerStatus answerStatus = AnswerStatus.ANSWER_NORMAL;
+
+    public void addUser(User user) {
+        this.user = user;
+        if (!this.user.getAnswers().contains(this)) {
+            this.user.getAnswers().add(this);
+        }
+    }
+
+    public void addQuestion(Question question) {
+        this.question = question;
+        if (!this.question.getAnswers().contains(this)) {
+            this.question.getAnswers().add(this);
+        }
+    }
+
 
 
     public enum AnswerStatus{

@@ -2,10 +2,9 @@ spring:
   h2:
     console:
       enabled: true
+      path: /h2
   datasource:
     url: jdbc:h2:mem:test
-    username: lee
-    password : 1234
   jpa:
     hibernate:
       ddl-auto: create
@@ -13,9 +12,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
-#  sql:
-#    init:
-#      data-locations: classpath*:db/h2/data.sql
+  sql:
+    init:
+      data-locations: classpath*:db/h2/data.sql
 logging:
   level:
     org:
@@ -26,6 +25,9 @@ server:
   servlet:
     encoding:
       force-response: true
+mail:
+  address:
+    admin: admin@gmail.com
 jwt:
   secret-key: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 10000
