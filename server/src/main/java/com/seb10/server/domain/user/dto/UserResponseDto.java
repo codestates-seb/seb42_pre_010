@@ -1,5 +1,10 @@
 package com.seb10.server.domain.user.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class UserResponseDto {
 
     private long userId;
