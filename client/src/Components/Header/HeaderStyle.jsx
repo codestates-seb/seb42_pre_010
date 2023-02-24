@@ -70,6 +70,12 @@ export const PubHeaderNavWrap = styled.div`
       background-color: hsl(210, 8%, 90%);
     }
   }
+  a {
+    color: hsl(210, 8%, 35%);
+    :hover {
+      color: black;
+    }
+  }
 `;
 
 export const LoggedHeaderNavWrap = styled.div`

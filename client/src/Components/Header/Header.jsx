@@ -23,6 +23,30 @@ import userList from '../../data/userList';
 
 const REACT_APP_URL = 'http://localhost:3000';
 
+export const Header = ({ logged, currUser }) => {
+  console.log(currUser);
+
+  return (
+    <>
+      <HeaderBlock>
+        <nav>
+          <Link to="/">
+            <LogoBlock>
+              <img
+                src={REACT_APP_URL + '/images/logo-stackoverflow.png'}
+                alt="logo"
+              />
+            </LogoBlock>
+          </Link>
+          <HeaderNav logged={logged} />
+          <SearchBlock />
+          <HeaderContent logged={logged} />
+        </nav>
+      </HeaderBlock>
+    </>
+  );
+};
+
 export const HeaderNav = (logged) => {
   return <>{logged.logged ? <LoggedHeaderNav /> : <PubHeaderNav />}</>;
 };
@@ -32,7 +56,9 @@ export const PubHeaderNav = () => {
     <PubHeaderNavWrap>
       <li>About</li>
       <li>Products</li>
-      <li>For Teams</li>
+      <li>
+        <a href="https://github.com/codestates-seb/seb42_pre_010">For Teams</a>
+      </li>
     </PubHeaderNavWrap>
   );
 };
@@ -59,7 +85,6 @@ export const HeaderContent = (logged) => {
 };
 
 export const LoggedHeaderContent = () => {
-  console.log(userList);
   return (
     <LoggedHeaderContentWrap>
       <MypageWrap>
@@ -92,28 +117,6 @@ export const PubHeaderContent = () => {
         <SignupBlock>Sign up</SignupBlock>
       </Link>
     </PubHeaderContentWrap>
-  );
-};
-
-export const Header = ({ logged }) => {
-  return (
-    <>
-      <HeaderBlock>
-        <nav>
-          <Link to="/">
-            <LogoBlock>
-              <img
-                src={REACT_APP_URL + '/images/logo-stackoverflow.png'}
-                alt="logo"
-              />
-            </LogoBlock>
-          </Link>
-          <HeaderNav logged={logged} />
-          <SearchBlock />
-          <HeaderContent logged={logged} />
-        </nav>
-      </HeaderBlock>
-    </>
   );
 };
 
