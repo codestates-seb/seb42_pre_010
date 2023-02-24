@@ -7,24 +7,51 @@ import com.seb10.server.exception.ExceptionCode;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+/**
+ * PasswordEncoder DI - todo
+ * create 메서드 수정 - todo
+ * Question,AnswerCount 메서드 추가 - todo
+ */
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     // MemberRepository DI
-    public UserService(UserRepository userRepository) {
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
+
     // (1) user 등록(회원 가입)
+    /**
+     * 이미 등록된 이름인지 검증 - todo(optional)
+     * passwordEncoder DI 받아서 패스워드 인코딩 해주기 - todo
+     * 디폴트로 User Role 설정 - todo
+     */
     public User createUser(User user) {
         // 이미 등록된 이메일인지 검증
         verifyExistsEmail(user.getEmail());
+
+        //password 인코딩해서 데이터베이스에 보관
+        String encryptedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encryptedPassword);
+
+        //회원가입시, 기본 role = user 로 설정
+        List<String> roles = new ArrayList<>();
+        roles.add("USER");
+        user.setRoles(roles);
 
         // 회원 정보 저장
         return userRepository.save(user);
@@ -37,7 +64,11 @@ public class UserService {
 
         // 유저이름 업데이트
         Optional.ofNullable(user.getUsername())
-                .ifPresent(username -> findUser.setUsername(username));
+                .ifPresent(name -> findUser.setUsername(name));
+        Optional.ofNullable(user.getEmail())
+                .ifPresent(email -> findUser.setEmail(email));
+        Optional.ofNullable(user.getUserStatus())
+                .ifPresent(userStatus -> findUser.setUserStatus(userStatus));
 
         // 회원 정보 업데이트
         return userRepository.save(findUser);
@@ -85,4 +116,15 @@ public class UserService {
             throw new BusinessLogicException(ExceptionCode.USER_EXISTS);
     }
 
+    // (8) 답변 카운트 증가
+    public void updateAnswerCount(User user, long answerCount){
+        user.setAnswerCount(answerCount + 1);
+        userRepository.save(user);
+    }
+
+    // (9) 질문 카운트 증가
+    public void updateQuestionCount(User user, long questionCount){
+        user.setQuestionCount(questionCount + 1);
+        userRepository.save(user);
+    }
 }

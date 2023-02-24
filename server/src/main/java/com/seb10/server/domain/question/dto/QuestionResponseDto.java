@@ -4,12 +4,13 @@ import com.seb10.server.domain.answer.dto.AnswerDto;
 import com.seb10.server.domain.question.entity.QuestionStatus;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
-@Builder
+@Setter
 public class QuestionResponseDto {
 
     private long questionId;
