@@ -34,14 +34,14 @@ public class UserController {
 
     // (1) user 등록(일반회원 가입)
     @PostMapping("/signup")
-    public ResponseEntity postUser(@Valid @RequestBody UserPostDto userDto) {
+    public ResponseEntity postUser(@Valid @RequestBody UserPostDto requestBody) {
 
-        User user = mapper.userPostDtoToUser(userDto);
+        User user = mapper.userPostDtoToUser(requestBody);
 
-        User response = userService.createUser(user);
+        User createUser = userService.createUser(user);
 
         return new ResponseEntity<>(
-                new SingleResponseDto<>(mapper.userToUserResponseDto(response)), HttpStatus.CREATED);
+                new SingleResponseDto<>(mapper.userToUserResponseDto(createUser)), HttpStatus.CREATED);
     }
 
     // (2) user 정보 수정
@@ -51,10 +51,10 @@ public class UserController {
             @Valid @RequestBody UserPatchDto userPatchDto) {
         userPatchDto.setUserId(userId);
 
-        User response = userService.updateUser(mapper.userPatchDtoToUser(userPatchDto));
+        User updateUser = userService.updateUser(mapper.userPatchDtoToUser(userPatchDto));
 
         return new ResponseEntity<>(
-                new SingleResponseDto<>(mapper.userToUserResponseDto(response)), HttpStatus.OK);
+                new SingleResponseDto<>(mapper.userToUserResponseDto(updateUser)), HttpStatus.OK);
     }
 
     // (3) user 정보 조회

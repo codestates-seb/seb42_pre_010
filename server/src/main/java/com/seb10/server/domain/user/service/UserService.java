@@ -62,7 +62,7 @@ public class UserService {
         // 존재하는 회원인지 검증
         User findUser = findVerifiedUser(user.getUserId());
 
-        // 이름, 이메일, 유저 상태 업데이트
+        // 유저이름 업데이트
         Optional.ofNullable(user.getUsername())
                 .ifPresent(name -> findUser.setUsername(name));
         Optional.ofNullable(user.getEmail())
@@ -89,6 +89,7 @@ public class UserService {
 
     // (5) 회원 탈퇴(특정 유저 상태 비활성화)
     public void deleteUser(long userId) {
+        // user 찾기, user status 확인 및 변경
         User findUser = findVerifiedUser(userId);
         User.UserStatus status = findUser.getUserStatus();
 

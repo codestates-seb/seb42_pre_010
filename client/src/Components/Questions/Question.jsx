@@ -64,10 +64,10 @@ const Question = ({ questionData }) => {
       </div>
       <QuestionList>
         <QuestionTitle>{questionData.title}</QuestionTitle>
-        <QuestionContent>{questionData.content}</QuestionContent>
+        <QuestionContent>{questionData.contents}</QuestionContent>
         <UserInfoBlock>
           <UserPic src={questionData.picture} alt="user-pics" />
-          <UserName>{questionData.username}</UserName>
+          <UserName>{questionData.userName}</UserName>
           <span>{questionData.createdAt}</span>
         </UserInfoBlock>
       </QuestionList>

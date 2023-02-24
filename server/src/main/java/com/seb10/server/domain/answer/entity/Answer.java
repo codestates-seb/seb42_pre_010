@@ -29,14 +29,23 @@ public class Answer {
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private User user;
 
     @ManyToOne
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
 
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Enumerated(EnumType.STRING)
     private AnswerStatus answerStatus = AnswerStatus.ANSWER_NORMAL;
@@ -54,6 +63,7 @@ public class Answer {
             this.question.getAnswers().add(this);
         }
     }
+
 
 
     public enum AnswerStatus{
