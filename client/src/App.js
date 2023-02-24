@@ -15,12 +15,13 @@ import DetailQuestion from './Pages/DetailQuestion/DetailQuestion';
 import { useState } from 'react';
 
 function App() {
-  const [logged, setLogged] = useState(false);
+  const [logged, setLogged] = useState(false); // 로그인 여부
+  const [currUser, setCurrUser] = useState([]); // 로그인 완료한 현재 이용 유저 정보
 
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Root logged={logged} />,
+      element: <Root logged={logged} currUser={currUser} />,
       children: [
         { index: true, element: <Home /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
         // { path: '/tags', element: <Tag /> },
@@ -30,22 +31,34 @@ function App() {
     },
     {
       path: '/',
-      element: <WithoutRoot logged={logged} />, // Nav, Footer, Sidebar가 없는 페이지
+      element: <WithoutRoot logged={logged} currUser={currUser} />, // Nav, Footer, Sidebar가 없는 페이지
       children: [
         {
           path: '/users/login',
-          element: <Login logged={logged} setLogged={setLogged} />,
+          element: (
+            <Login
+              logged={logged}
+              setLogged={setLogged}
+              setCurrUser={setCurrUser}
+            />
+          ),
         },
         {
           path: '/users/signup',
-          element: <Signin logged={logged} setLogged={setLogged} />,
+          element: (
+            <Signin
+              logged={logged}
+              setLogged={setLogged}
+              setCurrUser={setCurrUser}
+            />
+          ),
         },
         { path: '/askquestions', element: <AskQuestion /> },
       ],
     },
     {
       path: '/',
-      element: <WithoutSideBar logged={logged} />, // Sidebar가 없는 페이지
+      element: <WithoutSideBar logged={logged} currUser={currUser} />, // Sidebar가 없는 페이지
       children: [
         { path: '/tags', element: <Tag /> },
         { path: '/users', element: <Users /> },

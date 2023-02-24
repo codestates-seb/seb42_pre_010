@@ -24,7 +24,7 @@ import userList from '../../data/userList';
 const REACT_APP_URL = 'http://localhost:3000';
 
 export const Header = ({ logged, currUser }) => {
-  console.log(currUser);
+  console.log(currUser.id); //-> 6 확인
 
   return (
     <>
