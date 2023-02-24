@@ -5,15 +5,20 @@ import com.seb10.server.domain.question.entity.Question;
 import com.seb10.server.domain.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
 import org.springframework.util.Assert;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class AnswerDto {
     @Getter
     @AllArgsConstructor
     public static class Post{
         private long questionId;
+
+        @NotNull
+        private long userId;
 
         @NotBlank(message = "내용을 입력하세요.")
         private String contents;

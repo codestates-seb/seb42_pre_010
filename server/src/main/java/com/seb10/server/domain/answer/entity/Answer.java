@@ -41,6 +41,20 @@ public class Answer {
     @Enumerated(EnumType.STRING)
     private AnswerStatus answerStatus = AnswerStatus.ANSWER_NORMAL;
 
+    public void addUser(User user) {
+        this.user = user;
+        if (!this.user.getAnswers().contains(this)) {
+            this.user.getAnswers().add(this);
+        }
+    }
+
+    public void addQuestion(Question question) {
+        this.question = question;
+        if (!this.question.getAnswers().contains(this)) {
+            this.question.getAnswers().add(this);
+        }
+    }
+
 
     public enum AnswerStatus{
         ANSWER_NORMAL("일반 상태"),
