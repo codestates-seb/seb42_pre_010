@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import {
   SocialGoogleSvg,
   SocialGithubSvg,
@@ -28,12 +30,39 @@ import {
 
 const REACT_APP_URL = 'http://localhost:3000';
 
-const Login = () => {
+const Login = ({ logged, setLogged, setCurrUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [emailMsg, setEmailMsg] = useState('');
   const [passwordMsg, setPasswordMsg] = useState('');
+
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    console.log(email);
+    console.log(password);
+    axios({
+      method: 'post',
+      url: 'http://localhost:3001/login',
+      data: {
+        email,
+        password,
+      },
+      Headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        setLogged(!logged);
+        setCurrUser(response.data);
+        console.log(response.data);
+        navigate('/');
+      })
+      .catch(() => {
+        console.log('Error!');
+      });
+  };
 
   // 이메일 정규 표현식
   const validateEmail = (email) => {
@@ -118,7 +147,11 @@ const Login = () => {
           </TextInputWrap>
         </LoginInputBlock>
         <ErrorText>{passwordMsg}</ErrorText>
-        <LoginSubmitBtn type="submit" disabled={!isAllValid}>
+        <LoginSubmitBtn
+          onClick={handleSubmit}
+          type="submit"
+          disabled={!isAllValid}
+        >
           Log in
         </LoginSubmitBtn>
       </LoginInputWrap>
