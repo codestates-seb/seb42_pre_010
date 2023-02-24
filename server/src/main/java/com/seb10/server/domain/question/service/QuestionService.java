@@ -97,7 +97,7 @@ public class QuestionService {
 
     private void verifyQuestion(Question question) {
         // 회원 확인
-        UserService.findVerifiedUser(question.getUser().getUserId());
+        userService.findUser(question.getUser().getUserId());
     }
 
     private Question saveQuestion(Question question) {

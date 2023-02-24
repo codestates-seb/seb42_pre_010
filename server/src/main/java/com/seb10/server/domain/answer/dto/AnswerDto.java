@@ -6,10 +6,12 @@ import com.seb10.server.domain.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 import org.springframework.util.Assert;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 public class AnswerDto {
     @Getter
@@ -42,7 +44,7 @@ public class AnswerDto {
     }
 
     @Getter
-    @AllArgsConstructor
+    @Setter
     public static class Response{
         private long answerId;
         private String contents;
@@ -50,7 +52,9 @@ public class AnswerDto {
         // user, question 연결
         private long userId;
         private long questionId;
-        private String userName;
+        private String username;
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
 
     }
 }
