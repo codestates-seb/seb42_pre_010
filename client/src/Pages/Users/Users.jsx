@@ -132,7 +132,9 @@ const Users = () => {
     'Editors',
     'Moderators',
   ];
+  const userFilterList = ['week', 'month', 'quarter', 'year', 'all'];
 
+  // 서버로부터 userData 받아와서 userList에 넣기
   useEffect(() => {
     const getdata = async () => {
       const userLists = await getAllUsers();
@@ -141,36 +143,35 @@ const Users = () => {
     getdata();
   }, []);
 
-  const userFilterList = ['week', 'month', 'quarter', 'year', 'all'];
-
   const onTapClick = (tabName) => {
     setCurrentNavButton(tabName.toLowerCase());
+    console.log(userList);
   };
 
   const onUserFilterClick = (filterName) => {
     setUserFilter(filterName);
   };
 
-  const filterUser = () => {
+  //useEffect를 사용, input의 value가 바뀌면 state값 바로바로 변경 해주기
+  useEffect(() => {
     const userData = userList.filter((ele) => {
       if (userName === '') {
         return userList;
       } else {
-        return ele.username.includes(userName);
+        return ele.userName.toLowerCase().includes(userName.toLowerCase());
       }
     });
     setUserList(userData);
-  };
+  }, [userName]);
 
   const handleUserName = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setUserName(e.target.value);
-    filterUser();
   };
 
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
-  };
+  // const handleOnSubmit = (e) => {
+  //   // e.preventDefault();
+  // };
 
   return (
     <UsersBlock>
@@ -178,7 +179,7 @@ const Users = () => {
       <UserNavBlock>
         <SearchBlock>
           <GoSearch />
-          <form onSubmit={handleOnSubmit}>
+          <form>
             <input
               placeholder="Filter by name"
               value={userName}
@@ -217,7 +218,7 @@ const Users = () => {
         })}
       </UserFilterBlock>
       <ProfileBlock>
-        {userList.map((ele, idx) => {
+        {userList?.map((ele, idx) => {
           return (
             <div key={idx}>
               <ProfilePic src={ele.picture} alt="user-name" />
