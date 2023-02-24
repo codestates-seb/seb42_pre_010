@@ -70,6 +70,9 @@ export const PubHeaderNavWrap = styled.div`
       background-color: hsl(210, 8%, 90%);
     }
   }
+  a {
+    color: hsl(210, 8%, 35%);
+  }
 `;
 
 export const LoggedHeaderNavWrap = styled.div`
