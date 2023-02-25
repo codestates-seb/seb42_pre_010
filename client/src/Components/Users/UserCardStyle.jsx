@@ -236,3 +236,6 @@ export const UserCardActivityNavList = styled.li`
 
 // 우측에 콘텐츠가 출력되는 영역
 export const ActivityContentSection = styled.div``;
+
+export const picture =
+  'https://velog.velcdn.com/images/youa7878/post/7bffe548-e47a-4854-8cef-7af794394f54/image.png';

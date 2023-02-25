@@ -16,49 +16,22 @@ import {
   UserCardNavSection,
   UserCardNavList,
   UserCardConentSection,
+  picture,
 } from '../../Components/Users/UserCardStyle';
-
-const getRandomNumber = (min, max) => {
-  return parseInt(Math.random() * (Number(max) - Number(min) + 2));
-};
-
-// 회원 정보 조회 시의 더비 데이터
-export const initialState = {
-  users: [
-    {
-      id: 1,
-      userName: 'wonpil',
-      createdAt: '2023.02.16 14:00:00',
-      questionCount: 0,
-      answerCount: 0,
-      picture: `https://randomuser.me/api/portraits/women/${getRandomNumber(
-        1,
-        98
-      )}.jpg`,
-    },
-    {
-      id: 2,
-      userName: 'Young K',
-      createdAt: '2023.02.16 14:00:00',
-      questionCount: 3,
-      answerCount: 4,
-      picture: `https://randomuser.me/api/portraits/men/${getRandomNumber(
-        1,
-        98
-      )}.jpg`,
-    },
-  ],
-};
+import { useParams } from 'react-router-dom';
 
 const usercardNav = ['Profile', 'Activity', 'Saves', 'Settings'];
 
-export const UserDetail = () => {
+export const UserDetail = ({ userList }) => {
+  const { userId } = useParams();
+
+  const found = userList.filter((el) => String(el.userId) === userId)[0];
   return (
     <UserCardContainer>
       <UserCardInfoBlock>
-        <UserCardImg src={initialState.users[1].picture} />
+        <UserCardImg src={picture} />
         <UserCardInfoContnet>
-          <h1>{initialState.users[1].userName}</h1>
+          <h1>{found.username}</h1>
           <UserCardInfoListWrap>
             <UserCardInfoList>
               <MdCake />
