@@ -12,11 +12,20 @@ import Questions from './Pages/Questions/Questions';
 import EditQuestion from './Pages/EditQuestion/EditQuestion';
 import DetailQuestion from './Pages/DetailQuestion/DetailQuestion';
 // import ModifyAnswer from './Pages/ModifyAnswer/ModifyAnswer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getAllUsers } from './services/UserService';
 
 function App() {
   const [logged, setLogged] = useState(false); // 로그인 여부
   const [currUser, setCurrUser] = useState([]); // 로그인 완료한 현재 이용 유저 정보
+  const [userList, setUserList] = useState({}); // 전체 회원 리스트
+
+  useEffect(() => {
+    getAllUsers().then((data) => {
+      setUserList(data.data);
+      console.log(userList);
+    });
+  }, [setUserList]);
 
   const router = createBrowserRouter([
     {
@@ -24,8 +33,6 @@ function App() {
       element: <Root logged={logged} currUser={currUser} />,
       children: [
         { index: true, element: <Home /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
-        // { path: '/tags', element: <Tag /> },
-        // { path: '/users', element: <Users /> },
         { path: '/questions', element: <Questions /> },
       ],
     },
@@ -62,7 +69,10 @@ function App() {
       children: [
         { path: '/tags', element: <Tag /> },
         { path: '/users', element: <Users /> },
-        { path: '/users/id', element: <UserDetail /> },
+        {
+          path: '/card/users/:userId',
+          element: <UserDetail currUser={currUser} />,
+        },
         { path: '/edit', element: <EditQuestion /> },
         { path: '/questions/id', element: <DetailQuestion /> },
       ],
