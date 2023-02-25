@@ -18,14 +18,13 @@ import { getAllUsers } from './services/UserService';
 function App() {
   const [logged, setLogged] = useState(false); // 로그인 여부
   const [currUser, setCurrUser] = useState([]); // 로그인 완료한 현재 이용 유저 정보
-  const [userList, setUserList] = useState({}); // 전체 회원 리스트
+  const [userList, setUserList] = useState(null); // 전체 회원 리스트
 
   useEffect(() => {
     getAllUsers().then((data) => {
       setUserList(data.data);
-      console.log(userList);
     });
-  }, [setUserList]);
+  }, [setUserList, currUser]); // 회원가입 하면서 유저가 추가될 때 currUSer가 업데이트 됨
 
   const router = createBrowserRouter([
     {
@@ -71,7 +70,7 @@ function App() {
         { path: '/users', element: <Users /> },
         {
           path: '/card/users/:userId',
-          element: <UserDetail currUser={currUser} />,
+          element: <UserDetail currUser={currUser} userList={userList} />,
         },
         { path: '/edit', element: <EditQuestion /> },
         { path: '/questions/id', element: <DetailQuestion /> },

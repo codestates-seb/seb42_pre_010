@@ -13,13 +13,13 @@ import {
   SignupBlock,
   LoggedHeaderContentWrap,
   LogoBlock,
+  picture,
 } from './HeaderStyle';
 import { FiSearch } from 'react-icons/fi';
 import { ImDrawer2 } from 'react-icons/im';
 import { RiTrophyFill } from 'react-icons/ri';
 import { BsQuestionCircleFill } from 'react-icons/bs';
 import { FaStackExchange } from 'react-icons/fa';
-import userList from '../../data/userList';
 
 const REACT_APP_URL = 'http://localhost:3000';
 
@@ -94,8 +94,8 @@ export const LoggedHeaderContent = ({ currUser }) => {
   return (
     <LoggedHeaderContentWrap>
       <MypageWrap>
-        <Link to={`/usercard/${currUser.data.userId}`}>
-          <img src={userList[0].picture} alt={'user-img'} />
+        <Link to={`/card/users/${currUser.data.userId}`}>
+          <img src={picture} alt={'user-img'} />
         </Link>
         <span>{currUser.data.questionCount}</span>
       </MypageWrap>
