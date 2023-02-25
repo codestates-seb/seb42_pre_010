@@ -35,6 +35,7 @@ export const UserDetail = ({ userList }) => {
   const changeSelected = (idx) => {
     setSelected(idx);
   };
+
   return (
     <UserCardContainer>
       <UserCardInfoBlock>
@@ -83,7 +84,7 @@ export const UserDetail = ({ userList }) => {
         })}
       </UserCardNavSection>
       <UserCardConentSection>
-        {selected === 0 ? <UserCardProfile /> : <USerActivitiy />}
+        {selected === 0 ? <UserCardProfile found={found} /> : <USerActivitiy />}
       </UserCardConentSection>
     </UserCardContainer>
   );
