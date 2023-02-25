@@ -3,6 +3,7 @@ import styled from 'styled-components';
 //! UserCard
 
 export const UserCardContainer = styled.main`
+  width: 100%;
   height: 100%;
   position: relative;
   list-style: none;
@@ -213,7 +214,9 @@ export const ProfileBadgesContentWrap = styled.div`
 //! UserCardActivity
 
 export const UserCardActivityWrap = styled.div`
+  width: 1100px !important ;
   display: flex;
+  width: auto;
 `;
 
 // 왼쪽에 Nav 영역
@@ -235,7 +238,9 @@ export const UserCardActivityNavList = styled.li`
 `;
 
 // 우측에 콘텐츠가 출력되는 영역
-export const ActivityContentSection = styled.div``;
+export const ActivityContentSection = styled.div`
+  width: 100%;
+`;
 
 export const picture =
   'https://velog.velcdn.com/images/youa7878/post/7bffe548-e47a-4854-8cef-7af794394f54/image.png';
