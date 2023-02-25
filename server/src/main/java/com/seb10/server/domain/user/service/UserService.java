@@ -106,11 +106,12 @@ public class UserService {
         User findUser = findVerifiedUser(userId);
         User.UserStatus status = findUser.getUserStatus();
 
-        if (status != User.UserStatus.USER_DEACTIVATED) {
-            throw new BusinessLogicException(ExceptionCode.USER_EXISTS);
-        }
+//        if (status != User.UserStatus.USER_DEACTIVATED) {
+//            throw new BusinessLogicException(ExceptionCode.USER_EXISTS);
+//        }
 
         findUser.setUserStatus(User.UserStatus.USER_DEACTIVATED);
+        userRepository.save(findUser);
     }
 
     // (6) 이미 존재하는 유저인지 검증

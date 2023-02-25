@@ -83,7 +83,7 @@ public class UserController {
 //    }
 
     // (5) user 탈퇴(비활성화)
-    @PatchMapping("/{user-status}")
+    @PatchMapping("/delete/{user-id}")
     public ResponseEntity deleteUser(@PathVariable("user-id") @Positive long userId) {
         userService.deleteUser(userId);
 

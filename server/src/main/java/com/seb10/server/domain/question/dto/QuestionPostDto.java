@@ -15,4 +15,8 @@ public class QuestionPostDto {
     private String title;
     private String contents;
 
+
+    //포스트맨에서 question POST 메서드 보낼때, 405 method not allowed 해결 코드
+    public QuestionPostDto(){}
+
 }

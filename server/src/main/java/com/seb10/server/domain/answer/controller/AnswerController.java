@@ -19,10 +19,10 @@ import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
-@RequestMapping("/question")
+@RequestMapping("/questions")
 @Validated
 public class AnswerController {
-    private final static  String ANSWER_DEFAULT_URL = "/question";
+//    private final static  String ANSWER_DEFAULT_URL = "/question";
 
     private final AnswerService answerService;
     private final UserService userService;
@@ -56,14 +56,14 @@ public class AnswerController {
     }
 
     //답변을 data로 감싸서 List로 출력
-    @GetMapping("/{question-id}")
-    public ResponseEntity getAnswers(@PathVariable("question-id") @Positive long questionId){
-
-        List<Answer> answers = answerService.findAnswers();
-        return new ResponseEntity<>(
-                new MultiResponseDto<>(mapper.answersToAnswerResponses(answers)),HttpStatus.OK);
-    }
-
+//    @GetMapping("/{question-id}")
+//    public ResponseEntity getAnswers(@PathVariable("question-id") @Positive long questionId){
+//
+//        List<Answer> answers = answerService.findAnswers();
+//        return new ResponseEntity<>(
+//                new MultiResponseDto<>(mapper.answersToAnswerResponses(answers)),HttpStatus.OK);
+//    }
+//
 
     // service단에서 update 메서드 구현
     @PatchMapping("/post/{answer-id}/edit")

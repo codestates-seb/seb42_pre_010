@@ -29,6 +29,9 @@ public class AnswerDto {
             Assert.notNull(questionId, "question id must not be null.");
             this.questionId = questionId;
         }
+
+        //포스트맨에서 answer POST 메서드 보낼때, 405 method not allowed 해결 코드
+        public Post(){}
     }
     @Getter
     @AllArgsConstructor
