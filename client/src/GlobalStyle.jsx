@@ -100,14 +100,14 @@ export const WithoutRoot = ({ logged, currUser }) => {
   );
 };
 
-export const WithoutSideBar = ({ logged, currUser }) => {
+export const WithoutSideBar = ({ logged, currUser, getAllUser }) => {
   return (
     <div>
       <Header logged={logged} currUser={currUser} />
       <MainContainer>
         <Nav />
         <Content>
-          <Outlet />
+          <Outlet currUser={currUser} getAllUser={getAllUser} />
         </Content>
       </MainContainer>
       <Footer />

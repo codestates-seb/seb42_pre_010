@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import {
   SocialGoogleSvg,
   SocialGithubSvg,
@@ -37,27 +37,18 @@ const Login = ({ logged, setLogged, setCurrUser }) => {
   const [emailMsg, setEmailMsg] = useState('');
   const [passwordMsg, setPasswordMsg] = useState('');
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleSubmit = () => {
-    console.log(email);
-    console.log(password);
-    axios({
-      method: 'post',
-      url: 'http://localhost:3001/login',
-      data: {
-        email,
-        password,
-      },
-      Headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    axios
+      .post('/users/login', {
+        email: email,
+        password: password,
+      })
       .then((response) => {
         setLogged(!logged);
         setCurrUser(response.data);
-        console.log(response.data);
-        navigate('/');
+        //navigate('/');
       })
       .catch(() => {
         console.log('Error!');
