@@ -94,7 +94,7 @@ export const LoggedHeaderContent = ({ currUser }) => {
   return (
     <LoggedHeaderContentWrap>
       <MypageWrap>
-        <Link to={`/usercard/${currUser.data.userId}`}>
+        <Link to={`/card/users/${currUser.data.userId}`}>
           <img src={userList[0].picture} alt={'user-img'} />
         </Link>
         <span>{currUser.data.questionCount}</span>
