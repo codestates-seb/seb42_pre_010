@@ -26,10 +26,8 @@ function App() {
     () => {
       getAllUsers().then((data) => {
         setUserList(data.data);
-        console.log(userList);
       });
     },
-    [],
     [currUser] // 회원가입 하면서 유저가 추가 시 re-render
   );
 
@@ -40,7 +38,6 @@ function App() {
         console.log(questionList);
       });
     },
-    [],
     [setQuestionList] // 전체 질문 리스트에 새 질문이 추가 시 re-render
   );
 
@@ -77,7 +74,10 @@ function App() {
             />
           ),
         },
-        { path: '/askquestions', element: <AskQuestion /> },
+        {
+          path: '/askquestions',
+          element: <AskQuestion logged={logged} currUser={currUser} />,
+        },
       ],
     },
     {

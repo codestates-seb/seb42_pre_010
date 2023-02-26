@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import WritingInfo from '../../Components/AskForm/WritingInfo';
 import {
@@ -95,9 +96,12 @@ const ButtonBlock = styled.div`
   }
 `;
 
-const AskQuestion = () => {
+const AskQuestion = (currUser) => {
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
+
+  // 현재 로그인한 유저 id
+  const loggedUserId = currUser.data.userId;
 
   const handleValue = (value) => {
     setValue(value);
@@ -105,6 +109,16 @@ const AskQuestion = () => {
 
   const handleOnChangeTitle = (e) => {
     setTitle(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    axios
+      .post('/questions/ask', {
+        userId: loggedUserId,
+        title: title,
+        contents: value,
+      })
+      .then((response) => console.log(response));
   };
 
   const handleOnReset = () => {
@@ -140,7 +154,7 @@ const AskQuestion = () => {
           </div>
         </WritingBlock>
         <ButtonBlock>
-          <button className="submitButton" type="submit">
+          <button className="submitButton" onClick={handleSubmit} type="submit">
             Ask!
           </button>
           <button className="cancelButton" onClick={handleOnReset} type="reset">
