@@ -13,19 +13,17 @@ import {
   SignupBlock,
   LoggedHeaderContentWrap,
   LogoBlock,
+  picture,
 } from './HeaderStyle';
 import { FiSearch } from 'react-icons/fi';
 import { ImDrawer2 } from 'react-icons/im';
 import { RiTrophyFill } from 'react-icons/ri';
 import { BsQuestionCircleFill } from 'react-icons/bs';
 import { FaStackExchange } from 'react-icons/fa';
-import userList from '../../data/userList';
 
 const REACT_APP_URL = 'http://localhost:3000';
 
 export const Header = ({ logged, currUser }) => {
-  console.log(currUser.id); //-> 6 확인
-
   return (
     <>
       <HeaderBlock>
@@ -40,7 +38,7 @@ export const Header = ({ logged, currUser }) => {
           </Link>
           <HeaderNav logged={logged} />
           <SearchBlock />
-          <HeaderContent logged={logged} />
+          <HeaderContent logged={logged} currUser={currUser} />
         </nav>
       </HeaderBlock>
     </>
@@ -48,7 +46,7 @@ export const Header = ({ logged, currUser }) => {
 };
 
 export const HeaderNav = (logged) => {
-  return <>{logged.logged ? <LoggedHeaderNav /> : <PubHeaderNav />}</>;
+  return <>{logged ? <LoggedHeaderNav /> : <PubHeaderNav />}</>;
 };
 
 export const PubHeaderNav = () => {
@@ -80,16 +78,26 @@ export const SearchBlock = () => {
   );
 };
 
-export const HeaderContent = (logged) => {
-  return <>{logged.logged ? <LoggedHeaderContent /> : <PubHeaderContent />}</>;
+export const HeaderContent = ({ logged, currUser }) => {
+  return (
+    <>
+      {logged ? (
+        <LoggedHeaderContent currUser={currUser} />
+      ) : (
+        <PubHeaderContent />
+      )}
+    </>
+  );
 };
 
-export const LoggedHeaderContent = () => {
+export const LoggedHeaderContent = ({ currUser }) => {
   return (
     <LoggedHeaderContentWrap>
       <MypageWrap>
-        <img src={userList[0].picture} alt={'user-img'} />
-        <span>{userList[0].questionCount}</span>
+        <Link to={`/card/users/${currUser.data.userId}`}>
+          <img src={picture} alt={'user-img'} />
+        </Link>
+        <span>{currUser.data.questionCount}</span>
       </MypageWrap>
       <MessageBlock>
         <ImDrawer2 />
