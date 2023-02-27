@@ -14,6 +14,44 @@ import {
 } from './UserCardStyle';
 import { FaAward } from 'react-icons/fa';
 
+const UserCardProfile = ({ found }) => {
+  console.log('test ' + found.username);
+  return (
+    <UserCardProfileWrap>
+      <ProfileContentLeftSection>
+        <ProfileStatsSection found={found} />
+        <ProfileCommunitiesSection />
+      </ProfileContentLeftSection>
+      <ProfileContentRightSection>
+        <ProfileAboutSection />
+        <ProfileBadgesSection />
+      </ProfileContentRightSection>
+    </UserCardProfileWrap>
+  );
+};
+
+export const ProfileStatsSection = ({ found }) => {
+  return (
+    <>
+      <UserCardProfilTitle>Stats</UserCardProfilTitle>
+      <ProfileStatsWrap>
+        <div>
+          <p>1</p>reputation
+        </div>
+        <div>
+          <p>1</p>reached
+        </div>
+        <div>
+          <p>{found.answerCount}</p>answers
+        </div>
+        <div>
+          <p>{found.questionCount}</p>questions
+        </div>
+      </ProfileStatsWrap>
+    </>
+  );
+};
+
 export const ProfileCommunitiesSection = () => {
   return (
     <>
@@ -101,43 +139,6 @@ export const ProfileBadgesSection = () => {
           </span>
         </ProfileBadgesContentWrap>
       </ProfileBadgesWrap>
-    </>
-  );
-};
-
-const UserCardProfile = () => {
-  return (
-    <UserCardProfileWrap>
-      <ProfileContentLeftSection>
-        <ProfileStatsSection />
-        <ProfileCommunitiesSection />
-      </ProfileContentLeftSection>
-      <ProfileContentRightSection>
-        <ProfileAboutSection />
-        <ProfileBadgesSection />
-      </ProfileContentRightSection>
-    </UserCardProfileWrap>
-  );
-};
-
-export const ProfileStatsSection = () => {
-  return (
-    <>
-      <UserCardProfilTitle>Stats</UserCardProfilTitle>
-      <ProfileStatsWrap>
-        <div>
-          <p>1</p>reputation
-        </div>
-        <div>
-          <p>1</p>reached
-        </div>
-        <div>
-          <p>1</p>answers
-        </div>
-        <div>
-          <p>1</p>questions
-        </div>
-      </ProfileStatsWrap>
     </>
   );
 };

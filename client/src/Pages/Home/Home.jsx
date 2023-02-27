@@ -111,18 +111,10 @@ const Home = () => {
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 쪽수
-  const [postsPerPage] = useState(5); // 한 페이지 당 보여지는 게시물수
-  const page = Math.ceil(posts.length / postsPerPage);
+  const postsPerPage = 5; // 한 페이지 당 보여지는 게시물수
   const indexOfLastPost = currentPage * postsPerPage; // 페이지의 마지막 게시물 위치
   const indexOfFirstPost = indexOfLastPost - postsPerPage; // 페이지의 첫번째 게시물 위치
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost); // 보여져야 하는 게시물만큼 Slice
-
-  // paginate
-  const paginate = (pageNumber) => {
-    if (pageNumber === 0) return;
-    if (pageNumber > page) return;
-    setCurrentPage(pageNumber);
-  };
 
   return (
     <HomeBlock>
@@ -158,9 +150,9 @@ const Home = () => {
         })}
       </HomeQuestionsListBlock>
       <Pagination
-        postPerPage={postsPerPage}
+        postsPerPage={postsPerPage}
         totalPosts={posts.length}
-        paginate={paginate}
+        setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />
     </HomeBlock>

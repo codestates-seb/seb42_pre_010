@@ -190,3 +190,6 @@ export const LogoBlock = styled.div`
     background-color: hsl(210, 8%, 90%);
   }
 `;
+
+export const picture =
+  'https://velog.velcdn.com/images/youa7878/post/7bffe548-e47a-4854-8cef-7af794394f54/image.png';

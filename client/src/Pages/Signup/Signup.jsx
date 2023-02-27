@@ -46,17 +46,12 @@ const Signup = ({ logged, setLogged, setCurrUser }) => {
   const [passwordMsg, setPasswordMsg] = useState('');
 
   const handleSubmit = () => {
-    axios({
-      method: 'post',
-      url: 'http://localhost:3001/signup',
-      data: {
-        email,
-        password,
-      },
-      Headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    axios
+      .post('/users/signup', {
+        username: nickname,
+        email: email,
+        password: password,
+      })
       .then((response) => {
         setLogged(!logged);
         setCurrUser(response.data);
