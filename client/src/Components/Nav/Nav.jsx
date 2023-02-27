@@ -87,7 +87,9 @@ const Nav = () => {
           <ul>
             <li
               className={
-                window.location.pathname === '/questions' ? 'clickMemu' : 'null'
+                window.location.pathname === '/allquestion'
+                  ? 'clickMemu'
+                  : 'null'
               }
             >
               <BiWorld className="icon" size={16} />
