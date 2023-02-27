@@ -4,6 +4,7 @@ import Pagination from '../../Components/Pagination';
 import Question from '../../Components/Questions/Question';
 import { AskButton } from '../../Components/Button/AskButton.jsx';
 import { getAllQuestion } from '../../services/QuestionService';
+import { Link } from 'react-router-dom';
 
 const HomeBlock = styled.div`
   width: calc(100% - 324px);
@@ -121,7 +122,7 @@ const Home = () => {
       <HomeTitleBlock>
         <HomeTitle>All Questions</HomeTitle>
         <AskButton>
-          <a href="/askquestions">Ask Question</a>
+          <Link to="/askquestions">Ask Question</Link>
         </AskButton>
       </HomeTitleBlock>
       <ButtonBlock>
