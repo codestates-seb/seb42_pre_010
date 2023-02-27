@@ -18,7 +18,6 @@ const QuestionBlock = styled.div`
   }
   span {
     font-size: 13px;
-    margin: 0 0 8px;
     display: block;
   }
 `;
@@ -33,9 +32,12 @@ const UserPic = styled.img`
   height: 17px;
 `;
 
-const QuestionTitle = styled.h3`
+const QuestionTitle = styled.a`
+  display: block;
   font-size: 17px;
   margin: 10px 0px;
+  text-decoration: none;
+  color: #4f93d2;
 `;
 
 const QuestionContent = styled.div`
@@ -51,7 +53,7 @@ const UserInfoBlock = styled.div`
 `;
 
 const UserName = styled.span`
-  margin: 0px 10px;
+  margin: 0px 5px;
 `;
 
 const Question = ({ questionData }) => {
@@ -63,7 +65,9 @@ const Question = ({ questionData }) => {
         <span>5 views</span>
       </div>
       <QuestionList>
-        <QuestionTitle>{questionData.title}</QuestionTitle>
+        <QuestionTitle href="https://stackoverflow.com/questions/75541273/ejs-tags-inside-html-are-not-working-stop-my-server-i-keep-getting-yellow-lines">
+          {questionData.title}
+        </QuestionTitle>
         <QuestionContent>{questionData.contents}</QuestionContent>
         <UserInfoBlock>
           <UserPic src={questionData.picture} alt="user-pics" />
