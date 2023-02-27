@@ -88,7 +88,6 @@ const Questions = () => {
 
   const onTapClick = (tabName) => {
     setCurrentTap(tabName.toLowerCase());
-    console.log(currentTap);
   };
 
   // Pagination
