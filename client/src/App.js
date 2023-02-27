@@ -22,6 +22,13 @@ function App() {
   const [userList, setUserList] = useState(null); // 전체 회원 리스트
   const [questionList, setQuestionList] = useState(null); // 전체 질문 리스트
 
+  useEffect(() => {
+    const storedUserLoggedInInformation = localStorage.getItem('logged');
+    if (storedUserLoggedInInformation === 'true') {
+      setLogged(!logged);
+    }
+  }, []);
+
   useEffect(
     () => {
       getAllUsers().then((data) => {
