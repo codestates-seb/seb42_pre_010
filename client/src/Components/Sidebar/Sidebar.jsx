@@ -138,6 +138,13 @@ const Sidebar = () => {
       </YellowBoxBlock>
       <ImgBlock>
         <a
+          href="https://dhlottery.co.kr/common.do?method=main"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src="/images/loopy.jpg" alt="ad" />
+        </a>
+        <a
           href="https://www.codestates.com/course/backend-engineering?gclid=CjwKCAiA9NGfBhBvEiwAq5vSy0OU6g_8Hk9JUxNIQtxCY1YY7arVx8AjuIAeUMJGFGiIUvXb3reBAhoCIi0QAvD_BwE"
           target="_blank"
           rel="noreferrer"
@@ -150,13 +157,6 @@ const Sidebar = () => {
           rel="noreferrer"
         >
           <img src="/images/front-end-ad.png" alt="ad" />
-        </a>
-        <a
-          href="https://dhlottery.co.kr/common.do?method=main"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img src="/images/loopy.jpg" alt="ad" />
         </a>
       </ImgBlock>
     </SidebarBlock>
