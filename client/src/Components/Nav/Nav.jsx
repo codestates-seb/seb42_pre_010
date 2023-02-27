@@ -91,7 +91,7 @@ const Nav = () => {
               }
             >
               <BiWorld className="icon" size={16} />
-              <Link to="/question">Questions</Link>
+              <Link to="/allquestion">Questions</Link>
             </li>
             <li
               className={
