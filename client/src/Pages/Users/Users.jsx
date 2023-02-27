@@ -135,36 +135,23 @@ const Users = () => {
   ];
   const userFilterList = ['week', 'month', 'quarter', 'year', 'all'];
 
-  // 서버로부터 userData 받아와서 userList에 넣기
-  // useEffect(() => {
-  //   const getdata = async () => {
-  //     //서버에서 데이터를 받아온 상태
-  //     const userLists = await getAllUsers();
-  //     // 검색창이 빈칸일경우는 전체 렌더링
-  //     if (userName === null || userName === '') {
-  //       setUserList(userLists);
-  //       // 검색창에 입력값이 있을 경우, 필터링 해서 출력
-  //     } else {
-  //       let filteredList = [];
-  //       filteredList = userList.filter((ele) => {
-  //         return ele.userName.toLowerCase().includes(userName.toLowerCase());
-  //       });
-  //       setUserList(filteredList);
-  //     }
-  //   };
-  //   getdata();
-  // }, [userName]);
-
+  // list로 렌더링 하기 전, 검색창에 값이 있는지 확인
   useEffect(() => {
+    // 만약 검색창에 값이 없다면, 필터링 하지않는다는 뜻
     if (userName === null || userName === '') {
+      // 그러므로 모든 데이터를 가져와서
       axios.get('http://localhost:3001/users').then((res) => {
+        // list에 넣어준다
         setUserList(res.data);
       });
+      // 만약 검색창에 값이 있을 경우
     } else {
       axios.get('http://localhost:3001/users').then((res) => {
+        // 모든 데이터를 가져와서 조건에 맞게 필터링 해준 뒤
         const filteredList = res.data.filter((ele) => {
           return ele.userName.toLowerCase().includes(userName.toLowerCase());
         });
+        // 렌더링 하기 위해서 list에 넣어준다
         setUserList(filteredList);
       });
     }
@@ -178,18 +165,6 @@ const Users = () => {
   const onUserFilterClick = (filterName) => {
     setUserFilter(filterName);
   };
-
-  //useEffect를 사용, input의 value가 바뀌면 state값 바로바로 변경 해주기
-  // useEffect(() => {
-  //   const userData = userList.filter((ele) => {
-  //     if (userName === '') {
-  //       return userList;
-  //     } else {
-  //       return ele.userName.toLowerCase().includes(userName.toLowerCase());
-  //     }
-  //   });
-  //   setUserList(userData);
-  // }, [userName]);
 
   const handleUserName = (e) => {
     setUserName(e.target.value);
