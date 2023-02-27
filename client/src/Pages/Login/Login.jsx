@@ -53,6 +53,8 @@ const Login = ({ logged, setLogged, setCurrUser }) => {
       .catch(() => {
         console.log('Error!');
       });
+
+    localStorage.setItem('logged', 'true'); // 로컬 저장소에 로그인 여부 데이터 저장
   };
 
   // 이메일 정규 표현식

@@ -59,6 +59,8 @@ const Signup = ({ logged, setLogged, setCurrUser }) => {
       .catch(() => {
         console.log('Error!');
       });
+
+    localStorage.setItem('logged', 'true'); // 로컬 저장소에 로그인 여부 데이터 저장
   };
 
   // 닉네임이 받은 값이 null은 아니도록

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { BiWorld } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 const NavContainer = styled.div`
   width: 164px;
@@ -80,7 +81,7 @@ const Nav = () => {
               window.location.pathname === '/' ? 'home clickMemu' : 'home'
             }
           >
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <p>PUBLIC</p>
           <ul>
@@ -90,21 +91,21 @@ const Nav = () => {
               }
             >
               <BiWorld className="icon" size={16} />
-              <a href="/question">Questions</a>
+              <Link to="/question">Questions</Link>
             </li>
             <li
               className={
                 window.location.pathname === '/tags' ? 'clickMemu' : 'null'
               }
             >
-              <a href="/tags">Tags</a>
+              <Link to="/tags">Tags</Link>
             </li>
             <li
               className={
                 window.location.pathname === '/allusers' ? 'clickMemu' : 'null'
               }
             >
-              <a href="/allusers">Users</a>
+              <Link to="/allusers">Users</Link>
             </li>
             <li>
               <a href="https://stackoverflow.com/jobs/companies">Companies</a>
