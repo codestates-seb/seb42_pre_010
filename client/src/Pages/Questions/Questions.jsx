@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Pagination from '../../Components/Pagination';
 import Question from '../../Components/Questions/Question';
 import { AskButton } from '../../Components/Button/AskButton';
@@ -102,7 +103,7 @@ const Questions = () => {
       <TitleBlock>
         <QuestionsTitle>All Questions</QuestionsTitle>
         <AskButton>
-          <a href="/askquestions">Ask Question</a>
+          <Link to="/askquestions">Ask Question</Link>
         </AskButton>
       </TitleBlock>
       <QuestionsButtonBlock>

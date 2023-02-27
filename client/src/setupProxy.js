@@ -28,12 +28,19 @@ module.exports = function (app) {
         target: `${process.env.REACT_APP_API_URL}`,
         changeOrigin: true,
       })
+    ),
+    app.use(
+      '/questions',
+      createProxyMiddleware({
+        target: `${process.env.REACT_APP_API_URL}`,
+        changeOrigin: true,
+      })
+    ),
+    app.use(
+      '/questions/ask',
+      createProxyMiddleware({
+        target: `${process.env.REACT_APP_API_URL}`,
+        changeOrigin: true,
+      })
     );
-  app.use(
-    '/allquestion',
-    createProxyMiddleware({
-      target: `${process.env.REACT_APP_API_URL}`,
-      changeOrigin: true,
-    })
-  );
 };

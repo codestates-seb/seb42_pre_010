@@ -26,6 +26,9 @@ function App() {
     const storedUserLoggedInInformation = localStorage.getItem('logged');
     if (storedUserLoggedInInformation === 'true') {
       setLogged(!logged);
+
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      setCurrUser(userData);
     }
   }, []);
 
