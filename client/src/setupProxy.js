@@ -30,7 +30,7 @@ module.exports = function (app) {
       })
     ),
     app.use(
-      '/questions',
+      '/question',
       createProxyMiddleware({
         target: `${process.env.REACT_APP_API_URL}`,
         changeOrigin: true,
