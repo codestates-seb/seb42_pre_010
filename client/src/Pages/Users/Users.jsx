@@ -2,7 +2,6 @@ import styled from 'styled-components';
 // import Footer from '../../Components/Footer/Footer';
 import { GoSearch } from 'react-icons/go';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 // import { getAllUsers } from '../../services/UserService';
 
 const UsersBlock = styled.div`
@@ -121,9 +120,8 @@ const UserFilterName = styled.span`
     props.value === props.userFilter ? '2px solid #F48225' : 'none'};
 `;
 
-const Users = () => {
+const Users = ({ userList, setUserList }) => {
   const [userName, setUserName] = useState('');
-  const [userList, setUserList] = useState([]);
   const [currentNavButton, setCurrentNavButton] = useState('reputation');
   const [userFilter, setUserFilter] = useState('week');
   const buttonList = [
@@ -135,31 +133,42 @@ const Users = () => {
   ];
   const userFilterList = ['week', 'month', 'quarter', 'year', 'all'];
 
-  // list로 렌더링 하기 전, 검색창에 값이 있는지 확인
+  // // list로 렌더링 하기 전, 검색창에 값이 있는지 확인
+  // useEffect(() => {
+  //   // 만약 검색창에 값이 없다면, 필터링 하지않는다는 뜻
+  //   if (userName === null || userName === '') {
+  //     // 그러므로 모든 데이터를 가져와서
+  //     axios.get('/users?page=1&size=1000').then((res) => {
+  //       // list에 넣어준다
+  //       setUserList(res.data);
+  //     });
+  //     // 만약 검색창에 값이 있을 경우
+  //   } else {
+  //     axios.get('/users?page=1&size=1000').then((res) => {
+  //       // 모든 데이터를 가져와서 조건에 맞게 필터링 해준 뒤
+  //       const filteredList = res.data.filter((ele) => {
+  //         return ele.userName.toLowerCase().includes(userName.toLowerCase());
+  //       });
+  //       // 렌더링 하기 위해서 list에 넣어준다
+  //       setUserList(filteredList);
+  //     });
+  //   }
+  //   console.log(userList);
+  // });
+
   useEffect(() => {
-    // 만약 검색창에 값이 없다면, 필터링 하지않는다는 뜻
     if (userName === null || userName === '') {
-      // 그러므로 모든 데이터를 가져와서
-      axios.get('/users?page=1&size=1000').then((res) => {
-        // list에 넣어준다
-        setUserList(res.data);
-      });
-      // 만약 검색창에 값이 있을 경우
+      setUserList(userList);
     } else {
-      axios.get('/users?page=1&size=1000').then((res) => {
-        // 모든 데이터를 가져와서 조건에 맞게 필터링 해준 뒤
-        const filteredList = res.data.filter((ele) => {
-          return ele.userName.toLowerCase().includes(userName.toLowerCase());
-        });
-        // 렌더링 하기 위해서 list에 넣어준다
-        setUserList(filteredList);
+      const filteredList = userList.data.filter((ele) => {
+        return ele.userName.toLowerCase().includes(userName.toLowerCase());
       });
+      setUserList(filteredList);
     }
-  }, [userName]);
+  });
 
   const onTapClick = (tabName) => {
     setCurrentNavButton(tabName.toLowerCase());
-    console.log(userList);
   };
 
   const onUserFilterClick = (filterName) => {
@@ -222,9 +231,12 @@ const Users = () => {
         {userList?.map((ele, idx) => {
           return (
             <div key={idx}>
-              <ProfilePic src={ele.picture} alt="user-name" />
+              <ProfilePic
+                src={`https://randomuser.me/api/portraits/men/${idx}.jpg`}
+                alt="user-name"
+              />
               <UserListInfo>
-                <span className="userinfo-name">{ele.userName}</span>
+                <span className="userinfo-name">{ele.username}</span>
                 <span className="userinfo-questions">
                   Questions: {ele.questionCount}
                 </span>
