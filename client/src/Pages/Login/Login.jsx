@@ -49,6 +49,7 @@ const Login = ({ logged, setLogged, setCurrUser }) => {
         setLogged(!logged);
         setCurrUser(response.data);
         //navigate('/');
+        localStorage.setItem('userData', JSON.stringify(response.data)); // 로컬 저장소에 로그인 여부 데이터 저장
       })
       .catch(() => {
         console.log('Error!');
