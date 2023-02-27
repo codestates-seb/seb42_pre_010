@@ -101,10 +101,10 @@ const Nav = () => {
             </li>
             <li
               className={
-                window.location.pathname === '/users' ? 'clickMemu' : 'null'
+                window.location.pathname === '/allusers' ? 'clickMemu' : 'null'
               }
             >
-              <a href="/users">Users</a>
+              <a href="/allusers">Users</a>
             </li>
             <li>
               <a href="https://stackoverflow.com/jobs/companies">Companies</a>
