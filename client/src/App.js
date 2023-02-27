@@ -88,7 +88,14 @@ function App() {
         { path: '/tags', element: <Tag /> },
         {
           path: '/allusers',
-          element: <Users userList={userList} setUserList={setUserList} />,
+          element: (
+            <Users
+              logged={logged}
+              currUser={currUser}
+              userList={userList}
+              setUserList={setUserList}
+            />
+          ),
         },
         {
           path: '/card/users/:userId',

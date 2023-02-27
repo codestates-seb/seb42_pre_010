@@ -2,6 +2,7 @@ import styled from 'styled-components';
 // import Footer from '../../Components/Footer/Footer';
 import { GoSearch } from 'react-icons/go';
 import { useState, useEffect } from 'react';
+//import { useNavigate } from 'react-router-dom';
 // import { getAllUsers } from '../../services/UserService';
 
 const UsersBlock = styled.div`
@@ -132,6 +133,7 @@ const Users = ({ userList, setUserList }) => {
     'Moderators',
   ];
   const userFilterList = ['week', 'month', 'quarter', 'year', 'all'];
+  //const navigate = useNavigate();
 
   // // list로 렌더링 하기 전, 검색창에 값이 있는지 확인
   // useEffect(() => {
@@ -232,11 +234,15 @@ const Users = ({ userList, setUserList }) => {
           return (
             <div key={idx}>
               <ProfilePic
-                src={`https://randomuser.me/api/portraits/men/${idx}.jpg`}
+                src={`https://randomuser.me/api/portraits/${
+                  idx % 2 ? 'men' : 'women'
+                }/${idx}.jpg`}
                 alt="user-name"
               />
               <UserListInfo>
-                <span className="userinfo-name">{ele.username}</span>
+                <span className="userinfo-name">
+                  <a href={'/card/users/' + ele.userId}>{ele.username}</a>
+                </span>
                 <span className="userinfo-questions">
                   Questions: {ele.questionCount}
                 </span>
