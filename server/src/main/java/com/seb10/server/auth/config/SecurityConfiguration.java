@@ -57,16 +57,16 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-//                        .antMatchers(HttpMethod.POST,"/users/**").permitAll()
-////                        .antMatchers(HttpMethod.POST,"/users/login").permitAll()
-//                        .antMatchers(HttpMethod.GET,"/users/**").permitAll()
-////                        .antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
-//                        .antMatchers(HttpMethod.POST, "/questions/**").permitAll()
-//                        .antMatchers(HttpMethod.GET, "/questions/**").permitAll()
-////                        .antMatchers(HttpMethod.PATCH,"/questions/**").hasRole("USER")
-//                        .antMatchers(HttpMethod.PATCH,"/questions/**").permitAll()
-//
-//                        .antMatchers(HttpMethod.GET,"/users/*").hasRole("USER")
+                        .antMatchers(HttpMethod.POST,"/users/**").permitAll()
+//                        .antMatchers(HttpMethod.POST,"/users/login").permitAll()
+                        .antMatchers(HttpMethod.GET,"/users/**").permitAll()
+//                        .antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.POST, "/questions/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/questions/**").permitAll()
+//                        .antMatchers(HttpMethod.PATCH,"/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH,"/questions/**").permitAll()
+
+                        .antMatchers(HttpMethod.GET,"/users/*").hasRole("USER")
                         .anyRequest().permitAll());
 
         return http.build();
