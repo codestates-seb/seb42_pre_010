@@ -57,7 +57,6 @@ const UserName = styled.span`
 `;
 
 const Question = ({ questionData }) => {
-  console.log(questionData);
   return (
     <QuestionBlock>
       <div>

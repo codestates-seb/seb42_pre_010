@@ -16,13 +16,6 @@ module.exports = function (app) {
       })
     ),
     app.use(
-      '/users?page=1&size=1000',
-      createProxyMiddleware({
-        target: `${process.env.REACT_APP_API_URL}`,
-        changeOrigin: true,
-      })
-    ),
-    app.use(
       '/users/:userId',
       createProxyMiddleware({
         target: `${process.env.REACT_APP_API_URL}`,
@@ -30,10 +23,17 @@ module.exports = function (app) {
       })
     ),
     app.use(
-      '/question',
+      '/users',
       createProxyMiddleware({
         target: `${process.env.REACT_APP_API_URL}`,
         changeOrigin: true,
       })
     );
+  app.use(
+    '/question',
+    createProxyMiddleware({
+      target: `${process.env.REACT_APP_API_URL}`,
+      changeOrigin: true,
+    })
+  );
 };

@@ -22,20 +22,20 @@ function App() {
   const [userList, setUserList] = useState(null); // 전체 회원 리스트
   const [questionList, setQuestionList] = useState(null); // 전체 질문 리스트
 
+  console.log(userList);
   useEffect(
     () => {
       getAllUsers().then((data) => {
-        setUserList(data.data);
+        console.log(data);
+        setUserList(data);
       });
     },
     [currUser] // 회원가입 하면서 유저가 추가 시 re-render
   );
-
   useEffect(
     () => {
       getAllQuestion().then((data) => {
         setQuestionList(data);
-        console.log(questionList);
       });
     },
     [setQuestionList] // 전체 질문 리스트에 새 질문이 추가 시 re-render
@@ -48,6 +48,7 @@ function App() {
       children: [
         { index: true, element: <Home /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
         { path: '/question', element: <Questions /> },
+
       ],
     },
     {
