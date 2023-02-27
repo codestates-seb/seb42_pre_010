@@ -140,13 +140,13 @@ const Users = () => {
     // 만약 검색창에 값이 없다면, 필터링 하지않는다는 뜻
     if (userName === null || userName === '') {
       // 그러므로 모든 데이터를 가져와서
-      axios.get('http://localhost:3001/users').then((res) => {
+      axios.get('/users?page=1&size=1000').then((res) => {
         // list에 넣어준다
         setUserList(res.data);
       });
       // 만약 검색창에 값이 있을 경우
     } else {
-      axios.get('http://localhost:3001/users').then((res) => {
+      axios.get('/users?page=1&size=1000').then((res) => {
         // 모든 데이터를 가져와서 조건에 맞게 필터링 해준 뒤
         const filteredList = res.data.filter((ele) => {
           return ele.userName.toLowerCase().includes(userName.toLowerCase());
