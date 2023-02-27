@@ -47,7 +47,7 @@ function App() {
       element: <Root logged={logged} currUser={currUser} />,
       children: [
         { index: true, element: <Home /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
-        { path: '/questions', element: <Questions /> },
+        { path: '/question', element: <Questions /> },
       ],
     },
     {
@@ -91,7 +91,7 @@ function App() {
           element: <UserDetail currUser={currUser} userList={userList} />,
         },
         { path: '/edit', element: <EditQuestion /> },
-        { path: '/questions/:id', element: <DetailQuestion /> },
+        { path: '/question/:id', element: <DetailQuestion /> },
       ],
     },
   ]);

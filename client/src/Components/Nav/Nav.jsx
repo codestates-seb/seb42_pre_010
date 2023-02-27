@@ -90,7 +90,7 @@ const Nav = () => {
               }
             >
               <BiWorld className="icon" size={16} />
-              <a href="/questions">Questions</a>
+              <a href="/question">Questions</a>
             </li>
             <li
               className={
