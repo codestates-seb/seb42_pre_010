@@ -52,21 +52,11 @@ const Tag = () => {
       return data.tag.includes(search);
     });
     setList(data);
-  }, search);
-
-  // const filtered = () => {
-  //   const data = tag.filter((data) => {
-  //     return data.tag.includes(search);
-  //   });
-
-  //   setList(data);
-  //   console.log(list);
-  // };
+  }, [search]);
 
   const handleOnSearch = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
-    // filtered();
   };
 
   return (
