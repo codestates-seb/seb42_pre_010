@@ -101,7 +101,7 @@ const AskQuestion = (currUser) => {
   const [value, setValue] = useState('');
 
   // 현재 로그인한 유저 id
-  const loggedUserId = currUser.data.userId;
+  const loggedUserId = currUser.currUser.data.userId;
 
   const handleValue = (value) => {
     setValue(value);
@@ -111,14 +111,19 @@ const AskQuestion = (currUser) => {
     setTitle(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     axios
       .post('/questions/ask', {
         userId: loggedUserId,
         title: title,
         contents: value,
       })
-      .then((response) => console.log(response));
+      .then((response) => console.log(response))
+      .catch(() => {
+        console.log('Error!');
+      });
   };
 
   const handleOnReset = () => {
