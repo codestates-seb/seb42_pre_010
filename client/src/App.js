@@ -22,11 +22,9 @@ function App() {
   const [userList, setUserList] = useState(null); // 전체 회원 리스트
   const [questionList, setQuestionList] = useState(null); // 전체 질문 리스트
 
-  console.log(userList);
   useEffect(
     () => {
       getAllUsers().then((data) => {
-        console.log(data);
         setUserList(data);
       });
     },
@@ -47,8 +45,10 @@ function App() {
       element: <Root logged={logged} currUser={currUser} />,
       children: [
         { index: true, element: <Home /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
-        { path: '/question', element: <Questions /> },
-
+        {
+          path: '/question',
+          element: <Questions questionList={questionList} />,
+        },
       ],
     },
     {
@@ -86,7 +86,10 @@ function App() {
       element: <WithoutSideBar logged={logged} currUser={currUser} />, // Sidebar가 없는 페이지
       children: [
         { path: '/tags', element: <Tag /> },
-        { path: '/users', element: <Users /> },
+        {
+          path: '/allusers',
+          element: <Users userList={userList} setUserList={setUserList} />,
+        },
         {
           path: '/card/users/:userId',
           element: <UserDetail currUser={currUser} userList={userList} />,
