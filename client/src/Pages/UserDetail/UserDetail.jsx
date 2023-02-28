@@ -44,8 +44,8 @@ export const UserDetail = ({ userList }) => {
       <UserCardInfoBlock>
         <UserCardImg
           src={`https://randomuser.me/api/portraits/${
-            Math.floor(Math.random(1 * 1000) * 1000) % 2 ? 'men' : 'women'
-          }/${Math.floor(Math.random(1 * 1000) * 1000)}.jpg`}
+            Math.floor(Math.random(1 * 1000) * 10) % 2 ? 'men' : 'women'
+          }/${Math.floor(Math.random(1 * 1000) * 10)}.jpg`}
           alt="user-name"
         />
         <UserCardInfoContnet>
