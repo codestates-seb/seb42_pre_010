@@ -119,7 +119,7 @@ function App() {
           element: <UserDetail currUser={currUser} userList={userList} />,
         },
         { path: '/edit', element: <EditQuestion /> },
-        { path: '/question/:id', element: <DetailQuestion /> },
+        { path: '/allquestion/:id', element: <DetailQuestion /> },
       ],
     },
   ]);
