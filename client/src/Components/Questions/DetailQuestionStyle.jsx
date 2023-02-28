@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DetailQuestionWrap = styled.div`
-  width: 1100px;
+  width: 1035px;
 `;
 
 export const DetailQuestionTitleSection = styled.div`
