@@ -108,7 +108,9 @@ const DetailQuestion = ({ questionList }) => {
                 Edit
               </Link>
               <PostOwnerInfo>
-                <PostAskTimeInfo>asked 1 min ago</PostAskTimeInfo>
+                <PostAskTimeInfo>
+                  {`asked ${ElapsedTime(post?.createdAt)}`}
+                </PostAskTimeInfo>
                 <PostOwnerUser>
                   <img
                     src={`https://randomuser.me/api/portraits/${
