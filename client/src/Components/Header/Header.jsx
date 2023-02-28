@@ -13,7 +13,6 @@ import {
   SignupBlock,
   LoggedHeaderContentWrap,
   LogoBlock,
-  picture,
   LogoSmall,
   ModalWrap,
   LogoutBtn,
@@ -53,7 +52,7 @@ export const Header = ({ logged, currUser, setLogged }) => {
   );
 };
 
-export const HeaderNav = (logged) => {
+export const HeaderNav = ({ logged }) => {
   return <>{logged ? <LoggedHeaderNav /> : <PubHeaderNav />}</>;
 };
 
@@ -113,7 +112,12 @@ export const LoggedHeaderContent = ({ currUser, setLogged, logged }) => {
     <LoggedHeaderContentWrap>
       <MypageWrap>
         <Link to={`/card/users/${currUser.data.userId}`}>
-          <img src={picture} alt={'user-img'} />
+          <img
+            src={`https://randomuser.me/api/portraits/${
+              Math.floor(Math.random(1 * 1000) * 10) % 2 ? 'men' : 'women'
+            }/${Math.floor(Math.random(1 * 1000) * 10)}.jpg`}
+            alt="user-name"
+          />
         </Link>
         <span>{currUser.data.questionCount}</span>
       </MypageWrap>

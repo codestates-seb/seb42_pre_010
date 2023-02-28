@@ -17,7 +17,6 @@ import {
   UserCardNavSection,
   UserCardNavList,
   UserCardConentSection,
-  picture,
 } from '../../Components/Users/UserCardStyle';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -43,7 +42,12 @@ export const UserDetail = ({ userList }) => {
   return (
     <UserCardContainer>
       <UserCardInfoBlock>
-        <UserCardImg src={picture} />
+        <UserCardImg
+          src={`https://randomuser.me/api/portraits/${
+            Math.floor(Math.random(1 * 1000) * 1000) % 2 ? 'men' : 'women'
+          }/${Math.floor(Math.random(1 * 1000) * 1000)}.jpg`}
+          alt="user-name"
+        />
         <UserCardInfoContnet>
           <h1>{found?.username}</h1>
           <UserCardInfoListWrap>
