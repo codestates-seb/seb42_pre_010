@@ -11,6 +11,7 @@ import UserDetail from './Pages/UserDetail/UserDetail';
 import Questions from './Pages/Questions/Questions';
 import EditQuestion from './Pages/EditQuestion/EditQuestion';
 import DetailQuestion from './Pages/DetailQuestion/DetailQuestion';
+import NotFound from './Pages/NotFound/NotFound';
 // import ModifyAnswer from './Pages/ModifyAnswer/ModifyAnswer';
 import { useEffect, useState } from 'react';
 import { getAllUsers } from './services/UserService';
@@ -57,6 +58,10 @@ function App() {
   );
 
   const router = createBrowserRouter([
+    {
+      path: '/*', // 설정한 path 이외의 다른 path로 접근할 경우 404 Not Found 렌더링
+      element: <NotFound />,
+    },
     {
       path: '/',
       element: (
