@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { BiWorld } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const NavContainer = styled.div`
   width: 164px;
@@ -22,7 +22,7 @@ const NavBlock = styled.div`
     flex-direction: column;
     justify-content: center;
     list-style: none;
-    padding: 0; // ul 기본 여백 초기화
+    padding: 0;
     margin: 0;
   }
 
@@ -63,39 +63,33 @@ const NavBlock = styled.div`
 `;
 
 const Nav = () => {
+  const location = useLocation();
+
   return (
     <NavContainer>
       <NavBlock>
         <ul>
-          <li
-            className={
-              window.location.pathname === '/' ? 'home clickMemu' : 'home'
-            }
-          >
+          <li className={location.pathname === '/' ? 'clickMemu home' : 'home'}>
             <Link to="/">Home</Link>
           </li>
           <p>PUBLIC</p>
           <ul>
             <li
               className={
-                window.location.pathname.includes('/allquestion')
-                  ? 'clickMemu'
-                  : 'null'
+                location.pathname === '/allquestion' ? 'clickMemu' : 'null'
               }
             >
               <BiWorld className="icon" size={16} />
               <Link to="/allquestion">Questions</Link>
             </li>
             <li
-              className={
-                window.location.pathname === '/tags' ? 'clickMemu' : 'null'
-              }
+              className={location.pathname === '/tags' ? 'clickMemu' : 'null'}
             >
               <Link to="/tags">Tags</Link>
             </li>
             <li
               className={
-                window.location.pathname === '/allusers' ? 'clickMemu' : 'null'
+                location.pathname === '/allusers' ? 'clickMemu' : 'null'
               }
             >
               <Link to="/allusers">Users</Link>
