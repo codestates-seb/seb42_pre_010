@@ -121,10 +121,11 @@ const UserFilterName = styled.span`
     props.value === props.userFilter ? '2px solid #F48225' : 'none'};
 `;
 
-const Users = ({ userList, setUserList }) => {
+const Users = ({ userList }) => {
   const [userName, setUserName] = useState('');
   const [currentNavButton, setCurrentNavButton] = useState('reputation');
   const [userFilter, setUserFilter] = useState('week');
+  const [filteredList, setFilterdList] = useState(userList);
   const buttonList = [
     'Reputation',
     'New Users',
@@ -136,14 +137,14 @@ const Users = ({ userList, setUserList }) => {
 
   useEffect(() => {
     if (userName === null || userName === '') {
-      setUserList(userList);
+      setFilterdList(userList);
     } else {
-      const filteredList = userList.data.filter((ele) => {
-        return ele.userName.toLowerCase().includes(userName.toLowerCase());
+      const userFilteredList = userList.filter((ele) => {
+        return ele.username.toLowerCase().includes(userName.toLowerCase());
       });
-      setUserList(filteredList);
+      setFilterdList(userFilteredList);
     }
-  });
+  }, [userName]);
 
   const onTapClick = (tabName) => {
     setCurrentNavButton(tabName.toLowerCase());
@@ -166,7 +167,7 @@ const Users = ({ userList, setUserList }) => {
   const postsPerPage = 32; // 한 페이지 당 보여지는 유저 수
   const indexOfLastPost = currentPage * postsPerPage; // 페이지의 마지막 게시물 위치
   const indexOfFirstPost = indexOfLastPost - postsPerPage; // 페이지의 첫번째 게시물 위치
-  const userListPosts = userList.slice(indexOfFirstPost, indexOfLastPost); // 보여져야 하는 게시물만큼 Slice
+  const userListPosts = filteredList.slice(indexOfFirstPost, indexOfLastPost); // 보여져야 하는 게시물만큼 Slice
 
   return (
     <UsersBlock>

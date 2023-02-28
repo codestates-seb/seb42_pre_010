@@ -87,7 +87,7 @@ const Nav = () => {
           <ul>
             <li
               className={
-                window.location.pathname === '/allquestion'
+                window.location.pathname.includes('/allquestion')
                   ? 'clickMemu'
                   : 'null'
               }

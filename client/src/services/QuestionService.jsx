@@ -16,6 +16,5 @@ export const getAllQuestion = async () => {
       headers: { 'ngrok-skip-browser-warning': '69420' },
     })
     .catch(() => console.log('Error!'));
-  console.log('ㅇㅅㅇ', res.data.data);
   return res.data.data;
 };

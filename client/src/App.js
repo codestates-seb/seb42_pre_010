@@ -120,12 +120,7 @@ function App() {
         {
           path: '/allusers',
           element: (
-            <Users
-              logged={logged}
-              currUser={currUser}
-              userList={userList}
-              setUserList={setUserList}
-            />
+            <Users logged={logged} currUser={currUser} userList={userList} />
           ),
         },
         {

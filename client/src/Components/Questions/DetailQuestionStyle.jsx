@@ -9,6 +9,7 @@ export const DetailQuestionTitleSection = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-left: 24px;
 `;
 
 export const DetailQuestionTitle = styled.h1`
@@ -45,6 +46,7 @@ export const TimeInfoSection = styled.div`
   border-color: hsl(210, 8%, 90%);
   height: 3.4rem;
   padding-bottom: 0.8rem;
+  padding-left: 24px;
   display: flex;
   flex-direction: row;
   align-items: center;
