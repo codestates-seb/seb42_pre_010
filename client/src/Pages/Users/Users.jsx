@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // import Footer from '../../Components/Footer/Footer';
 import { GoSearch } from 'react-icons/go';
 import { useState, useEffect } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import Pagination from '../../Components/Pagination';
 // import { getAllUsers } from '../../services/UserService';
 
 const UsersBlock = styled.div`
@@ -133,30 +133,6 @@ const Users = ({ userList, setUserList }) => {
     'Moderators',
   ];
   const userFilterList = ['week', 'month', 'quarter', 'year', 'all'];
-  //const navigate = useNavigate();
-
-  // // list로 렌더링 하기 전, 검색창에 값이 있는지 확인
-  // useEffect(() => {
-  //   // 만약 검색창에 값이 없다면, 필터링 하지않는다는 뜻
-  //   if (userName === null || userName === '') {
-  //     // 그러므로 모든 데이터를 가져와서
-  //     axios.get('/users?page=1&size=1000').then((res) => {
-  //       // list에 넣어준다
-  //       setUserList(res.data);
-  //     });
-  //     // 만약 검색창에 값이 있을 경우
-  //   } else {
-  //     axios.get('/users?page=1&size=1000').then((res) => {
-  //       // 모든 데이터를 가져와서 조건에 맞게 필터링 해준 뒤
-  //       const filteredList = res.data.filter((ele) => {
-  //         return ele.userName.toLowerCase().includes(userName.toLowerCase());
-  //       });
-  //       // 렌더링 하기 위해서 list에 넣어준다
-  //       setUserList(filteredList);
-  //     });
-  //   }
-  //   console.log(userList);
-  // });
 
   useEffect(() => {
     if (userName === null || userName === '') {
@@ -184,6 +160,13 @@ const Users = ({ userList, setUserList }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
   };
+
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 쪽수
+  const postsPerPage = 32; // 한 페이지 당 보여지는 유저 수
+  const indexOfLastPost = currentPage * postsPerPage; // 페이지의 마지막 게시물 위치
+  const indexOfFirstPost = indexOfLastPost - postsPerPage; // 페이지의 첫번째 게시물 위치
+  const userListPosts = userList.slice(indexOfFirstPost, indexOfLastPost); // 보여져야 하는 게시물만큼 Slice
 
   return (
     <UsersBlock>
@@ -230,7 +213,7 @@ const Users = ({ userList, setUserList }) => {
         })}
       </UserFilterBlock>
       <ProfileBlock>
-        {userList?.map((ele, idx) => {
+        {userListPosts?.map((ele, idx) => {
           return (
             <div key={idx}>
               <ProfilePic
@@ -254,6 +237,12 @@ const Users = ({ userList, setUserList }) => {
           );
         })}
       </ProfileBlock>
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={userList.length}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </UsersBlock>
   );
 };

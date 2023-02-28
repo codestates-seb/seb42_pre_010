@@ -65,7 +65,7 @@ const Question = ({ questionData }) => {
         <span>5 views</span>
       </div>
       <QuestionList>
-        <QuestionTitle href="https://stackoverflow.com/questions/75541273/ejs-tags-inside-html-are-not-working-stop-my-server-i-keep-getting-yellow-lines">
+        <QuestionTitle href={'/allquestion/' + questionData.questionId}>
           {questionData.title}
         </QuestionTitle>
         <QuestionContent>{questionData.contents}</QuestionContent>

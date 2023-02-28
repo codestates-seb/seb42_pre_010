@@ -20,14 +20,18 @@ import {
   picture,
 } from '../../Components/Users/UserCardStyle';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const usercardNav = ['Profile', 'Activity', 'Saves', 'Settings'];
 
 export const UserDetail = ({ userList }) => {
   const { userId } = useParams();
+  const [found, setFound] = useState([]);
 
-  const found = userList.filter((el) => String(el.userId) === userId)[0];
+  useEffect(() => {
+    const found = userList?.filter((el) => String(el.userId) === userId)[0];
+    setFound(found);
+  });
 
   // usercardNav 선택 된 idx 번호
   const [selected, setSelected] = useState(0);
@@ -41,7 +45,7 @@ export const UserDetail = ({ userList }) => {
       <UserCardInfoBlock>
         <UserCardImg src={picture} />
         <UserCardInfoContnet>
-          <h1>{found.username}</h1>
+          <h1>{found?.username}</h1>
           <UserCardInfoListWrap>
             <UserCardInfoList>
               <MdCake />
@@ -71,7 +75,7 @@ export const UserDetail = ({ userList }) => {
         <button>Profiles</button>
       </UserCardButtonWrap>
       <UserCardNavSection>
-        {usercardNav.map((ele, idx) => {
+        {usercardNav?.map((ele, idx) => {
           return (
             <UserCardNavList
               key={idx}

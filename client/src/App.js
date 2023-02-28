@@ -24,13 +24,20 @@ function App() {
 
   useEffect(() => {
     const storedUserLoggedInInformation = localStorage.getItem('logged');
+    if (storedUserLoggedInInformation === 'false') {
+      setLogged(false);
+    }
+  }, []); // 1st render시 비로그인 상태 유지
+
+  useEffect(() => {
+    const storedUserLoggedInInformation = localStorage.getItem('logged');
     if (storedUserLoggedInInformation === 'true') {
       setLogged(!logged);
 
       const userData = JSON.parse(localStorage.getItem('userData'));
       setCurrUser(userData);
     }
-  }, []);
+  }, [setLogged]); // 로그인 상태가 변경되는 상황에만 re-render
 
   useEffect(
     () => {
@@ -112,7 +119,7 @@ function App() {
           element: <UserDetail currUser={currUser} userList={userList} />,
         },
         { path: '/edit', element: <EditQuestion /> },
-        { path: '/question/:id', element: <DetailQuestion /> },
+        { path: '/allquestion/:id', element: <DetailQuestion /> },
       ],
     },
   ]);
