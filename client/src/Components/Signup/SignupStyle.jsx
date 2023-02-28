@@ -86,6 +86,7 @@ export const SignupInputTitle = styled.div`
 `;
 
 export const TextInput = styled.input`
+  // border: 1px solid black !important;
   width: 250px;
   height: 32px;
   border: none;
@@ -182,7 +183,7 @@ export const ErrorText = styled.p`
 export const TextInputWrap = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   width: 300px;
   margin-top: 10px;
   border: 1px solid hsl(210, 8%, 75%);
