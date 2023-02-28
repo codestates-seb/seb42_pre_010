@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import ReactQuill from 'react-quill';
 import SimpleSidebar from '../../Components/Sidebar/SimpleSidebar';
 import { WritingBodyForm } from '../../Components/AskForm/WritingForm';
 import VotingBlock from '../../Components/Questions/VotingBlock';
@@ -62,7 +63,13 @@ const DetailQuestion = ({ questionList }) => {
         <QuestionMain>
           <DetailQuestionContentWrap>
             <VotingBlock />
-            <DetailQuestionContent>{post?.contents}</DetailQuestionContent>
+            <DetailQuestionContent>
+              <ReactQuill
+                value={post?.contents}
+                readOnly={true}
+                theme={'bubble'}
+              />
+            </DetailQuestionContent>
           </DetailQuestionContentWrap>
           <PostOwnerInfoWrap>
             <Link to="/edit" state={{ data: post }}>

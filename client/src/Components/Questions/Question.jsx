@@ -77,7 +77,9 @@ const Question = ({ questionData }) => {
             {questionData.title}
           </Link>
         </QuestionTitle>
-        <QuestionContent>{questionData.contents}</QuestionContent>
+        <QuestionContent>
+          {questionData.contents.replace(/(<([^>]+)>)/gi, '')}
+        </QuestionContent>
         <UserInfoBlock>
           <UserPic src={questionData.picture} alt="user-pics" />
           <UserName>{questionData.userName}</UserName>
