@@ -71,7 +71,7 @@ const ButtonNav = styled.button`
   }
 `;
 
-const Home = () => {
+const Home = ({ logged }) => {
   const [posts, setPosts] = useState([]);
   const [currentTap, setCurrentTap] = useState('year');
   const sortTap = ['Year', 'Month', 'Day'];
@@ -124,7 +124,9 @@ const Home = () => {
       <HomeTitleBlock>
         <HomeTitle>All Questions</HomeTitle>
         <AskButton>
-          <Link to="/askquestions">Ask Question</Link>
+          <Link to={logged ? '/askquestions' : '/users/signup'}>
+            Ask Question
+          </Link>
         </AskButton>
       </HomeTitleBlock>
       <ButtonBlock>

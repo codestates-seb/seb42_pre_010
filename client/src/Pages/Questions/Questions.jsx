@@ -77,7 +77,7 @@ const QuestionsButtonNav = styled.button`
   }
 `;
 
-const Questions = () => {
+const Questions = ({ logged }) => {
   const [posts, setPosts] = useState([]);
   const [currentTap, setCurrentTap] = useState('newest');
   const questionsNavButton = ['Newest', 'Unanswered', 'Voted'];
@@ -106,7 +106,9 @@ const Questions = () => {
       <TitleBlock>
         <QuestionsTitle>All Questions</QuestionsTitle>
         <AskButton>
-          <Link to="/askquestions">Ask Question</Link>
+          <Link to={logged ? '/askquestions' : '/users/signup'}>
+            Ask Question
+          </Link>
         </AskButton>
       </TitleBlock>
       <QuestionsButtonBlock>
