@@ -79,7 +79,12 @@ const Question = ({ questionData }) => {
         </QuestionTitle>
         <QuestionContent>{questionData.contents}</QuestionContent>
         <UserInfoBlock>
-          <UserPic src={questionData.picture} alt="user-pics" />
+          <UserPic
+            src={`https://randomuser.me/api/portraits/${
+              questionData.questionId % 2 ? 'men' : 'women'
+            }/${questionData.questionId}.jpg`}
+            alt="user-name"
+          />
           <UserName>{questionData.userName}</UserName>
           <span>{questionData.createdAt}</span>
         </UserInfoBlock>
