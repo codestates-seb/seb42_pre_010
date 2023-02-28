@@ -14,6 +14,9 @@ import {
   LoggedHeaderContentWrap,
   LogoBlock,
   picture,
+  LogoSmall,
+  ModalWrap,
+  LogoutBtn,
 } from './HeaderStyle';
 import { FiSearch } from 'react-icons/fi';
 import { ImDrawer2 } from 'react-icons/im';
@@ -21,7 +24,6 @@ import { RiTrophyFill } from 'react-icons/ri';
 import { BsQuestionCircleFill } from 'react-icons/bs';
 import { FaStackExchange } from 'react-icons/fa';
 import { useState } from 'react';
-import styled from 'styled-components';
 
 const REACT_APP_URL = 'http://localhost:3000';
 
@@ -139,24 +141,6 @@ export const LoggedHeaderContent = ({ currUser, setLogged, logged }) => {
   );
 };
 
-export const ModalWrap = styled.div`
-  width: 300px;
-  position: absolute;
-  right: 0px;
-  top: 50px;
-  background-color: #fff;
-`;
-
-export const LogoutBtn = styled.button`
-  width: 100%;
-  border: none;
-  padding: 10px;
-  background-color: #fff;
-  :hover {
-    background-color: hsl(210, 8%, 90%);
-  }
-`;
-
 export const ModalLogOut = ({ setModalOpen, modalOpen, setLogged, logged }) => {
   // 모달 끄기
   const closeModal = () => {
@@ -172,6 +156,8 @@ export const ModalLogOut = ({ setModalOpen, modalOpen, setLogged, logged }) => {
 
   return (
     <ModalWrap onClick={closeModal}>
+      <LogoSmall src={REACT_APP_URL + '/images/stackoverflow_small.png'} />
+      <Link to="/">Stack Overflow</Link>
       <LogoutBtn onClick={logOut}>Log out</LogoutBtn>
     </ModalWrap>
   );
