@@ -12,7 +12,7 @@ const UsersBlock = styled.div`
 
 const UsersTitle = styled.h1`
   font-size: 27px;
-  margin-bottom: 24px;
+  margin: 10px 0 20px 0;
 `;
 
 const SearchBlock = styled.div`

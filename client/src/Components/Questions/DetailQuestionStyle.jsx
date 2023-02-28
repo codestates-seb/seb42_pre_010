@@ -18,7 +18,7 @@ export const DetailQuestionTitle = styled.h1`
   color: #3b4045;
   font-size: 27px;
   flex: 1 auto;
-  margin: 0 0 8px;
+  margin: 10px 0 8px;
   height: 35px;
   margin-bottom: 0.8rem;
   word-break: break-all;
