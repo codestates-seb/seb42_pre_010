@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import axios from 'axios';
-//import { useNavigate } from 'react-router-dom';
 import {
   SocialGoogleSvg,
   SocialGithubSvg,
@@ -48,7 +47,6 @@ const Login = ({ logged, setLogged, setCurrUser }) => {
       .then((response) => {
         setLogged(!logged);
         setCurrUser(response.data);
-        //navigate('/');
         localStorage.setItem('userData', JSON.stringify(response.data)); // 로컬 저장소에 로그인 여부 데이터 저장
       })
       .catch(() => {

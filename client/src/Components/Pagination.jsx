@@ -9,7 +9,6 @@ const PaginationBlock = styled.div`
   margin-top: 30px;
 
   .icon {
-    /* background: ; */
     border: 1px solid #c4c4c497;
     color: #0a95ff;
   }

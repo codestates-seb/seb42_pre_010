@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { BiUpArrow, BiDownArrow } from 'react-icons/bi';
 import { FaRegBookmark } from 'react-icons/fa';
 import { RxCountdownTimer } from 'react-icons/rx';

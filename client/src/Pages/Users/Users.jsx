@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-// import Footer from '../../Components/Footer/Footer';
 import { GoSearch } from 'react-icons/go';
 import { useState, useEffect } from 'react';
 import Pagination from '../../Components/Pagination';
-// import { getAllUsers } from '../../services/UserService';
 
 const UsersBlock = styled.div`
   width: 1100px;

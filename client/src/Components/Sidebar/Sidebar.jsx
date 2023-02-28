@@ -62,8 +62,6 @@ const ImgBlock = styled.div`
   }
 `;
 
-// const FrontEndAd = styled.img``;
-
 const Sidebar = () => {
   return (
     <SidebarBlock>

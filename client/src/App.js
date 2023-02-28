@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Root, WithoutRoot, WithoutSideBar } from './GlobalStyle';
-//import Sidebar from './Components/Sidebar/Sidebar';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Signin from './Pages/Signup/Signup';
@@ -12,7 +11,6 @@ import Questions from './Pages/Questions/Questions';
 import EditQuestion from './Pages/EditQuestion/EditQuestion';
 import DetailQuestion from './Pages/DetailQuestion/DetailQuestion';
 import NotFound from './Pages/NotFound/NotFound';
-// import ModifyAnswer from './Pages/ModifyAnswer/ModifyAnswer';
 import { useEffect, useState } from 'react';
 import { getAllUsers } from './services/UserService';
 import { getAllQuestion } from './services/QuestionService';
