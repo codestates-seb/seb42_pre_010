@@ -25,6 +25,7 @@ import {
   PostOwnerUser,
   DetailQuestionTitle,
   QuestionContentContainer,
+  DivisionLine,
 } from '../../Components/Questions/DetailQuestionStyle';
 
 // 시간 계산 알고리즘
@@ -121,6 +122,7 @@ const DetailQuestion = ({ questionList }) => {
             </PostOwnerInfoWrap>
           </QuestionMain>
           <AnswerSection>
+            <DivisionLine />
             <AnswerTitle>Your Answer</AnswerTitle>
             <WritingBodyForm />
             <PostAnswerBtn>Post Your Answer</PostAnswerBtn>
