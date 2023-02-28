@@ -69,6 +69,10 @@ const UserListInfo = styled.div`
     font-size: 15px;
     margin-bottom: 5px;
     font-weight: bold;
+    a {
+      text-decoration: none;
+      color: #4f93d2;
+    }
   }
 
   .userinfo-questions {

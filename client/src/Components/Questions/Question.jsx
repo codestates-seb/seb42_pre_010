@@ -38,8 +38,10 @@ const QuestionTitle = styled.a`
   display: block;
   font-size: 17px;
   margin: 10px 0px;
-  text-decoration: none;
-  color: #4f93d2;
+  a {
+    text-decoration: none;
+    color: #4f93d2;
+  }
 `;
 
 const QuestionContent = styled.div`
@@ -63,7 +65,6 @@ const UserName = styled.span`
 `;
 
 const Question = ({ questionData }) => {
-  console.log(questionData);
   return (
     <QuestionBlock>
       <div>
@@ -81,7 +82,12 @@ const Question = ({ questionData }) => {
           {questionData.contents.replace(/(<([^>]+)>)/gi, '')}
         </QuestionContent>
         <UserInfoBlock>
-          <UserPic src={questionData.picture} alt="user-pics" />
+          <UserPic
+            src={`https://randomuser.me/api/portraits/${
+              questionData.questionId % 2 ? 'men' : 'women'
+            }/${questionData.questionId}.jpg`}
+            alt="user-name"
+          />
           <UserName>{questionData.userName}</UserName>
           <span>{questionData.createdAt}</span>
         </UserInfoBlock>

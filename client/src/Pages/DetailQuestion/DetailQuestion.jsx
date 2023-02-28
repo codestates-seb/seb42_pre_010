@@ -29,7 +29,6 @@ import {
 const DetailQuestion = ({ questionList }) => {
   const { id } = useParams();
   const [post, setPost] = useState([]);
-  console.log(questionList);
 
   const filterdpost = questionList?.filter(
     (el) => String(el.questionId) === id
@@ -80,8 +79,8 @@ const DetailQuestion = ({ questionList }) => {
               <PostOwnerUser>
                 <img
                   src={`https://randomuser.me/api/portraits/${
-                    post?.userId % 2 ? 'men' : 'women'
-                  }/${post?.userId}.jpg`}
+                    id % 2 ? 'men' : 'women'
+                  }/${id}.jpg`}
                   alt="user-name"
                 />
                 <span>{post?.username}</span>
