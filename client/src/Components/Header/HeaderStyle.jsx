@@ -133,7 +133,9 @@ export const AchievmentBlock = styled.li``;
 
 export const HelpBlock = styled.li``;
 
-export const CommunityBlock = styled.li``;
+export const CommunityBlock = styled.li`
+  position: relative;
+`;
 
 export const LoginBlock = styled.li`
   color: hsl(205, 47%, 42%);
@@ -189,6 +191,52 @@ export const LogoBlock = styled.div`
   :hover {
     background-color: hsl(210, 8%, 90%);
   }
+`;
+
+export const LogoSmall = styled.img`
+  width: 15px;
+`;
+
+export const ModalWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 300px;
+  position: absolute;
+  right: 0px;
+  top: 50px;
+  background-color: #fff;
+  :hover {
+    background-color: hsl(210, 8%, 90%);
+  }
+  button {
+    :hover {
+      background-color: hsl(210, 8%, 90%);
+    }
+  }
+  a {
+    text-decoration: none;
+    font-size: 13px;
+    text-align: right;
+    color: hsl(210, 8%, 35%);
+  }
+`;
+
+export const LogoutBtn = styled.button`
+  border: none;
+  padding: 10px;
+  background-color: hsla(
+    203.99999999999986,
+    9.803921568627464%,
+    89.99999999999999%,
+    0
+  );
+  color: hsl(205, 47%, 42%);
+  :hover {
+    color: black;
+  }
+  cursor: pointer;
 `;
 
 export const picture =
