@@ -63,15 +63,6 @@ const NavBlock = styled.div`
 `;
 
 const Nav = () => {
-  // let loaction = window.location.pathname;
-  // if (
-  //   loaction === '/' ||
-  //   loaction === '/questions' ||
-  //   loaction === '/tags' ||
-  //   loaction === '/users'
-  // )
-  //   return null;
-
   return (
     <NavContainer>
       <NavBlock>
