@@ -7,7 +7,7 @@ const SidebarBlock = styled.div`
   max-width: 300px;
   float: right;
   font-size: 12px;
-  padding: 0px 15px;
+  padding: 0px 40px;
   color: #656a6d;
 `;
 

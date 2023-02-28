@@ -163,3 +163,7 @@ export const PostOwnerUser = styled.div`
     font-weight: 600px;
   }
 `;
+
+export const QuestionContentContainer = styled.div`
+  margin-left: 19px;
+`;

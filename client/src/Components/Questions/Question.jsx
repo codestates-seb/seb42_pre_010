@@ -7,15 +7,15 @@ const QuestionBlock = styled.div`
   float: right;
   height: max-content;
   max-width: 900px;
-  padding: 16px 16px 16px 40px;
+  padding: 10px 16px 10px 30px;
   border-bottom: 1px solid #d6d9dc;
 
   div:first-child {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    width: 13%;
-    margin-right: 15px;
+    width: 10%;
+    margin-right: 20px;
   }
   span {
     font-size: 13px;
@@ -37,7 +37,7 @@ const UserPic = styled.img`
 const QuestionTitle = styled.a`
   display: block;
   font-size: 17px;
-  margin: 10px 0px;
+  margin: 30px 0px 10px 0px;
   a {
     text-decoration: none;
     color: #4f93d2;

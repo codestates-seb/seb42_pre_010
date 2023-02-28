@@ -24,6 +24,7 @@ import {
   PostAskTimeInfo,
   PostOwnerUser,
   DetailQuestionTitle,
+  QuestionContentContainer,
 } from '../../Components/Questions/DetailQuestionStyle';
 
 // 시간 계산 알고리즘
@@ -89,45 +90,47 @@ const DetailQuestion = ({ questionList }) => {
         </TimeInfo>
       </TimeInfoSection>
       <DetailQuestionAnswerSection>
-        <QuestionMain>
-          <DetailQuestionContentWrap>
-            <VotingBlock />
-            <DetailQuestionContent>
-              <ReactQuill
-                value={post?.contents}
-                readOnly={true}
-                theme={'bubble'}
-              />
-            </DetailQuestionContent>
-          </DetailQuestionContentWrap>
-          <PostOwnerInfoWrap>
-            <Link to="/edit" state={{ data: post }}>
-              Edit
-            </Link>
-            <PostOwnerInfo>
-              <PostAskTimeInfo>asked 1 min ago</PostAskTimeInfo>
-              <PostOwnerUser>
-                <img
-                  src={`https://randomuser.me/api/portraits/${
-                    id % 2 ? 'men' : 'women'
-                  }/${id}.jpg`}
-                  alt="user-name"
+        <QuestionContentContainer>
+          <QuestionMain>
+            <DetailQuestionContentWrap>
+              <VotingBlock />
+              <DetailQuestionContent>
+                <ReactQuill
+                  value={post?.contents}
+                  readOnly={true}
+                  theme={'bubble'}
                 />
-                <span>{post?.username}</span>
-              </PostOwnerUser>
-            </PostOwnerInfo>
-          </PostOwnerInfoWrap>
-        </QuestionMain>
+              </DetailQuestionContent>
+            </DetailQuestionContentWrap>
+            <PostOwnerInfoWrap>
+              <Link to="/edit" state={{ data: post }}>
+                Edit
+              </Link>
+              <PostOwnerInfo>
+                <PostAskTimeInfo>asked 1 min ago</PostAskTimeInfo>
+                <PostOwnerUser>
+                  <img
+                    src={`https://randomuser.me/api/portraits/${
+                      id % 2 ? 'men' : 'women'
+                    }/${id}.jpg`}
+                    alt="user-name"
+                  />
+                  <span>{post?.username}</span>
+                </PostOwnerUser>
+              </PostOwnerInfo>
+            </PostOwnerInfoWrap>
+          </QuestionMain>
+          <AnswerSection>
+            <AnswerTitle>Your Answer</AnswerTitle>
+            <WritingBodyForm />
+            <PostAnswerBtn>Post Your Answer</PostAnswerBtn>
+            <Link to="/askquestions">
+              <AnswerSub>Ask your own question.</AnswerSub>
+            </Link>
+          </AnswerSection>
+        </QuestionContentContainer>
         <SimpleSidebar />
       </DetailQuestionAnswerSection>
-      <AnswerSection>
-        <AnswerTitle>Your Answer</AnswerTitle>
-        <WritingBodyForm />
-        <PostAnswerBtn>Post Your Answer</PostAnswerBtn>
-        <Link to="/askquestions">
-          <AnswerSub>Ask your own question.</AnswerSub>
-        </Link>
-      </AnswerSection>
     </DetailQuestionWrap>
   );
 };

@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 const NavContainer = styled.div`
   width: 164px;
   padding-top: 10px;
-  padding-left: 150px;
+  padding-left: 80px;
   border-right: 1px solid #d6d9dc;
   font-size: 13px;
 `;
