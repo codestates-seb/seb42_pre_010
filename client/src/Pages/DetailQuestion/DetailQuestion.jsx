@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useState } from 'react';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import { WritingBodyForm } from '../../Components/AskForm/WritingForm';
 import VotingBlock from '../../Components/Questions/VotingBlock';
@@ -24,13 +25,22 @@ import {
   DetailQuestionTitle,
 } from '../../Components/Questions/DetailQuestionStyle';
 
-import questionsData from '../../data/Questions';
+const DetailQuestion = ({ questionList }) => {
+  const { id } = useParams();
+  const [post, setPost] = useState([]);
+  console.log(questionList);
 
-const DetailQuestion = () => {
+  const filterdpost = questionList?.filter(
+    (el) => String(el.questionId) === id
+  )[0];
+  useState(() => {
+    setPost(filterdpost);
+  });
+
   return (
     <DetailQuestionWrap>
       <DetailQuestionTitleSection>
-        <DetailQuestionTitle>{questionsData[0].title}</DetailQuestionTitle>
+        <DetailQuestionTitle>{post?.title}</DetailQuestionTitle>
         <AskBtnWrap>
           <Link to="/askquestions">
             <AskBtn>Ask Question</AskBtn>
@@ -52,17 +62,20 @@ const DetailQuestion = () => {
         <QuestionMain>
           <DetailQuestionContentWrap>
             <VotingBlock />
-            <DetailQuestionContent>
-              {questionsData[0].content}
-            </DetailQuestionContent>
+            <DetailQuestionContent>{post?.contents}</DetailQuestionContent>
           </DetailQuestionContentWrap>
           <PostOwnerInfoWrap>
             <Link to={''}>Edit</Link>
             <PostOwnerInfo>
               <PostAskTimeInfo>asked 1 min ago</PostAskTimeInfo>
               <PostOwnerUser>
-                <img src={questionsData[0].picture} alt={''} />
-                <span>{questionsData[0].username}</span>
+                <img
+                  src={`https://randomuser.me/api/portraits/${
+                    post?.userId % 2 ? 'men' : 'women'
+                  }/${post?.userId}.jpg`}
+                  alt="user-name"
+                />
+                <span>{post?.username}</span>
               </PostOwnerUser>
             </PostOwnerInfo>
           </PostOwnerInfoWrap>
