@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import smallLogo from '../../Logo/smallLogo.png';
 
 const FooterBlock = styled.footer`
   display: flex;
@@ -97,7 +98,7 @@ const Footer = () => {
   return (
     <FooterBlock>
       <FooterLogo>
-        <Logo src="images/stackoverflow_small.png" />
+        <Logo src={smallLogo} />
       </FooterLogo>
       <FooterNav>
         <FooterNavBlock>
