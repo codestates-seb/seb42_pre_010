@@ -110,7 +110,7 @@ export const LoggedHeaderContent = ({ currUser, setLogged, logged }) => {
   return (
     <LoggedHeaderContentWrap>
       <MypageWrap>
-        <Link to={`/card/users/${currUser.data.userId}`}>
+        <Link to={`/card/users/${currUser?.data.userId}`}>
           <img
             src={`https://randomuser.me/api/portraits/${
               Math.floor(Math.random(1 * 1000) * 10) % 2 ? 'men' : 'women'
@@ -118,7 +118,7 @@ export const LoggedHeaderContent = ({ currUser, setLogged, logged }) => {
             alt="user-name"
           />
         </Link>
-        <span>{currUser.data.questionCount}</span>
+        <span>{currUser?.data.questionCount}</span>
       </MypageWrap>
       <MessageBlock>
         <ImDrawer2 />
