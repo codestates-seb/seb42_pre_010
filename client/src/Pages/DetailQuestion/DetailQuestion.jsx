@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import Sidebar from '../../Components/Sidebar/Sidebar';
+import SimpleSidebar from '../../Components/Sidebar/SimpleSidebar';
 import { WritingBodyForm } from '../../Components/AskForm/WritingForm';
 import VotingBlock from '../../Components/Questions/VotingBlock';
 import {
@@ -80,7 +80,7 @@ const DetailQuestion = ({ questionList }) => {
             </PostOwnerInfo>
           </PostOwnerInfoWrap>
         </QuestionMain>
-        <Sidebar />
+        <SimpleSidebar />
       </DetailQuestionAnswerSection>
       <AnswerSection>
         <AnswerTitle>Your Answer</AnswerTitle>
