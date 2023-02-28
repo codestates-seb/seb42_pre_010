@@ -65,7 +65,7 @@ const DetailQuestion = ({ questionList }) => {
             <DetailQuestionContent>{post?.contents}</DetailQuestionContent>
           </DetailQuestionContentWrap>
           <PostOwnerInfoWrap>
-            <Link to={''}>Edit</Link>
+            <Link to={'/edit'}>Edit</Link>
             <PostOwnerInfo>
               <PostAskTimeInfo>asked 1 min ago</PostAskTimeInfo>
               <PostOwnerUser>
