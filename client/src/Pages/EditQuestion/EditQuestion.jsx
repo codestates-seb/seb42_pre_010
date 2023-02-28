@@ -16,7 +16,7 @@ const EditQuestionContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 1200px;
-  padding-left: 100px;
+  padding-left: 150px;
 `;
 
 const WritingFormBlock = styled.div`
@@ -31,7 +31,7 @@ const WritingFormBlock = styled.div`
 `;
 
 const ButtonBlock = styled.div`
-  margin-left: 100px;
+  margin-left: 150px;
 `;
 
 const EditQuestion = () => {
