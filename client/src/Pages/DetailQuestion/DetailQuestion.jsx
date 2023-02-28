@@ -26,6 +26,30 @@ import {
   DetailQuestionTitle,
 } from '../../Components/Questions/DetailQuestionStyle';
 
+// 시간 계산 알고리즘
+function ElapsedTime(date) {
+  const start = new Date(date);
+  const end = new Date();
+
+  const diff = (end - start) / 1000;
+
+  const times = [
+    { name: 'years', milliSeconds: 60 * 60 * 24 * 365 },
+    { name: 'months', milliSeconds: 60 * 60 * 24 * 30 },
+    { name: 'mins', milliSeconds: 60 * 60 * 24 },
+    { name: 'hours', milliSeconds: 60 * 60 },
+    { name: 'mins', milliSeconds: 60 },
+  ];
+
+  for (const value of times) {
+    const betweenTime = Math.floor(diff / value.milliSeconds);
+    if (betweenTime > 0) {
+      return `${betweenTime} ${value.name} ago`;
+    }
+  }
+  return 'Now';
+}
+
 const DetailQuestion = ({ questionList }) => {
   const { id } = useParams();
   const [post, setPost] = useState([]);
@@ -36,6 +60,7 @@ const DetailQuestion = ({ questionList }) => {
   useState(() => {
     setPost(filterdpost);
   });
+  console.log(post.createdAt);
 
   return (
     <DetailQuestionWrap>
@@ -49,10 +74,16 @@ const DetailQuestion = ({ questionList }) => {
       </DetailQuestionTitleSection>
       <TimeInfoSection>
         <TimeInfo>
-          <span>Asked</span> <time>today</time>
+          <span>Asked</span>
+          <time dateTime={new Date(post.createdAt)}>
+            {ElapsedTime(post.createdAt)}
+          </time>
         </TimeInfo>
         <TimeInfo>
-          <span>Modified</span> <time>today</time>
+          <span>Modified</span>
+          <time dateTime={new Date(post.modifiedAt)}>
+            {ElapsedTime(post.modifiedAt)}
+          </time>
         </TimeInfo>
         <TimeInfo>
           <span>Viewed</span> <time>2 times</time>
