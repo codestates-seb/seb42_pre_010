@@ -15,7 +15,6 @@ import {
 import { FaAward } from 'react-icons/fa';
 
 const UserCardProfile = ({ found }) => {
-  console.log('test ' + found.username);
   return (
     <UserCardProfileWrap>
       <ProfileContentLeftSection>
@@ -42,10 +41,10 @@ export const ProfileStatsSection = ({ found }) => {
           <p>1</p>reached
         </div>
         <div>
-          <p>{found.answerCount}</p>answers
+          <p>{found?.answerCount}</p>answers
         </div>
         <div>
-          <p>{found.questionCount}</p>questions
+          <p>{found?.questionCount}</p>questions
         </div>
       </ProfileStatsWrap>
     </>
