@@ -59,7 +59,9 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Root logged={logged} currUser={currUser} />,
+      element: (
+        <Root logged={logged} currUser={currUser} setLogged={setLogged} />
+      ),
       children: [
         { index: true, element: <Home /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
         {
@@ -70,7 +72,13 @@ function App() {
     },
     {
       path: '/',
-      element: <WithoutRoot logged={logged} currUser={currUser} />, // Nav, Footer, Sidebar가 없는 페이지
+      element: (
+        <WithoutRoot
+          logged={logged}
+          currUser={currUser}
+          setLogged={setLogged}
+        />
+      ), // Nav, Footer, Sidebar가 없는 페이지
       children: [
         {
           path: '/users/login',
@@ -100,7 +108,13 @@ function App() {
     },
     {
       path: '/',
-      element: <WithoutSideBar logged={logged} currUser={currUser} />, // Sidebar가 없는 페이지
+      element: (
+        <WithoutSideBar
+          logged={logged}
+          currUser={currUser}
+          setLogged={setLogged}
+        />
+      ), // Sidebar가 없는 페이지
       children: [
         { path: '/tags', element: <Tag /> },
         {
