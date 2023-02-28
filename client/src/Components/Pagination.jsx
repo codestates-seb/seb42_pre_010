@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { RxDoubleArrowLeft, RxDoubleArrowRight } from 'react-icons/rx';
+import { useState } from 'react';
 
 const PaginationBlock = styled.div`
   display: flex;
@@ -10,7 +11,6 @@ const PaginationBlock = styled.div`
 
   .icon {
     border: 1px solid #c4c4c497;
-    color: #0a95ff;
   }
 
   .icon:hover {
@@ -24,21 +24,27 @@ const PaginationBlock = styled.div`
   .back {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
+    color: #0a95ff;
   }
 
   .next {
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
+    color: #0a95ff;
   }
+`;
 
-  button {
-    padding: 5px;
-    width: 30px;
-    height: 30px;
-    border: 0;
-    outline: 0;
-    background-color: transparent;
-  }
+const ButtonNav = styled.button`
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  background-color: ${({ num, pageNum }) =>
+    num === pageNum ? '#0a95ff' : 'white'};
+
+  color: ${({ num, pageNum }) => (num === pageNum ? 'white' : '#0a95ff')};
 `;
 
 const IconBlock = styled.div`
@@ -55,6 +61,7 @@ const Pagination = ({
   setCurrentPage,
   currentPage,
 }) => {
+  const [pageNum, setPageNum] = useState(1);
   const page = Math.ceil(totalPosts / postsPerPage);
   const pageNumbers = [];
 
@@ -73,24 +80,37 @@ const Pagination = ({
     <PaginationBlock>
       <IconBlock
         className="icon back bg"
-        onClick={() => paginate(currentPage - 1)}
+        onClick={() => {
+          paginate(currentPage - 1);
+          setPageNum(pageNum - 1);
+        }}
       >
         <RxDoubleArrowLeft size={12} />
       </IconBlock>
       <div className="pagination">
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            className="icon bg"
-            onClick={() => paginate(number)}
-          >
-            {number}
-          </button>
-        ))}
+        {pageNumbers.map((number) => {
+          return (
+            <ButtonNav
+              key={number}
+              className="icon bg"
+              onClick={() => {
+                paginate(number);
+                setPageNum(number);
+              }}
+              num={number}
+              pageNum={pageNum}
+            >
+              {number}
+            </ButtonNav>
+          );
+        })}
       </div>
       <IconBlock
         className="icon next bg"
-        onClick={() => paginate(currentPage + 1)}
+        onClick={() => {
+          paginate(currentPage + 1);
+          setPageNum(pageNum + 1);
+        }}
       >
         <RxDoubleArrowRight size={12} />
       </IconBlock>
