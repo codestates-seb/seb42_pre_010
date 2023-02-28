@@ -105,7 +105,6 @@ export const LoggedHeaderContent = ({ currUser, setLogged, logged }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const showModal = () => {
     setModalOpen(!modalOpen);
-    console.log('modalOpen');
   };
 
   return (
@@ -154,8 +153,7 @@ export const ModalLogOut = ({ setModalOpen, modalOpen, setLogged, logged }) => {
   const logOut = () => {
     localStorage.removeItem('logged');
     localStorage.removeItem('userData');
-    setLogged(false);
-    console.log(logged);
+    setLogged(!logged);
   };
 
   return (

@@ -79,7 +79,7 @@ export const UserDetail = ({ userList }) => {
               <MdCake />
               <li>
                 <time dateTime={new Date()}>
-                  Member for {ElapsedTime(found.createdAt)}
+                  Member for {ElapsedTime(found?.createdAt)}
                 </time>
               </li>
             </UserCardInfoList>

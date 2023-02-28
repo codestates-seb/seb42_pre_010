@@ -60,7 +60,6 @@ const DetailQuestion = ({ questionList }) => {
   useState(() => {
     setPost(filterdpost);
   });
-  console.log(post.createdAt);
 
   return (
     <DetailQuestionWrap>
@@ -75,14 +74,14 @@ const DetailQuestion = ({ questionList }) => {
       <TimeInfoSection>
         <TimeInfo>
           <span>Asked</span>
-          <time dateTime={new Date(post.createdAt)}>
-            {ElapsedTime(post.createdAt)}
+          <time dateTime={new Date(post?.createdAt)}>
+            {ElapsedTime(post?.createdAt)}
           </time>
         </TimeInfo>
         <TimeInfo>
           <span>Modified</span>
-          <time dateTime={new Date(post.modifiedAt)}>
-            {ElapsedTime(post.modifiedAt)}
+          <time dateTime={new Date(post?.modifiedAt)}>
+            {ElapsedTime(post?.modifiedAt)}
           </time>
         </TimeInfo>
         <TimeInfo>
