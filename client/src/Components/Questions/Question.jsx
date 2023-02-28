@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const QuestionBlock = styled.div`
   display: flex;
@@ -65,8 +66,10 @@ const Question = ({ questionData }) => {
         <span>5 views</span>
       </div>
       <QuestionList>
-        <QuestionTitle href={'/allquestion/' + questionData.questionId}>
-          {questionData.title}
+        <QuestionTitle>
+          <Link to={'/allquestion/' + questionData.questionId}>
+            {questionData.title}
+          </Link>
         </QuestionTitle>
         <QuestionContent>{questionData.contents}</QuestionContent>
         <UserInfoBlock>
