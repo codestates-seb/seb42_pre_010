@@ -49,7 +49,7 @@ const ButtonNav = styled.button`
   border-right: 1px solid gray;
   align-items: center;
   text-align: center;
-  padding: 15px;
+  padding: 10px 15px;
   :first-child {
     border-left: 1px solid gray;
     border-top: 1px solid gray;
