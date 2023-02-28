@@ -66,7 +66,7 @@ function App() {
         { index: true, element: <Home logged={logged} /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
         {
           path: '/allquestion',
-          element: <Questions questionList={questionList} />,
+          element: <Questions logged={logged} />,
         },
       ],
     },
