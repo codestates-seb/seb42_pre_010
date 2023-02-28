@@ -38,8 +38,10 @@ const QuestionTitle = styled.a`
   display: block;
   font-size: 17px;
   margin: 10px 0px;
-  text-decoration: none;
-  color: #4f93d2;
+  a {
+    text-decoration: none;
+    color: #4f93d2;
+  }
 `;
 
 const QuestionContent = styled.div`
