@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const NavContainer = styled.div`
   width: 164px;
-  height: 100vh;
+  /* height: 100vh; */
   padding-top: 10px;
   padding-left: 150px;
   border-right: 1px solid #d6d9dc;
@@ -13,7 +13,7 @@ const NavContainer = styled.div`
 
 const NavBlock = styled.div`
   width: 100%;
-  height: 382px;
+  /* height: 382px; */
   color: rgb(81, 81, 81);
   margin-top: 20px;
 
