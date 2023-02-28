@@ -13,8 +13,10 @@ const HomeBlock = styled.div`
 `;
 
 const HomeQuestionsListBlock = styled.ul`
+  display: flex;
+  flex-direction: column;
+  width: 718px;
   border-top: 1px solid #d6d9dc;
-  width: auto;
 `;
 
 const HomeTitle = styled.h1`

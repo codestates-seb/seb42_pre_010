@@ -14,6 +14,9 @@ const QuestionsBlock = styled.div`
 
 const QuestionsListBlock = styled.ul`
   border-top: 1px solid #d6d9dc;
+  display: flex;
+  flex-direction: column;
+  width: 718px;
 `;
 
 const QuestionsTitle = styled.h1`

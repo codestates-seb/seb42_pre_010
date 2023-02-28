@@ -19,6 +19,7 @@ const QuestionBlock = styled.div`
   span {
     font-size: 13px;
     display: block;
+    margin-bottom: 5px;
   }
 `;
 
@@ -50,6 +51,10 @@ const UserInfoBlock = styled.div`
   align-items: center;
   margin: 10px 0px;
   font-size: 12px;
+
+  span {
+    margin-bottom: 0px;
+  }
 `;
 
 const UserName = styled.span`
@@ -57,6 +62,7 @@ const UserName = styled.span`
 `;
 
 const Question = ({ questionData }) => {
+  console.log(questionData);
   return (
     <QuestionBlock>
       <div>
