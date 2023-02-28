@@ -20,10 +20,12 @@ import { ImDrawer2 } from 'react-icons/im';
 import { RiTrophyFill } from 'react-icons/ri';
 import { BsQuestionCircleFill } from 'react-icons/bs';
 import { FaStackExchange } from 'react-icons/fa';
+import { useState } from 'react';
+import styled from 'styled-components';
 
 const REACT_APP_URL = 'http://localhost:3000';
 
-export const Header = ({ logged, currUser }) => {
+export const Header = ({ logged, currUser, setLogged }) => {
   return (
     <>
       <HeaderBlock>
@@ -38,7 +40,11 @@ export const Header = ({ logged, currUser }) => {
           </Link>
           <HeaderNav logged={logged} />
           <SearchBlock />
-          <HeaderContent logged={logged} currUser={currUser} />
+          <HeaderContent
+            logged={logged}
+            currUser={currUser}
+            setLogged={setLogged}
+          />
         </nav>
       </HeaderBlock>
     </>
@@ -78,11 +84,15 @@ export const SearchBlock = () => {
   );
 };
 
-export const HeaderContent = ({ logged, currUser }) => {
+export const HeaderContent = ({ logged, currUser, setLogged }) => {
   return (
     <>
       {logged ? (
-        <LoggedHeaderContent currUser={currUser} />
+        <LoggedHeaderContent
+          currUser={currUser}
+          setLogged={setLogged}
+          logged={logged}
+        />
       ) : (
         <PubHeaderContent />
       )}
@@ -90,7 +100,13 @@ export const HeaderContent = ({ logged, currUser }) => {
   );
 };
 
-export const LoggedHeaderContent = ({ currUser }) => {
+export const LoggedHeaderContent = ({ currUser, setLogged, logged }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const showModal = () => {
+    setModalOpen(!modalOpen);
+    console.log('modalOpen');
+  };
+
   return (
     <LoggedHeaderContentWrap>
       <MypageWrap>
@@ -108,10 +124,56 @@ export const LoggedHeaderContent = ({ currUser }) => {
       <HelpBlock>
         <BsQuestionCircleFill />
       </HelpBlock>
-      <CommunityBlock>
+      <CommunityBlock onClick={showModal}>
+        {modalOpen && (
+          <ModalLogOut
+            setModalOpen={setModalOpen}
+            modalOpen={modalOpen}
+            setLogged={setLogged}
+            logged={logged}
+          />
+        )}
         <FaStackExchange />
       </CommunityBlock>
     </LoggedHeaderContentWrap>
+  );
+};
+
+export const ModalWrap = styled.div`
+  width: 300px;
+  position: absolute;
+  right: 0px;
+  top: 50px;
+  background-color: #fff;
+`;
+
+export const LogoutBtn = styled.button`
+  width: 100%;
+  border: none;
+  padding: 10px;
+  background-color: #fff;
+  :hover {
+    background-color: hsl(210, 8%, 90%);
+  }
+`;
+
+export const ModalLogOut = ({ setModalOpen, modalOpen, setLogged, logged }) => {
+  // 모달 끄기
+  const closeModal = () => {
+    setModalOpen(!modalOpen);
+  };
+  // 로그아웃
+  const logOut = () => {
+    localStorage.removeItem('logged');
+    localStorage.removeItem('userData');
+    setLogged(false);
+    console.log(logged);
+  };
+
+  return (
+    <ModalWrap onClick={closeModal}>
+      <LogoutBtn onClick={logOut}>Log out</LogoutBtn>
+    </ModalWrap>
   );
 };
 

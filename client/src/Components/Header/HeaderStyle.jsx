@@ -133,7 +133,9 @@ export const AchievmentBlock = styled.li``;
 
 export const HelpBlock = styled.li``;
 
-export const CommunityBlock = styled.li``;
+export const CommunityBlock = styled.li`
+  position: relative;
+`;
 
 export const LoginBlock = styled.li`
   color: hsl(205, 47%, 42%);
