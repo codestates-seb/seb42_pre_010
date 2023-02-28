@@ -17,7 +17,6 @@ import {
   UserCardNavSection,
   UserCardNavList,
   UserCardConentSection,
-  picture,
 } from '../../Components/Users/UserCardStyle';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -40,16 +39,49 @@ export const UserDetail = ({ userList }) => {
     setSelected(idx);
   };
 
+  // 시간 계산 알고리즘
+  function ElapsedTime(date) {
+    const start = new Date(date);
+    const end = new Date();
+
+    const diff = (end - start) / 1000;
+
+    const times = [
+      { name: 'years', milliSeconds: 60 * 60 * 24 * 365 },
+      { name: 'months', milliSeconds: 60 * 60 * 24 * 30 },
+      { name: 'mins', milliSeconds: 60 * 60 * 24 },
+      { name: 'hours', milliSeconds: 60 * 60 },
+      { name: 'mins', milliSeconds: 60 },
+    ];
+
+    for (const value of times) {
+      const betweenTime = Math.floor(diff / value.milliSeconds);
+      if (betweenTime > 0) {
+        return `${betweenTime} ${value.name} ago`;
+      }
+    }
+    return 'Now';
+  }
+
   return (
     <UserCardContainer>
       <UserCardInfoBlock>
-        <UserCardImg src={picture} />
+        <UserCardImg
+          src={`https://randomuser.me/api/portraits/${
+            Math.floor(Math.random(1 * 1000) * 10) % 2 ? 'men' : 'women'
+          }/${Math.floor(Math.random(1 * 1000) * 10)}.jpg`}
+          alt="user-name"
+        />
         <UserCardInfoContnet>
           <h1>{found?.username}</h1>
           <UserCardInfoListWrap>
             <UserCardInfoList>
               <MdCake />
-              <li>Member for 6 days</li>
+              <li>
+                <time dateTime={new Date()}>
+                  Member for {ElapsedTime(found?.createdAt)}
+                </time>
+              </li>
             </UserCardInfoList>
             <UserCardInfoList>
               <FiClock />
