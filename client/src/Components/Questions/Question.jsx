@@ -68,9 +68,9 @@ const Question = ({ questionData }) => {
   return (
     <QuestionBlock>
       <div>
-        <span>0 votes</span>
-        <span>5 answer</span>
-        <span>5 views</span>
+        <span>{Math.floor(Math.random() * 100)} votes</span>
+        <span>{Math.floor(Math.random() * 100)} answer</span>
+        <span>{Math.floor(Math.random() * 100)} views</span>
       </div>
       <QuestionList>
         <QuestionTitle>
