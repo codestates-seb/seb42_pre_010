@@ -10,7 +10,6 @@ import UserDetail from './Pages/UserDetail/UserDetail';
 import Questions from './Pages/Questions/Questions';
 import EditQuestion from './Pages/EditQuestion/EditQuestion';
 import DetailQuestion from './Pages/DetailQuestion/DetailQuestion';
-import NotFound from './Pages/NotFound/NotFound';
 import { useEffect, useState } from 'react';
 import { getAllUsers } from './services/UserService';
 import { getAllQuestion } from './services/QuestionService';
@@ -57,16 +56,11 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: '/*', // 설정한 path 이외의 다른 path로 접근할 경우 404 Not Found 렌더링
-      element: <NotFound />,
-    },
-    {
-      path: '/',
       element: (
         <Root logged={logged} currUser={currUser} setLogged={setLogged} />
       ),
       children: [
-        { index: true, element: <Home logged={logged} /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
+        { index: true, path: 'index.html', element: <Home logged={logged} /> }, // index가 true인 컴포넌트는 Root의 Outlet에 기본으로 보여짐
         {
           path: '/allquestion',
           element: <Questions logged={logged} />,
@@ -74,7 +68,6 @@ function App() {
       ],
     },
     {
-      path: '/',
       element: (
         <WithoutRoot
           logged={logged}
@@ -116,7 +109,6 @@ function App() {
       ],
     },
     {
-      path: '/',
       element: (
         <WithoutSideBar
           logged={logged}
