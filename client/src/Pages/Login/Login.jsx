@@ -27,8 +27,6 @@ import {
   TextInputWrap,
 } from '../../Components/Login/LoginStyle';
 
-const REACT_APP_URL = 'http://localhost:3000';
-
 const Login = ({ logged, setLogged, setCurrUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -106,7 +104,7 @@ const Login = ({ logged, setLogged, setCurrUser }) => {
   return (
     <LoginWrap>
       <LoginLogo>
-        <LogoImg src={REACT_APP_URL + '/images/stackoverflow_small.png'} />
+        <LogoImg src={'/images/stackoverflow_small.png'} />
       </LoginLogo>
       <LoginSocialWrap>
         <LoginGoogle>

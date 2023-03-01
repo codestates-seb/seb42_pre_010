@@ -24,8 +24,6 @@ import { BsQuestionCircleFill } from 'react-icons/bs';
 import { FaStackExchange } from 'react-icons/fa';
 import { useState } from 'react';
 
-const REACT_APP_URL = 'http://localhost:3000';
-
 export const Header = ({ logged, currUser, setLogged }) => {
   return (
     <>
@@ -33,10 +31,7 @@ export const Header = ({ logged, currUser, setLogged }) => {
         <nav>
           <Link to="/">
             <LogoBlock>
-              <img
-                src={REACT_APP_URL + '/images/logo-stackoverflow.png'}
-                alt="logo"
-              />
+              <img src={'/images/logo-stackoverflow.png'} alt="logo" />
             </LogoBlock>
           </Link>
           <HeaderNav logged={logged} />
@@ -158,7 +153,7 @@ export const ModalLogOut = ({ setModalOpen, modalOpen, setLogged, logged }) => {
 
   return (
     <ModalWrap onClick={closeModal}>
-      <LogoSmall src={REACT_APP_URL + '/images/stackoverflow_small.png'} />
+      <LogoSmall src={'/images/stackoverflow_small.png'} />
       <Link to="/">Stack Overflow</Link>
       <LogoutBtn onClick={logOut}>Log out</LogoutBtn>
     </ModalWrap>

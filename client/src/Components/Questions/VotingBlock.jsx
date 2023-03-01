@@ -46,7 +46,7 @@ const VotingBlock = () => {
         <BiUpArrow />
       </VotingBtnBlock>
       <VotingBtnBlock>
-        <span>0</span>
+        <span>{Math.floor(Math.random() * 100)}</span>
       </VotingBtnBlock>
       <VotingBtnBlock>
         <BiDownArrow />
