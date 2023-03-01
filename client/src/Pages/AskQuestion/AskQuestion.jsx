@@ -6,6 +6,7 @@ import {
   WritingTitleForm,
   WritingBodyForm,
 } from '../../Components/AskForm/WritingForm';
+import { useNavigate } from 'react-router-dom';
 
 const AskQuestionBlock = styled.div`
   background: #f8f9f9;
@@ -103,6 +104,8 @@ const AskQuestion = ({ currUser, setQuestionList }) => {
   // 현재 로그인한 유저 id
   const loggedUserId = currUser?.data.userId;
 
+  const navigate = useNavigate();
+
   const handleValue = (value) => {
     setValue(value);
   };
@@ -124,6 +127,9 @@ const AskQuestion = ({ currUser, setQuestionList }) => {
         axios.get('/questions?page=1&size=1000').then((res) => {
           setQuestionList(res.data.data);
         });
+      })
+      .then(() => {
+        navigate('/');
       })
       .catch(() => {
         console.log('Error!');
