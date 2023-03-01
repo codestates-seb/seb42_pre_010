@@ -27,12 +27,10 @@ const TagListBlock = styled.div`
 
 const TagList = ({ tag }) => {
   return (
-    // <TagContainer>
     <TagListBlock>
       <div className="tag">{tag.tag}</div>
       <div className="tagText">{`${tag.text.slice(0, 250)}...`}</div>
     </TagListBlock>
-    // </TagContainer>
   );
 };
 

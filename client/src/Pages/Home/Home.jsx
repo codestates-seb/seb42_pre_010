@@ -29,7 +29,7 @@ const HomeTitleBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin: 10px 0 20px 0;
 `;
 
 const ButtonBlock = styled.div`

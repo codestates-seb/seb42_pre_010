@@ -7,7 +7,7 @@ const SidebarBlock = styled.div`
   max-width: 300px;
   float: right;
   font-size: 12px;
-  padding: 0px 15px;
+  padding: 0px 40px;
   color: #656a6d;
 `;
 
@@ -61,8 +61,6 @@ const ImgBlock = styled.div`
       0 2px 8px hsla(0, 0%, 0%, 0.05);
   }
 `;
-
-// const FrontEndAd = styled.img``;
 
 const Sidebar = () => {
   return (
