@@ -96,12 +96,12 @@ const ButtonBlock = styled.div`
   }
 `;
 
-const AskQuestion = (currUser) => {
+const AskQuestion = ({ currUser, setQuestionList }) => {
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
 
   // 현재 로그인한 유저 id
-  const loggedUserId = currUser.currUser.data.userId;
+  const loggedUserId = currUser?.data.userId;
 
   const handleValue = (value) => {
     setValue(value);
@@ -120,7 +120,11 @@ const AskQuestion = (currUser) => {
         title: title,
         contents: value,
       })
-      .then((response) => console.log(response))
+      .then(() => {
+        axios.get('/questions?page=1&size=1000').then((res) => {
+          setQuestionList(res.data.data);
+        });
+      })
       .catch(() => {
         console.log('Error!');
       });

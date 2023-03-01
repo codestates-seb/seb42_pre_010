@@ -105,7 +105,13 @@ function App() {
         },
         {
           path: '/askquestions',
-          element: <AskQuestion logged={logged} currUser={currUser} />,
+          element: (
+            <AskQuestion
+              logged={logged}
+              currUser={currUser}
+              setQuestionList={setQuestionList}
+            />
+          ),
         },
       ],
     },
