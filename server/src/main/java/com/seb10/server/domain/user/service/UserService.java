@@ -67,11 +67,11 @@ public class UserService {
 
         // 유저이름 업데이트
         Optional.ofNullable(user.getUsername())
-                .ifPresent(name -> findUser.setUsername(name));
-        Optional.ofNullable(user.getEmail())
-                .ifPresent(email -> findUser.setEmail(email));
-        Optional.ofNullable(user.getUserStatus())
-                .ifPresent(userStatus -> findUser.setUserStatus(userStatus));
+                .ifPresent(username -> findUser.setUsername(username));
+//        Optional.ofNullable(user.getEmail())
+//                .ifPresent(email -> findUser.setEmail(email));
+//        Optional.ofNullable(user.getUserStatus())
+//                .ifPresent(userStatus -> findUser.setUserStatus(userStatus));
 
         // 회원 정보 업데이트
         return userRepository.save(findUser);

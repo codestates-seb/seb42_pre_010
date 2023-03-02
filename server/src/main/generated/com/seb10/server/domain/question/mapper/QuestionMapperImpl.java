@@ -22,14 +22,16 @@ public class QuestionMapperImpl implements QuestionMapper {
             return null;
         }
 
-        Question.QuestionBuilder question = Question.builder();
+//        Question.QuestionBuilder question = Question.builder();
 
-        question.questionId( questionPatchDto.getQuestionId() );
-        question.title( questionPatchDto.getTitle() );
-        question.contents( questionPatchDto.getContents() );
-        question.questionStatus( questionPatchDto.getQuestionStatus() );
+        Question question = new Question();
 
-        return question.build();
+        question.setQuestionId( questionPatchDto.getQuestionId() );
+        question.setTitle( questionPatchDto.getTitle() );
+        question.setContents( questionPatchDto.getContents() );
+//        question.questionStatus( questionPatchDto.getQuestionStatus() );
+
+        return question;
     }
 
     @Override

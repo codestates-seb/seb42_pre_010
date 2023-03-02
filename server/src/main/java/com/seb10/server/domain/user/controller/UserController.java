@@ -48,9 +48,9 @@ public class UserController {
     public ResponseEntity patchUser(
             @PathVariable("user-id") @Positive long userId,
             @Valid @RequestBody UserPatchDto userPatchDto) {
-        userPatchDto.setUserId(userId);
+//        userPatchDto.setUserId(userId);
 
-        User updateUser = userService.updateUser(mapper.userPatchDtoToUser(userPatchDto));
+        User updateUser = userService.updateUser(mapper.userPatchDtoToUser(userPatchDto.addUserId(userId)));
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.userToUserResponseDto(updateUser)), HttpStatus.OK);

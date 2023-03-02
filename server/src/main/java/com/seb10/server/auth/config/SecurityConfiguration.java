@@ -25,6 +25,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity(debug = true)
@@ -57,16 +58,15 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-                        .antMatchers(HttpMethod.POST,"/users/**").permitAll()
-//                        .antMatchers(HttpMethod.POST,"/users/login").permitAll()
-                        .antMatchers(HttpMethod.GET,"/users/**").permitAll()
-//                        .antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
-                        .antMatchers(HttpMethod.POST, "/questions/**").permitAll()
-                        .antMatchers(HttpMethod.GET, "/questions/**").permitAll()
-//                        .antMatchers(HttpMethod.PATCH,"/questions/**").hasRole("USER")
-                        .antMatchers(HttpMethod.PATCH,"/questions/**").permitAll()
-
-                        .antMatchers(HttpMethod.GET,"/users/*").hasRole("USER")
+//                        .antMatchers(HttpMethod.POST,"/users/**").permitAll()
+////                        .antMatchers(HttpMethod.POST,"/users/login").permitAll()
+//                        .antMatchers(HttpMethod.GET,"/users/**").permitAll()
+////                        .antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
+//                        .antMatchers(HttpMethod.POST, "/questions/**").permitAll()
+//                        .antMatchers(HttpMethod.GET, "/questions/**").permitAll()
+////                        .antMatchers(HttpMethod.PATCH,"/questions/**").hasRole("USER")
+//                        .antMatchers(HttpMethod.PATCH,"/questions/**").permitAll()
+//                        .antMatchers(HttpMethod.GET,"/users/*").hasRole("USER")
                         .anyRequest().permitAll());
 
         return http.build();
@@ -81,9 +81,16 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000",
+                "http://junbofarm-s3-bucket.s3-website.ap-northeast-2.amazonaws.com/",
+                "http://ec2-3-36-130-166.ap-northeast-2.compute.amazonaws.com:8080/"));
+//        configuration.addAllowedOrigin("http://junbofarm-s3-bucket.s3-website.ap-northeast-2.amazonaws.com");
         configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("*"));
+        configuration.addExposedHeader("Authorization");
+//        configuration.setExposedHeaders(List.of("*"));
+
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
