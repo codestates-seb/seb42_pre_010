@@ -47,11 +47,15 @@ const Signup = ({ logged, setLogged, setCurrUser }) => {
 
   const handleSubmit = () => {
     axios
-      .post('/users/signup', {
-        username: nickname,
-        email: email,
-        password: password,
-      })
+      .post(
+        'http://ec2-3-36-95-130.ap-northeast-2.compute.amazonaws.com:8080/users/signup',
+        {
+          username: nickname,
+          email: email,
+          password: password,
+        },
+        { headers: { 'Content-Security-Policy': 'upgrade-insecure-requests' } }
+      )
       .then((response) => {
         setLogged(!logged);
         setCurrUser(response.data);
@@ -181,7 +185,7 @@ const Signup = ({ logged, setLogged, setCurrUser }) => {
             </OptionInfo>
           </OptionBlock>
           <SignupSubmitBtnWrap>
-            <Link to="/">
+            <Link to="/index.html">
               <SignupSubmitBtn
                 onClick={handleSubmit}
                 type="submit"

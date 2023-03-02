@@ -118,18 +118,30 @@ const AskQuestion = ({ currUser, setQuestionList }) => {
     e.preventDefault();
 
     axios
-      .post('/questions/ask', {
-        userId: loggedUserId,
-        title: title,
-        contents: value,
+      .post(
+        'http://ec2-3-36-95-130.ap-northeast-2.compute.amazonaws.com:8080/questions/ask',
+        {
+          userId: loggedUserId,
+          title: title,
+          contents: value,
+        }
+      )
+      .then(() => {
+        axios
+          .get(
+            'http://ec2-3-36-95-130.ap-northeast-2.compute.amazonaws.com:8080/questions?page=1&size=1000',
+            {
+              headers: {
+                'Content-Security-Policy': 'upgrade-insecure-requests',
+              },
+            }
+          )
+          .then((res) => {
+            setQuestionList(res.data.data);
+          });
       })
       .then(() => {
-        axios.get('/questions?page=1&size=1000').then((res) => {
-          setQuestionList(res.data.data);
-        });
-      })
-      .then(() => {
-        navigate('/');
+        navigate('/index.html');
       })
       .catch(() => {
         console.log('Error!');

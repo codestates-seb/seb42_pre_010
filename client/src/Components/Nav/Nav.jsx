@@ -67,8 +67,12 @@ const Nav = () => {
     <NavContainer>
       <NavBlock>
         <ul>
-          <li className={location.pathname === '/' ? 'clickMemu home' : 'home'}>
-            <Link to="/">Home</Link>
+          <li
+            className={
+              location.pathname === '/index.html' ? 'clickMemu home' : 'home'
+            }
+          >
+            <Link to="/index.html">Home</Link>
           </li>
           <p>PUBLIC</p>
           <ul>

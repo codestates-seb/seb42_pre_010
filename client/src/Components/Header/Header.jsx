@@ -29,7 +29,7 @@ export const Header = ({ logged, currUser, setLogged }) => {
     <>
       <HeaderBlock>
         <nav>
-          <Link to="/">
+          <Link to="/index.html">
             <LogoBlock>
               <img src={'/images/logo-stackoverflow.png'} alt="logo" />
             </LogoBlock>
