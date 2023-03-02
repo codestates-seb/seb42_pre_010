@@ -6,6 +6,7 @@
 **`팀 명` :** 준보농장 </br>
 **`프로젝트 명` :** Stackoverflow </br>
 **`프로젝트 기간` :** 2023.02.15 - 2023.03.02 </br>
+`배포링크` :  [🌐 준보농장 ](http://junbofarm-s3-bucket.s3-website.ap-northeast-2.amazonaws.com/index.html)
 
 </br>
 
