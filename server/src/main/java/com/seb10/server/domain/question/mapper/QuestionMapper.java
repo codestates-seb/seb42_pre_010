@@ -21,9 +21,9 @@ public interface QuestionMapper {
         question.setTitle(questionPostDto.getTitle());
         question.setContents(questionPostDto.getContents());
 
-        User user = new User();
-        user.setUserId(questionPostDto.getUserId());
-        question.setUser(user);
+//        User user = new User();
+//        user.setUserId(questionPostDto.getUserId());
+//        question.setUser(user);
 
         return question;
     }

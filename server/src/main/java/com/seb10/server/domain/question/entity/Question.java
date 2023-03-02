@@ -54,9 +54,9 @@ public class Question {
         }
     }
 
-    public Question(User user) {
-        this.user = user;
-    }
+//    public Question(User user) {
+//        this.user = user;
+//    }
 
 
     // answer 매핑

@@ -24,7 +24,6 @@ import java.util.List;
 @RequestMapping("/questions")
 @Validated
 @RequiredArgsConstructor
-@Controller
 public class QuestionController {
     private final QuestionService questionService;
     private final UserService userService;
@@ -38,9 +37,9 @@ public class QuestionController {
 //                HttpStatus.CREATED);
 //    }
 
-    @PostMapping("/")
+    @PostMapping("/ask")
     public ResponseEntity postQuestion(@Valid @RequestBody QuestionPostDto questionPostDto) {
-        Question question = questionService.createQuestion(questionMapper.questionPostDtoToQuestion(questionPostDto));
+        Question question = questionService.createQuestion(questionMapper.questionPostDtoToQuestion(questionPostDto),questionPostDto.getUserId());
         userService.updateQuestionCount(question.getUser(), question.getUser().getQuestionCount());
 
         return new ResponseEntity<>(
@@ -49,7 +48,7 @@ public class QuestionController {
 
     // 질문 수정
     @PatchMapping("/{question-id}/edit")
-    public ResponseEntity<Question> patchQuestion(@PathVariable("question-id") @Positive long questionId,
+    public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive long questionId,
                                                   @Valid @RequestBody QuestionPatchDto questionPatchDto) {
         questionPatchDto.setQuestionId(questionId);
         return new ResponseEntity<>(questionMapper.questionPatchDtoToQuestion(questionPatchDto),
@@ -67,7 +66,7 @@ public class QuestionController {
     }
 
     // 전체 질문 조회
-    @GetMapping("/questions/")
+    @GetMapping
     public ResponseEntity getQuestions(@Positive @RequestParam int page, @Positive @RequestParam int size) {
         Page<Question> pageQuestions = questionService.findQuestions(page - 1, size);
         List<Question> questions = pageQuestions.getContent();

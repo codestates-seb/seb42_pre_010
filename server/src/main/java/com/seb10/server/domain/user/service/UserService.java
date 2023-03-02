@@ -1,6 +1,8 @@
 package com.seb10.server.domain.user.service;
 
+import com.seb10.server.domain.user.dto.UserResponseDto;
 import com.seb10.server.domain.user.entity.User;
+import com.seb10.server.domain.user.mapstruct.mapper.UserMapper;
 import com.seb10.server.domain.user.repository.UserRepository;
 import com.seb10.server.exception.BusinessLogicException;
 import com.seb10.server.exception.ExceptionCode;
@@ -23,13 +25,14 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
-
+    private final UserMapper mapper;
     private final PasswordEncoder passwordEncoder;
 
     // MemberRepository DI
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, UserMapper mapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.mapper = mapper;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -64,11 +67,11 @@ public class UserService {
 
         // 유저이름 업데이트
         Optional.ofNullable(user.getUsername())
-                .ifPresent(name -> findUser.setUsername(name));
-        Optional.ofNullable(user.getEmail())
-                .ifPresent(email -> findUser.setEmail(email));
-        Optional.ofNullable(user.getUserStatus())
-                .ifPresent(userStatus -> findUser.setUserStatus(userStatus));
+                .ifPresent(username -> findUser.setUsername(username));
+//        Optional.ofNullable(user.getEmail())
+//                .ifPresent(email -> findUser.setEmail(email));
+//        Optional.ofNullable(user.getUserStatus())
+//                .ifPresent(userStatus -> findUser.setUserStatus(userStatus));
 
         // 회원 정보 업데이트
         return userRepository.save(findUser);
@@ -86,6 +89,16 @@ public class UserService {
                 PageRequest.of(page, size, Sort.by("userId").descending())
         );
     }
+    public List<UserResponseDto> findAllUsers() {
+        List<User> userList = userRepository.findAll();
+        List<UserResponseDto> userResponseList = new ArrayList<>();
+        for (User user : userList) {
+            UserResponseDto userResponseDto = mapper.userToUserResponseDto(user);
+            userResponseList.add(userResponseDto);
+        }
+        return userResponseList;
+    }
+
 
     // (5) 회원 탈퇴(특정 유저 상태 비활성화)
     public void deleteUser(long userId) {
@@ -93,11 +106,12 @@ public class UserService {
         User findUser = findVerifiedUser(userId);
         User.UserStatus status = findUser.getUserStatus();
 
-        if (status != User.UserStatus.USER_DEACTIVATED) {
-            throw new BusinessLogicException(ExceptionCode.USER_EXISTS);
-        }
+//        if (status != User.UserStatus.USER_DEACTIVATED) {
+//            throw new BusinessLogicException(ExceptionCode.USER_EXISTS);
+//        }
 
         findUser.setUserStatus(User.UserStatus.USER_DEACTIVATED);
+        userRepository.save(findUser);
     }
 
     // (6) 이미 존재하는 유저인지 검증

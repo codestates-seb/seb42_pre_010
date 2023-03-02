@@ -20,7 +20,7 @@ public class User {
 
     private String username;
 
-    @Column(nullable = false, updatable = false, unique = true)
+    @Column(nullable = false, unique = true, updatable = false)
     private String email;
 
     @Column(nullable = false,updatable = false)
@@ -53,10 +53,10 @@ public class User {
 
 
     // question, answer 맵핑
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     List<Question> questions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     List<Answer> answers = new ArrayList<>();
 
 

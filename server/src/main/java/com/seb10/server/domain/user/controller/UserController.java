@@ -3,6 +3,7 @@ package com.seb10.server.domain.user.controller;
 import com.seb10.server.domain.user.dto.UserPatchDto;
 import com.seb10.server.domain.user.dto.UserPostDto;
 
+import com.seb10.server.domain.user.dto.UserResponseDto;
 import com.seb10.server.domain.user.mapstruct.mapper.UserMapper;
 import com.seb10.server.domain.user.service.UserService;
 import com.seb10.server.domain.user.entity.User;
@@ -36,12 +37,10 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity postUser(@Valid @RequestBody UserPostDto requestBody) {
 
-        User user = mapper.userPostDtoToUser(requestBody);
-
-        User createUser = userService.createUser(user);
+        User user = userService.createUser(mapper.userPostDtoToUser(requestBody));
 
         return new ResponseEntity<>(
-                new SingleResponseDto<>(mapper.userToUserResponseDto(createUser)), HttpStatus.CREATED);
+                new SingleResponseDto<>(mapper.userToUserResponseDto(user)), HttpStatus.CREATED);
     }
 
     // (2) user 정보 수정
@@ -49,9 +48,9 @@ public class UserController {
     public ResponseEntity patchUser(
             @PathVariable("user-id") @Positive long userId,
             @Valid @RequestBody UserPatchDto userPatchDto) {
-        userPatchDto.setUserId(userId);
+//        userPatchDto.setUserId(userId);
 
-        User updateUser = userService.updateUser(mapper.userPatchDtoToUser(userPatchDto));
+        User updateUser = userService.updateUser(mapper.userPatchDtoToUser(userPatchDto.addUserId(userId)));
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.userToUserResponseDto(updateUser)), HttpStatus.OK);
@@ -76,9 +75,15 @@ public class UserController {
         return new ResponseEntity<>(
                 new MultiResponseDto<>(mapper.usersToUserResponses(users), pageUsers), HttpStatus.OK);
     }
+//    @GetMapping
+//    public ResponseEntity getAllUsers() {
+//        List<UserResponseDto> userList = userService.findAllUsers();
+//
+//        return new ResponseEntity(userList, HttpStatus.OK);
+//    }
 
     // (5) user 탈퇴(비활성화)
-    @PatchMapping("/{user-status}")
+    @PatchMapping("/delete/{user-id}")
     public ResponseEntity deleteUser(@PathVariable("user-id") @Positive long userId) {
         userService.deleteUser(userId);
 

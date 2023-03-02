@@ -30,9 +30,13 @@ public class QuestionService {
     private final AnswerRepository answerRepository;
 
     // 질문 생성
-    public Question createQuestion(Question question) {
-        verifyQuestion(question);
-        Question savedQuestion = saveQuestion(question);
+    public Question createQuestion(Question question, long userId) {
+//        verifyQuestion(question);
+//        Question savedQuestion = saveQuestion(question);
+
+        question.setUser(userService.findUser(userId));
+
+        Question savedQuestion = questionRepository.save(question);
 
         return savedQuestion;
     }
