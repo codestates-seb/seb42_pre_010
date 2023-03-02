@@ -46,24 +46,26 @@ const Signup = ({ logged, setLogged, setCurrUser }) => {
   const [passwordMsg, setPasswordMsg] = useState('');
 
   const handleSubmit = () => {
-    axios({
-      method: 'post',
-      url: 'http://localhost:3001/signup',
-      data: {
-        email,
-        password,
-      },
-      Headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    axios
+      .post(
+        'http://ec2-3-36-95-130.ap-northeast-2.compute.amazonaws.com:8080/users/signup',
+        {
+          username: nickname,
+          email: email,
+          password: password,
+        },
+        { headers: { 'Content-Security-Policy': 'upgrade-insecure-requests' } }
+      )
       .then((response) => {
         setLogged(!logged);
         setCurrUser(response.data);
+        localStorage.setItem('userData', JSON.stringify(response.data)); // 로컬 저장소에 로그인 여부 데이터 저장
       })
       .catch(() => {
         console.log('Error!');
       });
+
+    localStorage.setItem('logged', 'true'); // 로컬 저장소에 로그인 여부 데이터 저장
   };
 
   // 닉네임이 받은 값이 null은 아니도록
@@ -183,7 +185,7 @@ const Signup = ({ logged, setLogged, setCurrUser }) => {
             </OptionInfo>
           </OptionBlock>
           <SignupSubmitBtnWrap>
-            <Link to="/">
+            <Link to="/index.html">
               <SignupSubmitBtn
                 onClick={handleSubmit}
                 type="submit"

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import {
   SocialGoogleSvg,
   SocialGithubSvg,
@@ -28,8 +27,6 @@ import {
   TextInputWrap,
 } from '../../Components/Login/LoginStyle';
 
-const REACT_APP_URL = 'http://localhost:3000';
-
 const Login = ({ logged, setLogged, setCurrUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,31 +34,28 @@ const Login = ({ logged, setLogged, setCurrUser }) => {
   const [emailMsg, setEmailMsg] = useState('');
   const [passwordMsg, setPasswordMsg] = useState('');
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleSubmit = () => {
-    console.log(email);
-    console.log(password);
-    axios({
-      method: 'post',
-      url: 'http://localhost:3001/login',
-      data: {
-        email,
-        password,
-      },
-      Headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    axios
+      .post(
+        'http://ec2-3-36-95-130.ap-northeast-2.compute.amazonaws.com:8080/users/login',
+        {
+          email: email,
+          password: password,
+        },
+        { headers: { 'Content-Security-Policy': 'upgrade-insecure-requests' } }
+      )
       .then((response) => {
         setLogged(!logged);
         setCurrUser(response.data);
-        console.log(response.data);
-        navigate('/');
+        localStorage.setItem('userData', JSON.stringify(response.data)); // 로컬 저장소에 로그인 여부 데이터 저장
       })
       .catch(() => {
         console.log('Error!');
       });
+
+    localStorage.setItem('logged', 'true'); // 로컬 저장소에 로그인 여부 데이터 저장
   };
 
   // 이메일 정규 표현식
@@ -114,7 +108,7 @@ const Login = ({ logged, setLogged, setCurrUser }) => {
   return (
     <LoginWrap>
       <LoginLogo>
-        <LogoImg src={REACT_APP_URL + '/images/stackoverflow_small.png'} />
+        <LogoImg src={'/images/stackoverflow_small.png'} />
       </LoginLogo>
       <LoginSocialWrap>
         <LoginGoogle>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Pagination from '../../Components/Pagination';
 import Question from '../../Components/Questions/Question';
 import { AskButton } from '../../Components/Button/AskButton';
@@ -13,6 +14,9 @@ const QuestionsBlock = styled.div`
 
 const QuestionsListBlock = styled.ul`
   border-top: 1px solid #d6d9dc;
+  display: flex;
+  flex-direction: column;
+  width: 718px;
 `;
 
 const QuestionsTitle = styled.h1`
@@ -25,7 +29,7 @@ const TitleBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin: 10px 0 20px 0;
 `;
 
 const QuestionsLength = styled.span`
@@ -73,7 +77,7 @@ const QuestionsButtonNav = styled.button`
   }
 `;
 
-const Questions = () => {
+const Questions = ({ logged }) => {
   const [posts, setPosts] = useState([]);
   const [currentTap, setCurrentTap] = useState('newest');
   const questionsNavButton = ['Newest', 'Unanswered', 'Voted'];
@@ -88,7 +92,6 @@ const Questions = () => {
 
   const onTapClick = (tabName) => {
     setCurrentTap(tabName.toLowerCase());
-    console.log(currentTap);
   };
 
   // Pagination
@@ -103,7 +106,9 @@ const Questions = () => {
       <TitleBlock>
         <QuestionsTitle>All Questions</QuestionsTitle>
         <AskButton>
-          <a href="/askquestions">Ask Question</a>
+          <Link to={logged ? '/askquestions' : '/users/signup'}>
+            Ask Question
+          </Link>
         </AskButton>
       </TitleBlock>
       <QuestionsButtonBlock>

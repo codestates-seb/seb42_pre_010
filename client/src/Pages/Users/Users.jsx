@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-// import Footer from '../../Components/Footer/Footer';
 import { GoSearch } from 'react-icons/go';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-// import { getAllUsers } from '../../services/UserService';
+import Pagination from '../../Components/Pagination';
 
 const UsersBlock = styled.div`
   width: 1100px;
@@ -12,7 +10,7 @@ const UsersBlock = styled.div`
 
 const UsersTitle = styled.h1`
   font-size: 27px;
-  margin-bottom: 24px;
+  margin: 10px 0 20px 0;
 `;
 
 const SearchBlock = styled.div`
@@ -69,6 +67,10 @@ const UserListInfo = styled.div`
     font-size: 15px;
     margin-bottom: 5px;
     font-weight: bold;
+    a {
+      text-decoration: none;
+      color: #4f93d2;
+    }
   }
 
   .userinfo-questions {
@@ -121,11 +123,11 @@ const UserFilterName = styled.span`
     props.value === props.userFilter ? '2px solid #F48225' : 'none'};
 `;
 
-const Users = () => {
+const Users = ({ userList }) => {
   const [userName, setUserName] = useState('');
-  const [userList, setUserList] = useState([]);
   const [currentNavButton, setCurrentNavButton] = useState('reputation');
   const [userFilter, setUserFilter] = useState('week');
+  const [filteredList, setFilterdList] = useState(userList);
   const buttonList = [
     'Reputation',
     'New Users',
@@ -135,61 +137,24 @@ const Users = () => {
   ];
   const userFilterList = ['week', 'month', 'quarter', 'year', 'all'];
 
-  // 서버로부터 userData 받아와서 userList에 넣기
-  // useEffect(() => {
-  //   const getdata = async () => {
-  //     //서버에서 데이터를 받아온 상태
-  //     const userLists = await getAllUsers();
-  //     // 검색창이 빈칸일경우는 전체 렌더링
-  //     if (userName === null || userName === '') {
-  //       setUserList(userLists);
-  //       // 검색창에 입력값이 있을 경우, 필터링 해서 출력
-  //     } else {
-  //       let filteredList = [];
-  //       filteredList = userList.filter((ele) => {
-  //         return ele.userName.toLowerCase().includes(userName.toLowerCase());
-  //       });
-  //       setUserList(filteredList);
-  //     }
-  //   };
-  //   getdata();
-  // }, [userName]);
-
   useEffect(() => {
     if (userName === null || userName === '') {
-      axios.get('http://localhost:3001/users').then((res) => {
-        setUserList(res.data);
-      });
+      setFilterdList(userList);
     } else {
-      axios.get('http://localhost:3001/users').then((res) => {
-        const filteredList = res.data.filter((ele) => {
-          return ele.userName.toLowerCase().includes(userName.toLowerCase());
-        });
-        setUserList(filteredList);
+      const userFilteredList = userList.filter((ele) => {
+        return ele.username.toLowerCase().includes(userName.toLowerCase());
       });
+      setFilterdList(userFilteredList);
     }
   }, [userName]);
 
   const onTapClick = (tabName) => {
     setCurrentNavButton(tabName.toLowerCase());
-    console.log(userList);
   };
 
   const onUserFilterClick = (filterName) => {
     setUserFilter(filterName);
   };
-
-  //useEffect를 사용, input의 value가 바뀌면 state값 바로바로 변경 해주기
-  // useEffect(() => {
-  //   const userData = userList.filter((ele) => {
-  //     if (userName === '') {
-  //       return userList;
-  //     } else {
-  //       return ele.userName.toLowerCase().includes(userName.toLowerCase());
-  //     }
-  //   });
-  //   setUserList(userData);
-  // }, [userName]);
 
   const handleUserName = (e) => {
     setUserName(e.target.value);
@@ -198,6 +163,13 @@ const Users = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
   };
+
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 쪽수
+  const postsPerPage = 32; // 한 페이지 당 보여지는 유저 수
+  const indexOfLastPost = currentPage * postsPerPage; // 페이지의 마지막 게시물 위치
+  const indexOfFirstPost = indexOfLastPost - postsPerPage; // 페이지의 첫번째 게시물 위치
+  const userListPosts = filteredList.slice(indexOfFirstPost, indexOfLastPost); // 보여져야 하는 게시물만큼 Slice
 
   return (
     <UsersBlock>
@@ -244,12 +216,19 @@ const Users = () => {
         })}
       </UserFilterBlock>
       <ProfileBlock>
-        {userList?.map((ele, idx) => {
+        {userListPosts?.map((ele, idx) => {
           return (
             <div key={idx}>
-              <ProfilePic src={ele.picture} alt="user-name" />
+              <ProfilePic
+                src={`https://randomuser.me/api/portraits/${
+                  idx % 2 ? 'men' : 'women'
+                }/${idx}.jpg`}
+                alt="user-name"
+              />
               <UserListInfo>
-                <span className="userinfo-name">{ele.userName}</span>
+                <span className="userinfo-name">
+                  <a href={'/card/users/' + ele.userId}>{ele.username}</a>
+                </span>
                 <span className="userinfo-questions">
                   Questions: {ele.questionCount}
                 </span>
@@ -261,6 +240,12 @@ const Users = () => {
           );
         })}
       </ProfileBlock>
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={userList.length}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </UsersBlock>
   );
 };

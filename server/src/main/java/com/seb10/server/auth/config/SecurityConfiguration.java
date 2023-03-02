@@ -77,7 +77,7 @@ public class SecurityConfiguration {
 
 
 
-    //todo setAllowedOrigins() 허가할 URL 추가
+    // setAllowedOrigins() 허가할 URL 추가
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();

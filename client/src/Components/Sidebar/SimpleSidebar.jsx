@@ -7,7 +7,7 @@ const SidebarBlock = styled.div`
   max-width: 300px;
   float: right;
   font-size: 12px;
-  padding: 0px 40px;
+  padding: 0px 15px;
   color: #656a6d;
 `;
 
@@ -62,7 +62,7 @@ const ImgBlock = styled.div`
   }
 `;
 
-const Sidebar = () => {
+const SimpleSidebar = () => {
   return (
     <SidebarBlock>
       <YellowBoxBlock>
@@ -142,23 +142,9 @@ const Sidebar = () => {
         >
           <img src="/images/loopy.jpg" alt="ad" />
         </a>
-        <a
-          href="https://www.codestates.com/course/backend-engineering?gclid=CjwKCAiA9NGfBhBvEiwAq5vSy0OU6g_8Hk9JUxNIQtxCY1YY7arVx8AjuIAeUMJGFGiIUvXb3reBAhoCIi0QAvD_BwE"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img src="/images/back-end-ad.png" alt="ad" />
-        </a>
-        <a
-          href="https://www.codestates.com/course/frontend-engineering?gclid=CjwKCAiA9NGfBhBvEiwAq5vSy9oHGo3edBcfJW50qzorSktTDIt6vdOT1ZkiAloGrdZRn5s-KFhFrBoCmf4QAvD_BwE"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img src="/images/front-end-ad.png" alt="ad" />
-        </a>
       </ImgBlock>
     </SidebarBlock>
   );
 };
 
-export default Sidebar;
+export default SimpleSidebar;

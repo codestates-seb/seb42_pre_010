@@ -6,6 +6,7 @@ import {
 } from '../../Components/AskForm/WritingForm';
 import EditButton from '../../Components/Button/EditButton';
 import { EditMemo } from '../../Components/SideMemo/SideMemo';
+import { useLocation } from 'react-router';
 
 const EditQuestionBlock = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const EditQuestionContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 1200px;
-  padding-left: 100px;
+  padding-left: 150px;
 `;
 
 const WritingFormBlock = styled.div`
@@ -31,13 +32,15 @@ const WritingFormBlock = styled.div`
 `;
 
 const ButtonBlock = styled.div`
-  margin-left: 100px;
+  margin-left: 150px;
 `;
 
 const EditQuestion = () => {
-  // DB에서 title, value 값 가지고 와서 초기값에 넣어 줘야 함
-  const [title, setTitle] = useState('');
-  const [value, setValue] = useState('');
+  const data = useLocation();
+  const questionData = data.state.data;
+
+  const [title, setTitle] = useState(questionData.title);
+  const [value, setValue] = useState(questionData.contents);
 
   const handleValue = (value) => {
     setValue(value);

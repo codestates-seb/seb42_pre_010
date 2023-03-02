@@ -4,6 +4,7 @@ import Pagination from '../../Components/Pagination';
 import Question from '../../Components/Questions/Question';
 import { AskButton } from '../../Components/Button/AskButton.jsx';
 import { getAllQuestion } from '../../services/QuestionService';
+import { Link } from 'react-router-dom';
 
 const HomeBlock = styled.div`
   width: calc(100% - 324px);
@@ -12,8 +13,10 @@ const HomeBlock = styled.div`
 `;
 
 const HomeQuestionsListBlock = styled.ul`
+  display: flex;
+  flex-direction: column;
+  width: 718px;
   border-top: 1px solid #d6d9dc;
-  width: auto;
 `;
 
 const HomeTitle = styled.h1`
@@ -26,7 +29,7 @@ const HomeTitleBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin: 10px 0 20px 0;
 `;
 
 const ButtonBlock = styled.div`
@@ -46,7 +49,7 @@ const ButtonNav = styled.button`
   border-right: 1px solid gray;
   align-items: center;
   text-align: center;
-  padding: 15px;
+  padding: 10px 15px;
   :first-child {
     border-left: 1px solid gray;
     border-top: 1px solid gray;
@@ -68,7 +71,7 @@ const ButtonNav = styled.button`
   }
 `;
 
-const Home = () => {
+const Home = ({ logged }) => {
   const [posts, setPosts] = useState([]);
   const [currentTap, setCurrentTap] = useState('year');
   const sortTap = ['Year', 'Month', 'Day'];
@@ -121,7 +124,9 @@ const Home = () => {
       <HomeTitleBlock>
         <HomeTitle>All Questions</HomeTitle>
         <AskButton>
-          <a href="/askquestions">Ask Question</a>
+          <Link to={logged ? '/askquestions' : '/users/signup'}>
+            Ask Question
+          </Link>
         </AskButton>
       </HomeTitleBlock>
       <ButtonBlock>
