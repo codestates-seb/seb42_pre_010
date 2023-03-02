@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   HeaderBlock,
@@ -14,18 +13,42 @@ import {
   SignupBlock,
   LoggedHeaderContentWrap,
   LogoBlock,
+  LogoSmall,
+  ModalWrap,
+  LogoutBtn,
 } from './HeaderStyle';
 import { FiSearch } from 'react-icons/fi';
 import { ImDrawer2 } from 'react-icons/im';
 import { RiTrophyFill } from 'react-icons/ri';
 import { BsQuestionCircleFill } from 'react-icons/bs';
 import { FaStackExchange } from 'react-icons/fa';
-import userList from '../../data/userList';
+import { useState } from 'react';
 
-const REACT_APP_URL = 'http://localhost:3000';
+export const Header = ({ logged, currUser, setLogged }) => {
+  return (
+    <>
+      <HeaderBlock>
+        <nav>
+          <Link to="/index.html">
+            <LogoBlock>
+              <img src={'/images/logo-stackoverflow.png'} alt="logo" />
+            </LogoBlock>
+          </Link>
+          <HeaderNav logged={logged} />
+          <SearchBlock />
+          <HeaderContent
+            logged={logged}
+            currUser={currUser}
+            setLogged={setLogged}
+          />
+        </nav>
+      </HeaderBlock>
+    </>
+  );
+};
 
-export const HeaderNav = (logged) => {
-  return <>{logged.logged ? <LoggedHeaderNav /> : <PubHeaderNav />}</>;
+export const HeaderNav = ({ logged }) => {
+  return <>{logged ? <LoggedHeaderNav /> : <PubHeaderNav />}</>;
 };
 
 export const PubHeaderNav = () => {
@@ -33,7 +56,9 @@ export const PubHeaderNav = () => {
     <PubHeaderNavWrap>
       <li>About</li>
       <li>Products</li>
-      <li>For Teams</li>
+      <li>
+        <a href="https://github.com/codestates-seb/seb42_pre_010">For Teams</a>
+      </li>
     </PubHeaderNavWrap>
   );
 };
@@ -55,17 +80,40 @@ export const SearchBlock = () => {
   );
 };
 
-export const HeaderContent = (logged) => {
-  return <>{logged.logged ? <LoggedHeaderContent /> : <PubHeaderContent />}</>;
+export const HeaderContent = ({ logged, currUser, setLogged }) => {
+  return (
+    <>
+      {logged ? (
+        <LoggedHeaderContent
+          currUser={currUser}
+          setLogged={setLogged}
+          logged={logged}
+        />
+      ) : (
+        <PubHeaderContent />
+      )}
+    </>
+  );
 };
 
-export const LoggedHeaderContent = () => {
-  console.log(userList);
+export const LoggedHeaderContent = ({ currUser, setLogged, logged }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const showModal = () => {
+    setModalOpen(!modalOpen);
+  };
+
   return (
     <LoggedHeaderContentWrap>
       <MypageWrap>
-        <img src={userList[0].picture} alt={'user-img'} />
-        <span>{userList[0].questionCount}</span>
+        <Link to={`/card/users/${currUser?.data.userId}`}>
+          <img
+            src={`https://randomuser.me/api/portraits/${
+              Math.floor(Math.random(1 * 1000) * 10) % 2 ? 'men' : 'women'
+            }/${Math.floor(Math.random(1 * 1000) * 10)}.jpg`}
+            alt="user-name"
+          />
+        </Link>
+        <span>{currUser?.data.questionCount}</span>
       </MypageWrap>
       <MessageBlock>
         <ImDrawer2 />
@@ -76,10 +124,39 @@ export const LoggedHeaderContent = () => {
       <HelpBlock>
         <BsQuestionCircleFill />
       </HelpBlock>
-      <CommunityBlock>
+      <CommunityBlock onClick={showModal}>
+        {modalOpen && (
+          <ModalLogOut
+            setModalOpen={setModalOpen}
+            modalOpen={modalOpen}
+            setLogged={setLogged}
+            logged={logged}
+          />
+        )}
         <FaStackExchange />
       </CommunityBlock>
     </LoggedHeaderContentWrap>
+  );
+};
+
+export const ModalLogOut = ({ setModalOpen, modalOpen, setLogged, logged }) => {
+  // 모달 끄기
+  const closeModal = () => {
+    setModalOpen(!modalOpen);
+  };
+  // 로그아웃
+  const logOut = () => {
+    localStorage.removeItem('logged');
+    localStorage.removeItem('userData');
+    setLogged(!logged);
+  };
+
+  return (
+    <ModalWrap onClick={closeModal}>
+      <LogoSmall src={'/images/stackoverflow_small.png'} />
+      <Link to="/">Stack Overflow</Link>
+      <LogoutBtn onClick={logOut}>Log out</LogoutBtn>
+    </ModalWrap>
   );
 };
 
@@ -93,31 +170,6 @@ export const PubHeaderContent = () => {
         <SignupBlock>Sign up</SignupBlock>
       </Link>
     </PubHeaderContentWrap>
-  );
-};
-
-export const Header = () => {
-  //로그인 여부를 확인하기 위한 상태가 필요
-  const [logged, setLogged] = useState(false);
-
-  return (
-    <>
-      <HeaderBlock>
-        <nav>
-          <Link to="/">
-            <LogoBlock>
-              <img
-                src={REACT_APP_URL + '/images/logo-stackoverflow.png'}
-                alt="logo"
-              />
-            </LogoBlock>
-          </Link>
-          <HeaderNav logged={logged} setLogged={setLogged} />
-          <SearchBlock />
-          <HeaderContent logged={logged} />
-        </nav>
-      </HeaderBlock>
-    </>
   );
 };
 

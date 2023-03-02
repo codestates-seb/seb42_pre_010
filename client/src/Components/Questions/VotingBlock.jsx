@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { BiUpArrow, BiDownArrow } from 'react-icons/bi';
 import { FaRegBookmark } from 'react-icons/fa';
 import { RxCountdownTimer } from 'react-icons/rx';
@@ -47,7 +46,7 @@ const VotingBlock = () => {
         <BiUpArrow />
       </VotingBtnBlock>
       <VotingBtnBlock>
-        <span>0</span>
+        <span>{Math.floor(Math.random() * 100)}</span>
       </VotingBtnBlock>
       <VotingBtnBlock>
         <BiDownArrow />

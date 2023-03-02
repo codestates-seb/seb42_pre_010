@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import TagList from './TagList';
 import tag from '../../data/Tag';
@@ -47,18 +47,16 @@ const Tag = () => {
   const [search, setSearch] = useState('');
   const [list, setList] = useState(tag);
 
-  const filtered = () => {
+  useEffect(() => {
     const data = tag.filter((data) => {
       return data.tag.includes(search);
     });
-
     setList(data);
-  };
+  }, [search]);
 
   const handleOnSearch = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
-    filtered();
   };
 
   return (

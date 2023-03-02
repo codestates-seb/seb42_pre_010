@@ -1,18 +1,17 @@
 import styled from 'styled-components';
 import { BiWorld } from 'react-icons/bi';
+import { Link, useLocation } from 'react-router-dom';
 
 const NavContainer = styled.div`
   width: 164px;
-  height: 100vh;
   padding-top: 10px;
-  padding-left: 150px;
+  padding-left: 80px;
   border-right: 1px solid #d6d9dc;
   font-size: 13px;
 `;
 
 const NavBlock = styled.div`
   width: 100%;
-  height: 382px;
   color: rgb(81, 81, 81);
   margin-top: 20px;
 
@@ -21,7 +20,7 @@ const NavBlock = styled.div`
     flex-direction: column;
     justify-content: center;
     list-style: none;
-    padding: 0; // ul 기본 여백 초기화
+    padding: 0;
     margin: 0;
   }
 
@@ -62,14 +61,7 @@ const NavBlock = styled.div`
 `;
 
 const Nav = () => {
-  // let loaction = window.location.pathname;
-  // if (
-  //   loaction === '/' ||
-  //   loaction === '/questions' ||
-  //   loaction === '/tags' ||
-  //   loaction === '/users'
-  // )
-  //   return null;
+  const location = useLocation();
 
   return (
     <NavContainer>
@@ -77,34 +69,32 @@ const Nav = () => {
         <ul>
           <li
             className={
-              window.location.pathname === '/' ? 'home clickMemu' : 'home'
+              location.pathname === '/index.html' ? 'clickMemu home' : 'home'
             }
           >
-            <a href="/">Home</a>
+            <Link to="/index.html">Home</Link>
           </li>
           <p>PUBLIC</p>
           <ul>
             <li
               className={
-                window.location.pathname === '/questions' ? 'clickMemu' : 'null'
+                location.pathname === '/allquestion' ? 'clickMemu' : 'null'
               }
             >
               <BiWorld className="icon" size={16} />
-              <a href="/questions">Questions</a>
+              <Link to="/allquestion">Questions</Link>
+            </li>
+            <li
+              className={location.pathname === '/tags' ? 'clickMemu' : 'null'}
+            >
+              <Link to="/tags">Tags</Link>
             </li>
             <li
               className={
-                window.location.pathname === '/tags' ? 'clickMemu' : 'null'
+                location.pathname === '/allusers' ? 'clickMemu' : 'null'
               }
             >
-              <a href="/tags">Tags</a>
-            </li>
-            <li
-              className={
-                window.location.pathname === '/users' ? 'clickMemu' : 'null'
-              }
-            >
-              <a href="/users">Users</a>
+              <Link to="/allusers">Users</Link>
             </li>
             <li>
               <a href="https://stackoverflow.com/jobs/companies">Companies</a>

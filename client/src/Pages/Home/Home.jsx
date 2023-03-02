@@ -1,31 +1,38 @@
 import styled from 'styled-components';
-import questionsData from '../../data/Questions';
-import Question from '../../Components/Questions/Question';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Pagination from '../../Components/Pagination';
+import Question from '../../Components/Questions/Question';
+import { AskButton } from '../../Components/Button/AskButton.jsx';
+import { getAllQuestion } from '../../services/QuestionService';
+import { Link } from 'react-router-dom';
 
-const HomeContainer = styled.div`
+const HomeBlock = styled.div`
   width: calc(100% - 324px);
+  display: flex;
+  flex-direction: column;
 `;
 
-const HomeQuestionsListContainer = styled.ul`
-  border-top: 1px solid gray;
-  width: auto;
+const HomeQuestionsListBlock = styled.ul`
+  display: flex;
+  flex-direction: column;
+  width: 718px;
+  border-top: 1px solid #d6d9dc;
 `;
 
 const HomeTitle = styled.h1`
   font-size: 27px;
+  padding-left: 24px;
   font: bold;
 `;
 
-const HomeTitleContainer = styled.div`
+const HomeTitleBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin: 10px 0 20px 0;
 `;
 
-const ButtonContainer = styled.div`
+const ButtonBlock = styled.div`
   display: flex;
   box-sizing: border-box;
   align-items: center;
@@ -42,7 +49,7 @@ const ButtonNav = styled.button`
   border-right: 1px solid gray;
   align-items: center;
   text-align: center;
-  padding: 15px;
+  padding: 10px 15px;
   :first-child {
     border-left: 1px solid gray;
     border-top: 1px solid gray;
@@ -64,39 +71,65 @@ const ButtonNav = styled.button`
   }
 `;
 
-const Home = () => {
+const Home = ({ logged }) => {
+  const [posts, setPosts] = useState([]);
   const [currentTap, setCurrentTap] = useState('year');
   const sortTap = ['Year', 'Month', 'Day'];
-  // Pagination
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 쪽수
-  const [postsPerPage] = useState(5); // 한 페이지 당 보여지는 게시물수
-  const page = Math.ceil(questionsData.length / postsPerPage);
 
-  const indexOfLastPost = currentPage * postsPerPage; // 페이지의 마지막 게시물 위치
-  const indexOfFirstPost = indexOfLastPost - postsPerPage; // 페이지의 첫번째 게시물 위치
-  const currentPosts = questionsData.slice(indexOfFirstPost, indexOfLastPost); // 보여져야 하는 게시물만큼 Slice
-
-  // paginate
-  const paginate = (pageNumber) => {
-    if (pageNumber === 0) return;
-    if (pageNumber > page) return;
-    setCurrentPage(pageNumber);
-  };
+  useEffect(() => {
+    const getData = async () => {
+      const questionData = await getAllQuestion();
+      setPosts(
+        questionData.sort(
+          (a, b) => a.createdAt.slice(0, 4) - b.createdAt.slice(0, 4)
+        )
+      );
+    };
+    getData();
+  }, []);
 
   const onTapClick = (tabName) => {
     setCurrentTap(tabName.toLowerCase());
-    console.log(currentTap);
+
+    if (tabName === 'Year') {
+      setPosts(
+        [...posts].sort(
+          (a, b) => a.createdAt.slice(0, 4) - b.createdAt.slice(0, 4)
+        )
+      );
+    } else if (tabName === 'Month') {
+      setPosts(
+        [...posts].sort(
+          (a, b) => a.createdAt.slice(5, 7) - b.createdAt.slice(5, 7)
+        )
+      );
+    } else if (tabName === 'Day') {
+      setPosts(
+        [...posts].sort(
+          (a, b) => a.createdAt.slice(8, 10) - b.createdAt.slice(8, 10)
+        )
+      );
+    }
   };
 
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 쪽수
+  const postsPerPage = 5; // 한 페이지 당 보여지는 게시물수
+  const indexOfLastPost = currentPage * postsPerPage; // 페이지의 마지막 게시물 위치
+  const indexOfFirstPost = indexOfLastPost - postsPerPage; // 페이지의 첫번째 게시물 위치
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost); // 보여져야 하는 게시물만큼 Slice
+
   return (
-    <HomeContainer>
-      <HomeTitleContainer>
+    <HomeBlock>
+      <HomeTitleBlock>
         <HomeTitle>All Questions</HomeTitle>
-        <button>
-          <a href="/askquestions">Ask Question</a>
-        </button>
-      </HomeTitleContainer>
-      <ButtonContainer>
+        <AskButton>
+          <Link to={logged ? '/askquestions' : '/users/signup'}>
+            Ask Question
+          </Link>
+        </AskButton>
+      </HomeTitleBlock>
+      <ButtonBlock>
         {sortTap.map((ele, idx) => {
           return (
             <ButtonNav
@@ -109,21 +142,25 @@ const Home = () => {
             </ButtonNav>
           );
         })}
-      </ButtonContainer>
-      <HomeQuestionsListContainer>
+      </ButtonBlock>
+      <HomeQuestionsListBlock>
         {currentPosts.map((ele) => {
           return (
-            <Question questionData={ele} key={ele.id} currentTap={currentTap} />
+            <Question
+              questionData={ele}
+              key={ele.questionId}
+              currentTap={currentTap}
+            />
           );
         })}
-      </HomeQuestionsListContainer>
+      </HomeQuestionsListBlock>
       <Pagination
-        postPerPage={postsPerPage}
-        totalPosts={questionsData.length}
-        paginate={paginate}
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />
-    </HomeContainer>
+    </HomeBlock>
   );
 };
 

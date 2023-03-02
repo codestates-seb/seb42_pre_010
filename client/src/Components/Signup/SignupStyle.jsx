@@ -86,6 +86,7 @@ export const SignupInputTitle = styled.div`
 `;
 
 export const TextInput = styled.input`
+  // border: 1px solid black !important;
   width: 250px;
   height: 32px;
   border: none;
@@ -142,10 +143,12 @@ export const OptionInfo = styled.label`
   color: hsl(210, 8%, 5%);
 `;
 
+export const SignupSubmitBtnWrap = styled.div``;
+
 export const SignupSubmitBtn = styled.button`
+  width: 100%;
   margin: 8px 0;
   background-color: hsl(206, 100%, 52%);
-  color: white;
   border: 1px solid transparent;
   box-shadow: 0 1px 0 0 hsla(0, 0%, 100%, 0.4);
   font-size: 13px;
@@ -155,8 +158,9 @@ export const SignupSubmitBtn = styled.button`
   position: relative;
   outline: none;
   line-height: calc(15 / 13);
-  cursor: pointer;
   border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
 `;
 
 export const MoreInfoWrap = styled.div`
@@ -179,7 +183,7 @@ export const ErrorText = styled.p`
 export const TextInputWrap = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   width: 300px;
   margin-top: 10px;
   border: 1px solid hsl(210, 8%, 75%);

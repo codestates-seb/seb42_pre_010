@@ -9,6 +9,8 @@ export const DetailQuestionTitleSection = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-left: 24px;
+  width: 1035px;
 `;
 
 export const DetailQuestionTitle = styled.h1`
@@ -16,7 +18,7 @@ export const DetailQuestionTitle = styled.h1`
   color: #3b4045;
   font-size: 27px;
   flex: 1 auto;
-  margin: 0 0 8px;
+  margin: 10px 0 8px;
   height: 35px;
   margin-bottom: 0.8rem;
   word-break: break-all;
@@ -45,11 +47,13 @@ export const TimeInfoSection = styled.div`
   border-color: hsl(210, 8%, 90%);
   height: 3.4rem;
   padding-bottom: 0.8rem;
+  padding-left: 24px;
   display: flex;
   flex-direction: row;
   align-items: center;
   font-size: 13px;
   margin-bottom: 18px;
+  width: 1035px;
 `;
 
 export const TimeInfo = styled.div`
@@ -72,7 +76,7 @@ export const DetailQuestionAnswerSection = styled.div`
 export const DetailQuestionContentWrap = styled.div`
   display: flex;
   flex-direction: row;
-  width: 700px;
+  width: 720px;
 `;
 
 export const QuestionMain = styled.div`
@@ -91,7 +95,7 @@ export const DetailQuestionContent = styled.div`
 export const PostOwnerInfoWrap = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 660px;
+  width: 640px;
   margin-top: 50px;
   span {
     margin-right: 3px;
@@ -112,6 +116,7 @@ export const PostOwnerInfo = styled.div`
   width: 230px;
   height: 67px;
   padding: 10px;
+  margin-right: 20px;
 `;
 
 export const AnswerSection = styled.div`
@@ -160,4 +165,13 @@ export const PostOwnerUser = styled.div`
     font-size: 13px;
     font-weight: 600px;
   }
+`;
+
+export const QuestionContentContainer = styled.div`
+  margin-left: 19px;
+`;
+
+export const DivisionLine = styled.div`
+  border-top: 1px solid hsl(210, 8%, 90%);
+  margin-top: 50px;
 `;

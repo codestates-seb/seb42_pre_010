@@ -1,32 +1,36 @@
 spring:
-  h2:
-    console:
-      enabled: true
   datasource:
-    url: jdbc:h2:mem:test
-    username: lee
-    password : 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://junbofarm-database.c5nlt39fon7t.ap-northeast-2.rds.amazonaws.com:3306/prepro?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
+    username: admin
+    password: junbofarm010
   jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: create
+      #      ddl-auto: create
+      ddl-auto: update # 운영시에는 validate 추천
     show-sql: true
     properties:
       hibernate:
         format_sql: true
-#  sql:
-#    init:
-#      data-locations: classpath*:db/h2/data.sql
 logging:
   level:
     org:
       springframework:
         orm:
           jpa: DEBUG
+
 server:
   servlet:
     encoding:
       force-response: true
+mail:
+  address:
+    admin: admin@gmail.com
 jwt:
-  secret-key: ${JWT_SECRET_KEY}
+  secret-key: junboFarm010010010010010010010
   access-token-expiration-minutes: 10000
   refresh-token-expiration-minutes: 420
+config:
+  domain: http://junbofarm-s3-bucket.s3-website.ap-northeast-2.amazonaws.com

@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import WritingInfo from '../../Components/AskForm/WritingInfo';
 import {
   WritingTitleForm,
   WritingBodyForm,
 } from '../../Components/AskForm/WritingForm';
+import { useNavigate } from 'react-router-dom';
 
 const AskQuestionBlock = styled.div`
   background: #f8f9f9;
@@ -95,9 +97,14 @@ const ButtonBlock = styled.div`
   }
 `;
 
-const AskQuestion = () => {
+const AskQuestion = ({ currUser, setQuestionList }) => {
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
+
+  // 현재 로그인한 유저 id
+  const loggedUserId = currUser?.data.userId;
+
+  const navigate = useNavigate();
 
   const handleValue = (value) => {
     setValue(value);
@@ -105,6 +112,40 @@ const AskQuestion = () => {
 
   const handleOnChangeTitle = (e) => {
     setTitle(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(
+        'http://ec2-3-36-95-130.ap-northeast-2.compute.amazonaws.com:8080/questions/ask',
+        {
+          userId: loggedUserId,
+          title: title,
+          contents: value,
+        }
+      )
+      .then(() => {
+        axios
+          .get(
+            'http://ec2-3-36-95-130.ap-northeast-2.compute.amazonaws.com:8080/questions?page=1&size=1000',
+            {
+              headers: {
+                'Content-Security-Policy': 'upgrade-insecure-requests',
+              },
+            }
+          )
+          .then((res) => {
+            setQuestionList(res.data.data);
+          });
+      })
+      .then(() => {
+        navigate('/index.html');
+      })
+      .catch(() => {
+        console.log('Error!');
+      });
   };
 
   const handleOnReset = () => {
@@ -140,7 +181,7 @@ const AskQuestion = () => {
           </div>
         </WritingBlock>
         <ButtonBlock>
-          <button className="submitButton" type="submit">
+          <button className="submitButton" onClick={handleSubmit} type="submit">
             Ask!
           </button>
           <button className="cancelButton" onClick={handleOnReset} type="reset">

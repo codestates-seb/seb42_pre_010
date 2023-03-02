@@ -1,49 +1,37 @@
 package com.seb10.server.domain.user.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.util.Assert;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserPatchDto {
+
     private long userId;
-    private String userName;
-    private String email;
+
+    @NotNull
+    private String username;
+
+
+    @NotNull
     private String password;
-    private String userStatus;
 
-    public long getUserId() {
-        return userId;
-    }
 
-    public void setUserId(long userId) {
+
+    public UserPatchDto addUserId(Long userId){
+        Assert.notNull(userId, "user id must not be null.");
         this.userId = userId;
+
+        return this;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUserStatus() {
-        return userStatus;
-    }
-
-    public void setUserStatus(String userStatus) {
-        this.userStatus = userStatus;
-    }
+//        public UserPatchDto(){}
 }
